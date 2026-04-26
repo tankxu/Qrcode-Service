@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export interface AuthUser {
+  uid: string;
   sub: string;
   email: string;
   name?: string;

@@ -28,7 +28,8 @@ async function hmacKey(secret: string): Promise<CryptoKey> {
 }
 
 export interface SessionPayload {
-  sub: string;
+  uid: string;       // D1 users.id
+  sub: string;       // google sub
   email: string;
   name?: string;
   picture?: string;

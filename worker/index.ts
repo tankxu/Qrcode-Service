@@ -1,8 +1,10 @@
 import { Hono } from "hono";
 import { getCookie, setCookie, deleteCookie } from "hono/cookie";
 import { signJWT, verifyJWT, randomToken, type SessionPayload } from "./jwt";
+import { upsertUser } from "./lib/db";
+import { SESSION_COOKIE, type AuthedUser } from "./lib/auth";
 
-type Bindings = {
+export type Bindings = {
   GOOGLE_CLIENT_ID: string;
   GOOGLE_CLIENT_SECRET: string;
   JWT_SECRET: string;
@@ -15,11 +17,12 @@ type Bindings = {
   SCAN_EVENTS: AnalyticsEngineDataset;
 };
 
-const SESSION_COOKIE = "qr_session";
+export type AppEnv = { Bindings: Bindings; Variables: { user: AuthedUser } };
+
 const STATE_COOKIE = "qr_oauth_state";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
-const app = new Hono<{ Bindings: Bindings }>();
+const app = new Hono<AppEnv>();
 
 app.get("/api/auth/google", (c) => {
   const state = randomToken();
@@ -85,8 +88,16 @@ app.get("/api/auth/callback", async (c) => {
     email_verified?: boolean;
   };
 
+  const dbUser = await upsertUser(c.env.DB, {
+    sub: user.sub,
+    email: user.email,
+    name: user.name,
+    picture: user.picture,
+  });
+
   const now = Math.floor(Date.now() / 1000);
   const payload: SessionPayload = {
+    uid: dbUser.id,
     sub: user.sub,
     email: user.email,
     name: user.name,
@@ -119,6 +130,7 @@ app.get("/api/auth/me", async (c) => {
   }
   return c.json({
     user: {
+      uid: payload.uid,
       sub: payload.sub,
       email: payload.email,
       name: payload.name,
