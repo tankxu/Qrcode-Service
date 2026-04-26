@@ -1,0 +1,35 @@
+name = "qrcode-service"
+main = "worker/index.ts"
+compatibility_date = "2025-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/q/*", "/r/*"]
+
+[dev]
+port = 8787
+
+[[routes]]
+pattern = "qrcode-service.tankxu.com"
+custom_domain = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "qrcode-service-db"
+database_id = "1aa84840-adf5-4333-98b3-d45a92bd49e1"
+migrations_dir = "worker/migrations"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "qrcode-service-images"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "6d7a1d45cd6d4f9ebfbc8bac392a6f6e"
+
+[[analytics_engine_datasets]]
+binding = "SCAN_EVENTS"
+dataset = "qrcode_scans"

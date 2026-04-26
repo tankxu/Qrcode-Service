@@ -1,0 +1,18 @@
+# Cloudflare Worker secrets for local dev (loaded by `wrangler dev`).
+# Copy to `.dev.vars` (gitignored) and fill in real values.
+# For production: `wrangler secret put GOOGLE_CLIENT_ID` etc.
+
+# From Google Cloud Console > APIs & Services > Credentials > Web application
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+
+# Long random string for signing session JWTs.
+# Generate one with: openssl rand -base64 48
+JWT_SECRET=""
+
+# OAuth callback. Must exactly match the "Authorized redirect URI" in Google Console.
+# Local dev (Vite proxies /api -> :8787, so use the Vite origin):
+OAUTH_REDIRECT_URI="http://localhost:3000/api/auth/callback"
+
+# Where to send the user after a successful login.
+APP_URL="http://localhost:3000"
