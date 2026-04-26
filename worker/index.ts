@@ -3,6 +3,9 @@ import { getCookie, setCookie, deleteCookie } from "hono/cookie";
 import { signJWT, verifyJWT, randomToken, type SessionPayload } from "./jwt";
 import { upsertUser } from "./lib/db";
 import { SESSION_COOKIE, type AuthedUser } from "./lib/auth";
+import qrsRoute from "./routes/qrs";
+import uploadsRoute from "./routes/uploads";
+import rRoute from "./routes/r";
 
 export type Bindings = {
   GOOGLE_CLIENT_ID: string;
@@ -143,6 +146,10 @@ app.post("/api/auth/logout", (c) => {
   deleteCookie(c, SESSION_COOKIE, { path: "/" });
   return c.json({ ok: true });
 });
+
+app.route("/api/qrs", qrsRoute);
+app.route("/api/uploads", uploadsRoute);
+app.route("/r", rRoute);
 
 // Placeholder for Phase D — landing page SSR.
 app.get("/q/:slug", (c) => {
