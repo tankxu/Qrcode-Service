@@ -6,6 +6,7 @@ import { SESSION_COOKIE, type AuthedUser } from "./lib/auth";
 import qrsRoute from "./routes/qrs";
 import uploadsRoute from "./routes/uploads";
 import rRoute from "./routes/r";
+import qRoute from "./routes/q";
 
 export type Bindings = {
   GOOGLE_CLIENT_ID: string;
@@ -150,13 +151,6 @@ app.post("/api/auth/logout", (c) => {
 app.route("/api/qrs", qrsRoute);
 app.route("/api/uploads", uploadsRoute);
 app.route("/r", rRoute);
-
-// Placeholder for Phase D — landing page SSR.
-app.get("/q/:slug", (c) => {
-  const slug = c.req.param("slug");
-  return c.html(
-    `<!DOCTYPE html><html><head><meta charset="utf-8"><title>QuickQR</title></head><body><h1>Hello ${slug}</h1><p>Landing page SSR — coming in Phase D.</p></body></html>`,
-  );
-});
+app.route("/q", qRoute);
 
 export default app satisfies ExportedHandler<Bindings>;
