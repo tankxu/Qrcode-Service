@@ -6,6 +6,8 @@ import Login from "@/src/pages/Login";
 import NotFound from "@/src/pages/NotFound";
 import Dashboard from "@/src/pages/app/Dashboard";
 import Account from "@/src/pages/app/Account";
+import NewQrWizard from "@/src/pages/app/NewQrWizard";
+import QrDetail from "@/src/pages/app/QrDetail";
 import StaticQrTool from "@/src/pages/tools/StaticQrTool";
 import RequireAuth from "@/src/components/RequireAuth";
 
@@ -26,6 +28,8 @@ export const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <Dashboard /> },
+      { path: "new", element: <NewQrWizard /> },
+      { path: "q/:id", element: <QrDetail /> },
       { path: "account", element: <Account /> },
       { path: "tools/static-qr", element: <StaticQrTool /> },
     ],
