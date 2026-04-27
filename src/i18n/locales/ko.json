@@ -226,5 +226,29 @@
     "account": "계정 · QuickQR",
     "staticQr": "정적 QR · QuickQR",
     "notFound": "페이지 없음 · QuickQR"
+  },
+  "staticQr": {
+    "subtitle": "일회성 QR 생성기. 인쇄 후 내용은 변경할 수 없습니다.",
+    "configure": "정적 QR 설정",
+    "targetContent": "대상 콘텐츠",
+    "targetPlaceholder": "https://example.com/your-destination",
+    "resolution": "해상도 (px)",
+    "ecc": "오류 수정 레벨",
+    "eccL": "L (낮음 - 7%)",
+    "eccM": "M (중간 - 15%)",
+    "eccQ": "Q (1/4 - 25%)",
+    "eccH": "H (높음 - 30%)",
+    "foreground": "전경색",
+    "background": "배경색",
+    "quietZone": "퀴어트 존 여백",
+    "generateDownload": "생성 및 다운로드",
+    "copyApi": "API 링크 복사",
+    "exportOptions": "내보내기",
+    "fmtPng": "래스터 이미지",
+    "fmtSvg": "벡터 경로",
+    "fmtJpg": "웹 압축",
+    "downloaded": "{{format}}(으)로 다운로드됨",
+    "failed": "다운로드에 실패했습니다.",
+    "copied": "API URL을 클립보드에 복사했습니다"
   }
 }

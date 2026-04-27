@@ -226,5 +226,29 @@
     "account": "Konto · QuickQR",
     "staticQr": "Statischer QR · QuickQR",
     "notFound": "Seite nicht gefunden · QuickQR"
+  },
+  "staticQr": {
+    "subtitle": "Einmaliger QR-Generator. Inhalt nach dem Drucken nicht änderbar.",
+    "configure": "Statischen QR konfigurieren",
+    "targetContent": "Zielinhalt",
+    "targetPlaceholder": "https://example.com/deine-seite",
+    "resolution": "Auflösung (px)",
+    "ecc": "Fehlerkorrektur",
+    "eccL": "L (Niedrig - 7%)",
+    "eccM": "M (Mittel - 15%)",
+    "eccQ": "Q (Viertel - 25%)",
+    "eccH": "H (Hoch - 30%)",
+    "foreground": "Vordergrund",
+    "background": "Hintergrund",
+    "quietZone": "Ruhebereich",
+    "generateDownload": "Erstellen & Herunterladen",
+    "copyApi": "API-Link kopieren",
+    "exportOptions": "Exportieren",
+    "fmtPng": "Rasterbild",
+    "fmtSvg": "Vektorpfad",
+    "fmtJpg": "Web-komprimiert",
+    "downloaded": "Als {{format}} heruntergeladen",
+    "failed": "Download fehlgeschlagen.",
+    "copied": "API-URL in Zwischenablage kopiert"
   }
 }

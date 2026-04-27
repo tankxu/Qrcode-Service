@@ -226,5 +226,29 @@
     "account": "账号 · QuickQR",
     "staticQr": "静态二维码 · QuickQR",
     "notFound": "页面未找到 · QuickQR"
+  },
+  "staticQr": {
+    "subtitle": "一次性二维码生成器,生成后无法修改内容。",
+    "configure": "配置静态二维码",
+    "targetContent": "目标内容",
+    "targetPlaceholder": "https://example.com/your-destination",
+    "resolution": "尺寸(px)",
+    "ecc": "纠错等级",
+    "eccL": "L(低 - 7%)",
+    "eccM": "M(中 - 15%)",
+    "eccQ": "Q(四分之一 - 25%)",
+    "eccH": "H(高 - 30%)",
+    "foreground": "前景色",
+    "background": "背景色",
+    "quietZone": "静默区边距",
+    "generateDownload": "生成并下载",
+    "copyApi": "复制 API 直链",
+    "exportOptions": "导出选项",
+    "fmtPng": "光栅图像",
+    "fmtSvg": "矢量路径",
+    "fmtJpg": "网络压缩",
+    "downloaded": "已下载为 {{format}}",
+    "failed": "下载失败。",
+    "copied": "API URL 已复制到剪贴板"
   }
 }

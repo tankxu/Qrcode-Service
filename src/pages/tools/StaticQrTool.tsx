@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslation } from "react-i18next";
 import { QrCode, Download, Settings2, RefreshCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +31,7 @@ interface QRSettings {
 }
 
 export default function StaticQrTool() {
+  const { t } = useTranslation();
   usePageTitle("meta.staticQr");
   const [settings, setSettings] = useState<QRSettings>({
     data: "https://github.com/shadcn-ui/ui",
@@ -80,10 +82,10 @@ export default function StaticQrTool() {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(blobUrl);
-      toast.success(`Downloaded as ${fmt.toUpperCase()}`);
+      toast.success(t("staticQr.downloaded", { format: fmt.toUpperCase() }));
     } catch (error) {
       console.error(error);
-      toast.error("Failed to download.");
+      toast.error(t("staticQr.failed"));
     } finally {
       setIsLoading(false);
     }
@@ -91,7 +93,13 @@ export default function StaticQrTool() {
 
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(generateUrl());
-    toast.success("API URL copied to clipboard");
+    toast.success(t("staticQr.copied"));
+  };
+
+  const fmtDesc: Record<QRFormat, string> = {
+    png: t("staticQr.fmtPng"),
+    svg: t("staticQr.fmtSvg"),
+    jpg: t("staticQr.fmtJpg"),
   };
 
   return (
@@ -100,16 +108,16 @@ export default function StaticQrTool() {
         <div className="p-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold flex items-center gap-2">
             <Settings2 className="w-5 h-5 text-indigo-600" />
-            Configure Static QR
+            {t("staticQr.configure")}
           </h2>
-          <p className="text-sm text-slate-500">One-shot QR generator. Content cannot be changed after printing.</p>
+          <p className="text-sm text-slate-500">{t("staticQr.subtitle")}</p>
         </div>
 
         <div className="p-6 space-y-8">
           <div className="space-y-3">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Target Content</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t("staticQr.targetContent")}</label>
             <Input
-              placeholder="https://example.com/your-destination"
+              placeholder={t("staticQr.targetPlaceholder")}
               value={settings.data}
               onChange={(e) => setSettings({ ...settings, data: e.target.value })}
               className="h-12 border-slate-200 focus:border-indigo-500 focus:ring-indigo-500/10"
@@ -120,7 +128,7 @@ export default function StaticQrTool() {
 
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-3">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Resolution (px)</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t("staticQr.resolution")}</label>
               <Select value={settings.size.toString()} onValueChange={(val) => setSettings({ ...settings, size: parseInt(val) })}>
                 <SelectTrigger className="border-slate-200 h-11">
                   <SelectValue />
@@ -134,16 +142,16 @@ export default function StaticQrTool() {
               </Select>
             </div>
             <div className="space-y-3">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Correction Level</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t("staticQr.ecc")}</label>
               <Select value={settings.ecc} onValueChange={(val: QREcc) => setSettings({ ...settings, ecc: val })}>
                 <SelectTrigger className="border-slate-200 h-11">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="L">L (Low - 7%)</SelectItem>
-                  <SelectItem value="M">M (Mid - 15%)</SelectItem>
-                  <SelectItem value="Q">Q (Quartile - 25%)</SelectItem>
-                  <SelectItem value="H">H (High - 30%)</SelectItem>
+                  <SelectItem value="L">{t("staticQr.eccL")}</SelectItem>
+                  <SelectItem value="M">{t("staticQr.eccM")}</SelectItem>
+                  <SelectItem value="Q">{t("staticQr.eccQ")}</SelectItem>
+                  <SelectItem value="H">{t("staticQr.eccH")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -151,7 +159,7 @@ export default function StaticQrTool() {
 
           <div className="grid grid-cols-2 gap-6 pt-2">
             <div className="space-y-3">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Foreground</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t("staticQr.foreground")}</label>
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-11 h-11 rounded-lg border border-slate-200 shadow-sm" style={{ backgroundColor: settings.color }} />
@@ -161,7 +169,7 @@ export default function StaticQrTool() {
               </div>
             </div>
             <div className="space-y-3">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Background</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{t("staticQr.background")}</label>
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-11 h-11 rounded-lg border border-slate-200 shadow-sm" style={{ backgroundColor: settings.bgcolor }} />
@@ -174,7 +182,7 @@ export default function StaticQrTool() {
 
           <div className="space-y-4 pt-4">
             <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              <span>Quiet Zone Margin</span>
+              <span>{t("staticQr.quietZone")}</span>
               <span>{settings.qzone}px</span>
             </div>
             <Slider
@@ -191,28 +199,28 @@ export default function StaticQrTool() {
         <div className="p-6 bg-slate-50 border-t border-slate-200 rounded-b-xl">
           <Button className="w-full bg-indigo-600 text-white py-6 rounded-lg font-semibold shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 text-base h-11" onClick={() => handleDownload()} disabled={isLoading}>
             {isLoading ? <RefreshCcw className="w-4 h-4 animate-spin" /> : <Download className="w-5 h-5" />}
-            Generate & Download
+            {t("staticQr.generateDownload")}
           </Button>
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col gap-8">
+      <div className="flex-1 flex flex-col gap-8 min-w-0">
         <Card className="flex-1 bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col items-center justify-center relative p-12 min-h-115">
-          <div className="relative p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
+          <div className="relative p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner max-w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={lastGeneratedUrl}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
-                className="w-64 h-64 bg-white p-4 rounded-xl shadow-md flex items-center justify-center"
+                className="w-64 h-64 max-w-full bg-white p-4 rounded-xl shadow-md flex items-center justify-center"
               >
                 {lastGeneratedUrl ? (
                   <img src={lastGeneratedUrl} alt="QR Code" className="w-full h-full object-contain" style={{ imageRendering: "pixelated" }} />
                 ) : (
                   <div className="flex flex-col items-center gap-4 text-slate-300">
                     <QrCode className="w-16 h-16" />
-                    <p className="text-xs font-medium">Processing...</p>
+                    <p className="text-xs font-medium">…</p>
                   </div>
                 )}
               </motion.div>
@@ -221,22 +229,22 @@ export default function StaticQrTool() {
 
           <div className="mt-8 flex flex-col items-center gap-2">
             <Button variant="ghost" size="sm" onClick={handleCopyUrl} className="text-indigo-600 text-xs hover:bg-slate-50">
-              Copy direct API link
+              {t("staticQr.copyApi")}
             </Button>
           </div>
         </Card>
 
-        <div className="h-44 bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col gap-4">
           <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 uppercase tracking-tight">
             <Download className="w-4 h-4 text-indigo-600" />
-            Export Options
+            {t("staticQr.exportOptions")}
           </h3>
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {(["png", "svg", "jpg"] as const).map((fmt) => (
               <button key={fmt} onClick={() => handleDownload(fmt)} className="flex-1 flex flex-col items-center justify-center py-4 border border-slate-200 rounded-xl hover:border-indigo-200 hover:bg-indigo-50/50 group transition-all">
                 <span className="text-lg font-bold group-hover:text-indigo-600 uppercase tracking-tight">{fmt}</span>
-                <span className="text-[9px] text-slate-400 font-bold tracking-widest uppercase mt-0.5">
-                  {fmt === "svg" ? "Vector Path" : fmt === "jpg" ? "Web Compressed" : "Raster Image"}
+                <span className="text-[9px] text-slate-400 font-bold tracking-widest uppercase mt-0.5 text-center px-1">
+                  {fmtDesc[fmt]}
                 </span>
               </button>
             ))}

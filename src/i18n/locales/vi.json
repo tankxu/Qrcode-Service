@@ -226,5 +226,29 @@
     "account": "Tài khoản · QuickQR",
     "staticQr": "QR tĩnh · QuickQR",
     "notFound": "Không tìm thấy · QuickQR"
+  },
+  "staticQr": {
+    "subtitle": "Trình tạo QR một lần. Không thể đổi nội dung sau khi in.",
+    "configure": "Cấu hình QR tĩnh",
+    "targetContent": "Nội dung đích",
+    "targetPlaceholder": "https://example.com/your-destination",
+    "resolution": "Độ phân giải (px)",
+    "ecc": "Mức sửa lỗi",
+    "eccL": "L (Thấp - 7%)",
+    "eccM": "M (Trung bình - 15%)",
+    "eccQ": "Q (Một phần tư - 25%)",
+    "eccH": "H (Cao - 30%)",
+    "foreground": "Màu trước",
+    "background": "Màu nền",
+    "quietZone": "Lề vùng yên tĩnh",
+    "generateDownload": "Tạo và tải xuống",
+    "copyApi": "Sao chép link API",
+    "exportOptions": "Tùy chọn xuất",
+    "fmtPng": "Ảnh raster",
+    "fmtSvg": "Đường vector",
+    "fmtJpg": "Nén web",
+    "downloaded": "Đã tải xuống dưới dạng {{format}}",
+    "failed": "Tải xuống thất bại.",
+    "copied": "URL API đã được sao chép"
   }
 }

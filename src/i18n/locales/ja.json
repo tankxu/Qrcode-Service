@@ -226,5 +226,29 @@
     "account": "アカウント · QuickQR",
     "staticQr": "静的 QR · QuickQR",
     "notFound": "ページが見つかりません · QuickQR"
+  },
+  "staticQr": {
+    "subtitle": "ワンショットの QR ジェネレーター。印刷後の内容変更はできません。",
+    "configure": "静的 QR を設定",
+    "targetContent": "ターゲットの内容",
+    "targetPlaceholder": "https://example.com/your-destination",
+    "resolution": "解像度 (px)",
+    "ecc": "誤り訂正レベル",
+    "eccL": "L (低 - 7%)",
+    "eccM": "M (中 - 15%)",
+    "eccQ": "Q (4 分の 1 - 25%)",
+    "eccH": "H (高 - 30%)",
+    "foreground": "前景色",
+    "background": "背景色",
+    "quietZone": "クワイエットゾーン余白",
+    "generateDownload": "生成してダウンロード",
+    "copyApi": "API リンクをコピー",
+    "exportOptions": "エクスポート",
+    "fmtPng": "ラスター画像",
+    "fmtSvg": "ベクターパス",
+    "fmtJpg": "Web 圧縮",
+    "downloaded": "{{format}} でダウンロードしました",
+    "failed": "ダウンロードに失敗しました。",
+    "copied": "API URL をクリップボードにコピーしました"
   }
 }

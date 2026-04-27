@@ -23,7 +23,14 @@ export function QRPreview({ value, size = 256, margin = 2, className }: Props) {
   }, [value, size, margin]);
 
   if (error) return <div className="text-xs text-red-600">{error}</div>;
-  return <canvas ref={ref} className={className} aria-label="QR preview" />;
+  return (
+    <canvas
+      ref={ref}
+      className={className}
+      aria-label="QR preview"
+      style={{ maxWidth: "100%", height: "auto" }}
+    />
+  );
 }
 
 export async function downloadQrPng(value: string, filename: string, size = 1024) {

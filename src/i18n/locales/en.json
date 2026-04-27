@@ -226,5 +226,29 @@
     "account": "Account · QuickQR",
     "staticQr": "Static QR · QuickQR",
     "notFound": "Not found · QuickQR"
+  },
+  "staticQr": {
+    "subtitle": "One-shot QR generator. Content cannot be changed after printing.",
+    "configure": "Configure Static QR",
+    "targetContent": "Target Content",
+    "targetPlaceholder": "https://example.com/your-destination",
+    "resolution": "Resolution (px)",
+    "ecc": "Correction Level",
+    "eccL": "L (Low - 7%)",
+    "eccM": "M (Mid - 15%)",
+    "eccQ": "Q (Quartile - 25%)",
+    "eccH": "H (High - 30%)",
+    "foreground": "Foreground",
+    "background": "Background",
+    "quietZone": "Quiet Zone Margin",
+    "generateDownload": "Generate & Download",
+    "copyApi": "Copy direct API link",
+    "exportOptions": "Export Options",
+    "fmtPng": "Raster Image",
+    "fmtSvg": "Vector Path",
+    "fmtJpg": "Web Compressed",
+    "downloaded": "Downloaded as {{format}}",
+    "failed": "Failed to download.",
+    "copied": "API URL copied to clipboard"
   }
 }
