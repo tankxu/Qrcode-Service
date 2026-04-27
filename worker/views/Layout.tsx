@@ -1,14 +1,16 @@
 import type { FC, PropsWithChildren } from "hono/jsx";
+import type { Locale } from "../lib/i18n";
 
 interface LayoutProps {
   title: string;
   description?: string;
   ogImage?: string;
+  lang: Locale;
 }
 
-export const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description, ogImage, children }) => {
+export const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description, ogImage, lang, children }) => {
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
@@ -19,7 +21,6 @@ export const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description,
         {ogImage && <meta property="og:image" content={ogImage} />}
         <meta name="theme-color" content="#4f46e5" />
         <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234f46e5'/%3E%3Ctext y='62' x='50' text-anchor='middle' font-size='52' fill='white' font-family='system-ui'%3EQ%3C/text%3E%3C/svg%3E" />
-        {/* eslint-disable-next-line react/no-danger */}
         <style dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} />
       </head>
       <body>{children}</body>

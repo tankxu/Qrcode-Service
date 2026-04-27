@@ -1,0 +1,220 @@
+{
+  "brand": "QuickQR",
+  "common": {
+    "loading": "불러오는 중…",
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "back": "뒤로",
+    "next": "다음",
+    "create": "만들기",
+    "copy": "복사",
+    "copied": "복사됨",
+    "uploading": "업로드 중…",
+    "saved": "저장됨",
+    "deleted": "삭제됨",
+    "error": "오류",
+    "open": "열기",
+    "edit": "편집",
+    "remove": "제거",
+    "language": "언어"
+  },
+  "nav": {
+    "dashboard": "대시보드",
+    "newQr": "새 QR",
+    "staticQr": "정적 QR",
+    "account": "계정",
+    "signIn": "로그인",
+    "signOut": "로그아웃",
+    "goToDashboard": "대시보드로"
+  },
+  "footer": {
+    "tagline": "하나의 QR, 영원히 당신의 것."
+  },
+  "marketing": {
+    "badge": "영구 QR · 언제든 편집 가능",
+    "heroTitle1": "하나의 QR,",
+    "heroTitle2": "영원히 당신의 것.",
+    "heroSubtitle": "한 번만 인쇄하세요. 이후에는 목적지만 바꾸면 됩니다 — 그룹 초대, 링크, 페이지가 만료되지 않고, 인쇄된 QR도 다시 만들 필요가 없습니다.",
+    "heroCta": "무료로 QR 만들기",
+    "scenariosTitle": "변하는 것을 위한 QR",
+    "scenarios": {
+      "groups": {
+        "title": "WeChat / Telegram 그룹 초대",
+        "body": "WeChat 그룹 QR은 7일 후 만료됩니다. Telegram 초대 링크도 자주 갱신됩니다. 한 번에 해결하세요."
+      },
+      "menu": {
+        "title": "식당 메뉴와 가격표",
+        "body": "테이블마다 QR을 붙이세요. 메뉴 PDF만 업데이트하면 끝, 재인쇄 불필요."
+      },
+      "events": {
+        "title": "이벤트 전단과 포스터",
+        "body": "같은 전단으로 다른 캠페인을. 랜딩 링크는 언제든 교체 가능."
+      }
+    },
+    "typesTitle": "하나의 QR, 세 가지 활용법",
+    "types": {
+      "image": {
+        "title": "이미지",
+        "body": "그룹 QR 스크린샷이나 어떤 이미지든 업로드하세요. 언제든 교체 가능."
+      },
+      "url": {
+        "title": "URL",
+        "body": "원하는 웹사이트로 리디렉션. 재인쇄 없이 목적지를 바꿉니다."
+      },
+      "multilink": {
+        "title": "다중 링크",
+        "body": "심플한 링크 모음 페이지. 모든 목적지를 한 곳에 정리하세요."
+      }
+    },
+    "features": {
+      "realtime": {
+        "title": "실시간 업데이트",
+        "body": "목적지를 수정하면 다음 스캔이 60초 안에 반영됩니다."
+      },
+      "global": {
+        "title": "글로벌 엣지",
+        "body": "Cloudflare 300+ 거점에서 제공. 어디서든 빠른 스캔."
+      },
+      "mobile": {
+        "title": "모바일 우선",
+        "body": "어떤 폰에서도 1.5초 안에 콘텐츠 도달."
+      }
+    },
+    "finalCtaTitle": "재인쇄는 그만, 이제는 편집만.",
+    "finalCtaBody": "Google로 로그인하고 몇 분 안에 첫 영구 QR을 만드세요.",
+    "finalCta": "시작하기"
+  },
+  "login": {
+    "title": "다시 오신 것을 환영합니다",
+    "subtitle": "로그인하여 영구 QR 코드를 관리하세요.",
+    "googleButton": "Google로 계속하기",
+    "terms": "계속하면 <0>이용약관</0>과 <1>개인정보 처리방침</1>에 동의하는 것으로 간주됩니다."
+  },
+  "dashboard": {
+    "title": "내 영구 QR",
+    "subtitle": "한 번 인쇄, 언제든 목적지 변경.",
+    "newQr": "새 QR",
+    "scans": "스캔 {{count}}회",
+    "updated": "업데이트: {{when}}",
+    "paused": "일시중지",
+    "empty": {
+      "title": "첫 영구 QR을 만들어 보세요",
+      "body": "이미지, 링크, 다중 링크 페이지 중에서 목적지를 선택하면 언제든 편집 가능한 QR을 발급해 드립니다."
+    },
+    "time": {
+      "justNow": "방금",
+      "mAgo": "{{n}}분 전",
+      "hAgo": "{{n}}시간 전",
+      "dAgo": "{{n}}일 전"
+    }
+  },
+  "wizard": {
+    "backToDashboard": "대시보드로 돌아가기",
+    "steps": {
+      "type": "유형 선택",
+      "configure": "구성",
+      "done": "완료"
+    },
+    "createQr": "QR 만들기",
+    "creating": "생성 중…",
+    "titleLabel": "제목 (선택)",
+    "titlePlaceholder": "예: 2026 봄 그룹",
+    "validation": {
+      "pickTarget": "목적지를 선택하세요",
+      "uploadImage": "이미지를 업로드하세요",
+      "enterUrl": "URL을 입력하세요",
+      "atLeastOneLink": "링크를 한 개 이상 추가하세요",
+      "fillAllLinks": "모든 링크 항목을 채워 주세요",
+      "createFailed": "생성에 실패했습니다"
+    },
+    "success": {
+      "title": "QR 준비 완료",
+      "body": "인쇄, 공유, 어디든 붙이세요. 목적지는 언제든 변경 가능합니다.",
+      "downloadPng": "PNG 다운로드",
+      "openDetails": "상세 보기"
+    }
+  },
+  "detail": {
+    "back": "뒤로",
+    "loadFailed": "불러오기에 실패했습니다",
+    "downloadPng": "PNG 다운로드",
+    "publicUrl": "공개 URL",
+    "status": "상태",
+    "totalScans": "총 스캔 수",
+    "tabs": {
+      "target": "목적지",
+      "analytics": "분석",
+      "settings": "설정"
+    },
+    "target": {
+      "saveTarget": "목적지 저장",
+      "saving": "저장 중…"
+    },
+    "analytics": {
+      "totalScans": "총 스캔 수",
+      "last7Days": "지난 7일",
+      "lastScan": "최근 스캔",
+      "trend7d": "7일 추이",
+      "noScans": "아직 스캔이 없습니다",
+      "loadFailed": "분석 불러오기 실패"
+    },
+    "settings": {
+      "title": "제목",
+      "description": "설명",
+      "pause": "일시중지",
+      "resume": "재개",
+      "paused": "일시중지됨",
+      "resumed": "재개됨",
+      "saveFailed": "저장에 실패했습니다",
+      "saved": "저장됨",
+      "danger": {
+        "title": "위험 영역",
+        "body": "삭제하면 이 QR과 관련 이미지, 모든 스캔 기록이 영구 삭제됩니다.",
+        "delete": "이 QR 삭제",
+        "confirm": "\"{{name}}\"를 영구 삭제할까요? 되돌릴 수 없습니다."
+      }
+    }
+  },
+  "targetForm": {
+    "image": {
+      "label": "이미지 (PNG / JPG / WebP, 최대 2MB)",
+      "uploadCta": "클릭하여 업로드",
+      "uploadHint": "PNG / JPG / WebP, 최대 2MB",
+      "uploaded": "업로드 완료",
+      "uploadFailed": "업로드 실패",
+      "tooLarge": "파일이 너무 큽니다. 최대 2MB.",
+      "unsupported": "지원하지 않는 형식입니다. PNG / JPG / WebP만 가능."
+    },
+    "url": {
+      "label": "목적지 URL",
+      "placeholder": "https://example.com/your-page",
+      "hint": "방문자는 짧은 확인 페이지 후 자동으로 이동합니다."
+    },
+    "multilink": {
+      "pageTitle": "페이지 제목",
+      "pageTitlePlaceholder": "내 링크",
+      "pageDesc": "설명 (선택)",
+      "pageDescPlaceholder": "한 줄 소개",
+      "links": "링크 (드래그로 순서 변경)",
+      "linkLabel": "이름",
+      "linkUrl": "https://",
+      "addLink": "링크 추가",
+      "maxReached": "링크는 최대 10개입니다",
+      "dragHandle": "드래그",
+      "remove": "삭제"
+    }
+  },
+  "account": {
+    "title": "계정",
+    "subtitle": "Google 계정의 프로필 정보입니다."
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없음",
+    "body": "찾으시는 페이지가 존재하지 않습니다.",
+    "backHome": "홈으로"
+  },
+  "auth": {
+    "loading": "불러오는 중…"
+  }
+}

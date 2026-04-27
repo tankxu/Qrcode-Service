@@ -4,6 +4,7 @@ import { ImageView } from "../views/Image";
 import { UrlView } from "../views/Url";
 import { MultilinkView } from "../views/Multilink";
 import { ErrorView } from "../views/Error";
+import { pickLocale, strings } from "../lib/i18n";
 import type { AppEnv } from "../index";
 
 interface CachedTarget {
@@ -15,17 +16,12 @@ interface CachedTarget {
   target_payload: unknown;
 }
 
-function pickLocale(req: Request): "en" | "zh-CN" {
-  const al = (req.headers.get("accept-language") || "").toLowerCase();
-  if (al.startsWith("zh") || al.includes("zh-cn") || al.includes("zh_cn")) return "zh-CN";
-  return "en";
-}
-
 const r = new Hono<AppEnv>();
 
 r.get("/:slug", async (c) => {
   const slug = c.req.param("slug");
   const locale = pickLocale(c.req.raw);
+  const s = strings(locale);
 
   // KV cache (TTL 60s)
   let cached: CachedTarget | null = null;
@@ -38,7 +34,7 @@ r.get("/:slug", async (c) => {
     const row = await getQrBySlug(c.env.DB, slug);
     if (!row) {
       c.status(404);
-      return c.html(<ErrorView kind="not_found" locale={locale} />);
+      return c.html(<ErrorView kind="not_found" locale={locale} s={s} />);
     }
     cached = {
       qr_id: row.id,
@@ -55,7 +51,7 @@ r.get("/:slug", async (c) => {
 
   if (cached.status === "paused") {
     c.status(410);
-    return c.html(<ErrorView kind="paused" locale={locale} />);
+    return c.html(<ErrorView kind="paused" locale={locale} s={s} />);
   }
 
   // Async scan tracking — never block render
@@ -84,12 +80,18 @@ r.get("/:slug", async (c) => {
     case "image": {
       const p = cached.target_payload as { r2_key: string };
       return c.html(
-        <ImageView imageUrl={`/r/${p.r2_key}`} title={cached.title} description={cached.description} locale={locale} />,
+        <ImageView
+          imageUrl={`/r/${p.r2_key}`}
+          title={cached.title}
+          description={cached.description}
+          locale={locale}
+          s={s}
+        />,
       );
     }
     case "url": {
       const p = cached.target_payload as { url: string };
-      return c.html(<UrlView url={p.url} locale={locale} />);
+      return c.html(<UrlView url={p.url} locale={locale} s={s} />);
     }
     case "multilink": {
       const p = cached.target_payload as { title?: string; description?: string; items: { label: string; url: string }[] };
@@ -99,6 +101,7 @@ r.get("/:slug", async (c) => {
           description={p.description || cached.description}
           items={p.items}
           locale={locale}
+          s={s}
         />,
       );
     }

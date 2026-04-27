@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,7 @@ export default function QrDetail() {
   const { id } = useParams<{ id: string }>();
   const [qr, setQr] = useState<Qr | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const reload = async () => {
     if (!id) return;
@@ -21,13 +23,13 @@ export default function QrDetail() {
       const { qr } = await qrsApi.get(id);
       setQr(qr);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to load");
+      setError(e instanceof Error ? e.message : t("detail.loadFailed"));
     }
   };
 
   useEffect(() => { reload(); /* eslint-disable-next-line */ }, [id]);
 
-  if (error) return <div className="text-red-600 text-sm">Error: {error}</div>;
+  if (error) return <div className="text-red-600 text-sm">{t("common.error")}: {error}</div>;
   if (!qr) return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-slate-400" /></div>;
 
   const url = `${window.location.origin}/q/${qr.slug}`;
@@ -35,7 +37,7 @@ export default function QrDetail() {
   return (
     <div className="max-w-5xl mx-auto">
       <Link to="/app" className="inline-flex items-center text-sm text-slate-500 hover:text-indigo-600 mb-6">
-        <ArrowLeft className="w-4 h-4 mr-1" /> Back
+        <ArrowLeft className="w-4 h-4 mr-1" /> {t("detail.back")}
       </Link>
 
       <div className="grid lg:grid-cols-[320px_1fr] gap-8">
@@ -46,35 +48,35 @@ export default function QrDetail() {
             </div>
             <Button onClick={() => downloadQrPng(url, `qr-${qr.slug}.png`)} className="w-full bg-indigo-600 hover:bg-indigo-700">
               <Download className="w-4 h-4 mr-1.5" />
-              Download PNG
+              {t("detail.downloadPng")}
             </Button>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Public URL</div>
+              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">{t("detail.publicUrl")}</div>
               <div className="flex items-center gap-2">
                 <code className="text-xs font-mono flex-1 truncate text-slate-700 bg-slate-50 px-2 py-1.5 rounded">{url}</code>
                 <button
-                  onClick={() => { navigator.clipboard.writeText(url); toast.success("Copied"); }}
+                  onClick={() => { navigator.clipboard.writeText(url); toast.success(t("common.copied")); }}
                   className="text-slate-400 hover:text-slate-700"
-                  aria-label="Copy"
+                  aria-label={t("common.copy")}
                 >
                   <Copy className="w-4 h-4" />
                 </button>
-                <a href={url} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-700">
+                <a href={url} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-700" aria-label={t("common.open")}>
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-500">Status</span>
+              <span className="text-slate-500">{t("detail.status")}</span>
               <span className={`px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${
                 qr.status === "active" ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"
               }`}>{qr.status}</span>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-500">Total scans</span>
+              <span className="text-slate-500">{t("detail.totalScans")}</span>
               <span className="font-bold">{qr.scan_total}</span>
             </div>
           </div>
@@ -88,9 +90,9 @@ export default function QrDetail() {
 
           <Tabs defaultValue="target">
             <TabsList>
-              <TabsTrigger value="target">Target</TabsTrigger>
-              <TabsTrigger value="analytics">Analytics</TabsTrigger>
-              <TabsTrigger value="settings">Settings</TabsTrigger>
+              <TabsTrigger value="target">{t("detail.tabs.target")}</TabsTrigger>
+              <TabsTrigger value="analytics">{t("detail.tabs.analytics")}</TabsTrigger>
+              <TabsTrigger value="settings">{t("detail.tabs.settings")}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="target" className="mt-6">
@@ -114,15 +116,16 @@ export default function QrDetail() {
 function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
   const [target, setTarget] = useState<TargetValue>({ type: qr.target.type, payload: qr.target.payload as never });
   const [saving, setSaving] = useState(false);
+  const { t } = useTranslation();
 
   const handleSave = async () => {
     setSaving(true);
     try {
       await qrsApi.update(qr.id, { target });
-      toast.success("Saved");
+      toast.success(t("common.saved"));
       onSaved();
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Failed to save");
+      toast.error(e instanceof Error ? e.message : t("detail.settings.saveFailed"));
     } finally {
       setSaving(false);
     }
@@ -134,7 +137,7 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
       <div className="mt-6 pt-6 border-t border-slate-100 flex justify-end">
         <Button onClick={handleSave} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
           {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-          Save target
+          {saving ? t("detail.target.saving") : t("detail.target.saveTarget")}
         </Button>
       </div>
     </div>
@@ -144,6 +147,7 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
 function AnalyticsTab({ qrId, total }: { qrId: string; total: number }) {
   const [data, setData] = useState<Analytics | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     qrsApi.analytics(qrId, "7d")
@@ -159,21 +163,21 @@ function AnalyticsTab({ qrId, total }: { qrId: string; total: number }) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-        <Stat label="Total scans" value={total.toString()} />
-        <Stat label="Last 7 days" value={data ? last7.toString() : "—"} />
-        <Stat label="Last scan" value={lastScan} />
+        <Stat label={t("detail.analytics.totalScans")} value={total.toString()} />
+        <Stat label={t("detail.analytics.last7Days")} value={data ? last7.toString() : "—"} />
+        <Stat label={t("detail.analytics.lastScan")} value={lastScan} />
       </div>
 
-      <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">7-day trend</div>
+      <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">{t("detail.analytics.trend7d")}</div>
       {error ? (
-        <div className="text-red-600 text-sm">Error: {error}</div>
+        <div className="text-red-600 text-sm">{t("common.error")}: {error}</div>
       ) : !data ? (
         <div className="h-20 flex items-center text-slate-400 text-sm">
-          <Loader2 className="w-4 h-4 animate-spin mr-2" /> Loading...
+          <Loader2 className="w-4 h-4 animate-spin mr-2" /> {t("common.loading")}
         </div>
       ) : data.daily.every((d) => d.count === 0) ? (
         <div className="h-20 flex items-center justify-center bg-slate-50 rounded-xl text-slate-400 text-sm">
-          No scans yet
+          {t("detail.analytics.noScans")}
         </div>
       ) : (
         <div className="bg-slate-50 rounded-xl p-4">
@@ -198,15 +202,16 @@ function SettingsTab({ qr, onChanged }: { qr: Qr; onChanged: () => void }) {
   const [description, setDescription] = useState(qr.description || "");
   const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const save = async () => {
     setSaving(true);
     try {
       await qrsApi.update(qr.id, { title: title || "", description: description || "" });
-      toast.success("Saved");
+      toast.success(t("detail.settings.saved"));
       onChanged();
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Failed to save");
+      toast.error(e instanceof Error ? e.message : t("detail.settings.saveFailed"));
     } finally {
       setSaving(false);
     }
@@ -215,21 +220,22 @@ function SettingsTab({ qr, onChanged }: { qr: Qr; onChanged: () => void }) {
   const togglePause = async () => {
     try {
       await qrsApi.update(qr.id, { status: qr.status === "active" ? "paused" : "active" });
-      toast.success(qr.status === "active" ? "Paused" : "Resumed");
+      toast.success(qr.status === "active" ? t("detail.settings.paused") : t("detail.settings.resumed"));
       onChanged();
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Failed");
+      toast.error(e instanceof Error ? e.message : t("detail.settings.saveFailed"));
     }
   };
 
   const remove = async () => {
-    if (!confirm(`Delete "${qr.title || qr.slug}" permanently? This cannot be undone.`)) return;
+    const name = qr.title || qr.slug;
+    if (!confirm(t("detail.settings.danger.confirm", { name }))) return;
     try {
       await qrsApi.remove(qr.id);
-      toast.success("Deleted");
+      toast.success(t("common.deleted"));
       navigate("/app");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Failed");
+      toast.error(e instanceof Error ? e.message : t("detail.settings.saveFailed"));
     }
   };
 
@@ -237,30 +243,34 @@ function SettingsTab({ qr, onChanged }: { qr: Qr; onChanged: () => void }) {
     <div className="space-y-4">
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
         <div className="space-y-3">
-          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Title</label>
+          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("detail.settings.title")}</label>
           <Input value={title} onChange={(e) => setTitle(e.target.value)} className="h-11" />
         </div>
         <div className="space-y-3">
-          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Description</label>
+          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("detail.settings.description")}</label>
           <Input value={description} onChange={(e) => setDescription(e.target.value)} className="h-11" />
         </div>
         <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
           <Button variant="outline" onClick={togglePause}>
-            {qr.status === "active" ? <><Pause className="w-4 h-4 mr-1.5" />Pause</> : <><Play className="w-4 h-4 mr-1.5" />Resume</>}
+            {qr.status === "active" ? (
+              <><Pause className="w-4 h-4 mr-1.5" />{t("detail.settings.pause")}</>
+            ) : (
+              <><Play className="w-4 h-4 mr-1.5" />{t("detail.settings.resume")}</>
+            )}
           </Button>
           <Button onClick={save} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
             {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-            Save
+            {t("common.save")}
           </Button>
         </div>
       </div>
 
       <div className="bg-white border border-red-200 rounded-2xl p-6 shadow-sm">
-        <h3 className="font-semibold text-red-700 mb-1">Danger zone</h3>
-        <p className="text-sm text-slate-500 mb-4">Deleting permanently removes this QR, its image (if any), and all scan history.</p>
+        <h3 className="font-semibold text-red-700 mb-1">{t("detail.settings.danger.title")}</h3>
+        <p className="text-sm text-slate-500 mb-4">{t("detail.settings.danger.body")}</p>
         <Button variant="outline" onClick={remove} className="border-red-200 text-red-700 hover:bg-red-50">
           <Trash2 className="w-4 h-4 mr-1.5" />
-          Delete this QR
+          {t("detail.settings.danger.delete")}
         </Button>
       </div>
     </div>

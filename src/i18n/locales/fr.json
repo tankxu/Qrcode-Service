@@ -1,0 +1,220 @@
+{
+  "brand": "QuickQR",
+  "common": {
+    "loading": "Chargement…",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "next": "Suivant",
+    "create": "Créer",
+    "copy": "Copier",
+    "copied": "Copié",
+    "uploading": "Téléversement…",
+    "saved": "Enregistré",
+    "deleted": "Supprimé",
+    "error": "Erreur",
+    "open": "Ouvrir",
+    "edit": "Modifier",
+    "remove": "Retirer",
+    "language": "Langue"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "newQr": "Nouveau QR",
+    "staticQr": "QR statique",
+    "account": "Compte",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "goToDashboard": "Vers le tableau de bord"
+  },
+  "footer": {
+    "tagline": "Un QR. Pour toujours."
+  },
+  "marketing": {
+    "badge": "QR permanent · Modifiable à tout moment",
+    "heroTitle1": "Un QR.",
+    "heroTitle2": "Pour toujours.",
+    "heroSubtitle": "Imprimez une fois. Modifiez la destination quand vous voulez — invitation de groupe, lien ou page n'expirent jamais, et votre QR imprimé n'a plus jamais besoin de changer.",
+    "heroCta": "Créer un QR gratuit",
+    "scenariosTitle": "Pensé pour ce qui change",
+    "scenarios": {
+      "groups": {
+        "title": "Invitations WeChat / Telegram",
+        "body": "Le QR de groupe WeChat expire au bout de 7 jours. Les liens Telegram sont régulièrement renouvelés. Une seule solution."
+      },
+      "menu": {
+        "title": "Menus & tarifs de restaurant",
+        "body": "Un QR sur chaque table. Vous mettez à jour le PDF, pas besoin de réimprimer."
+      },
+      "events": {
+        "title": "Flyers & affiches d'événement",
+        "body": "Même flyer, campagnes différentes. Changez le lien d'atterrissage à tout moment."
+      }
+    },
+    "typesTitle": "Trois usages, un seul QR",
+    "types": {
+      "image": {
+        "title": "Image",
+        "body": "Téléversez une capture de QR de groupe ou n'importe quelle image. Remplaçable à tout moment."
+      },
+      "url": {
+        "title": "URL",
+        "body": "Redirigez vers n'importe quel site. Modifiez la destination sans réimprimer."
+      },
+      "multilink": {
+        "title": "Multilink",
+        "body": "Une page de liens simple. Toutes vos destinations au même endroit."
+      }
+    },
+    "features": {
+      "realtime": {
+        "title": "Mises à jour en temps réel",
+        "body": "Modifiez la destination — le scan suivant la voit en moins de 60 secondes."
+      },
+      "global": {
+        "title": "Edge mondial",
+        "body": "Servi depuis 300+ points Cloudflare. Scans rapides partout."
+      },
+      "mobile": {
+        "title": "Mobile d'abord",
+        "body": "Du scan au contenu en moins de 1,5 seconde sur n'importe quel téléphone."
+      }
+    },
+    "finalCtaTitle": "Plus de réimpression. Juste de l'édition.",
+    "finalCtaBody": "Connectez-vous avec Google et créez votre premier QR permanent en quelques minutes.",
+    "finalCta": "Commencer"
+  },
+  "login": {
+    "title": "Bon retour",
+    "subtitle": "Connectez-vous pour gérer vos QR codes permanents.",
+    "googleButton": "Continuer avec Google",
+    "terms": "En continuant, vous acceptez nos <0>Conditions</0> et notre <1>Politique de confidentialité</1>."
+  },
+  "dashboard": {
+    "title": "Vos QR permanents",
+    "subtitle": "Imprimez une fois, modifiez la destination quand vous voulez.",
+    "newQr": "Nouveau QR",
+    "scans": "{{count}} scans",
+    "updated": "Mis à jour {{when}}",
+    "paused": "En pause",
+    "empty": {
+      "title": "Créez votre premier QR permanent",
+      "body": "Choisissez une cible — image, lien ou page multi-liens — nous vous fournissons un QR modifiable à tout moment."
+    },
+    "time": {
+      "justNow": "à l'instant",
+      "mAgo": "il y a {{n}} min",
+      "hAgo": "il y a {{n}} h",
+      "dAgo": "il y a {{n}} j"
+    }
+  },
+  "wizard": {
+    "backToDashboard": "Retour au tableau de bord",
+    "steps": {
+      "type": "Choisir le type",
+      "configure": "Configurer",
+      "done": "Terminé"
+    },
+    "createQr": "Créer le QR",
+    "creating": "Création…",
+    "titleLabel": "Titre (optionnel)",
+    "titlePlaceholder": "ex. Groupe Printemps 2026",
+    "validation": {
+      "pickTarget": "Choisissez une cible",
+      "uploadImage": "Téléversez une image",
+      "enterUrl": "Saisissez une URL",
+      "atLeastOneLink": "Ajoutez au moins un lien",
+      "fillAllLinks": "Remplissez tous les champs des liens",
+      "createFailed": "Échec de la création"
+    },
+    "success": {
+      "title": "Votre QR est prêt",
+      "body": "Imprimez-le, partagez-le, collez-le partout. Modifiez la destination quand vous voulez.",
+      "downloadPng": "Télécharger PNG",
+      "openDetails": "Voir les détails"
+    }
+  },
+  "detail": {
+    "back": "Retour",
+    "loadFailed": "Échec du chargement",
+    "downloadPng": "Télécharger PNG",
+    "publicUrl": "URL publique",
+    "status": "Statut",
+    "totalScans": "Scans au total",
+    "tabs": {
+      "target": "Cible",
+      "analytics": "Analytique",
+      "settings": "Paramètres"
+    },
+    "target": {
+      "saveTarget": "Enregistrer la cible",
+      "saving": "Enregistrement…"
+    },
+    "analytics": {
+      "totalScans": "Scans au total",
+      "last7Days": "7 derniers jours",
+      "lastScan": "Dernier scan",
+      "trend7d": "Tendance sur 7 jours",
+      "noScans": "Aucun scan pour l'instant",
+      "loadFailed": "Échec du chargement de l'analytique"
+    },
+    "settings": {
+      "title": "Titre",
+      "description": "Description",
+      "pause": "Mettre en pause",
+      "resume": "Reprendre",
+      "paused": "En pause",
+      "resumed": "Repris",
+      "saveFailed": "Échec de l'enregistrement",
+      "saved": "Enregistré",
+      "danger": {
+        "title": "Zone dangereuse",
+        "body": "La suppression retire définitivement ce QR, son image éventuelle et tout l'historique des scans.",
+        "delete": "Supprimer ce QR",
+        "confirm": "Supprimer définitivement « {{name}} » ? Action irréversible."
+      }
+    }
+  },
+  "targetForm": {
+    "image": {
+      "label": "Image (PNG / JPG / WebP, max 2 Mo)",
+      "uploadCta": "Cliquer pour téléverser",
+      "uploadHint": "PNG / JPG / WebP jusqu'à 2 Mo",
+      "uploaded": "Image téléversée",
+      "uploadFailed": "Échec du téléversement",
+      "tooLarge": "Fichier trop volumineux. Max 2 Mo.",
+      "unsupported": "Format non pris en charge. Utilisez PNG / JPG / WebP."
+    },
+    "url": {
+      "label": "URL de destination",
+      "placeholder": "https://example.com/votre-page",
+      "hint": "Les visiteurs voient une page de confirmation rapide, puis sont redirigés automatiquement."
+    },
+    "multilink": {
+      "pageTitle": "Titre de la page",
+      "pageTitlePlaceholder": "Mes liens",
+      "pageDesc": "Description (optionnel)",
+      "pageDescPlaceholder": "Une courte accroche",
+      "links": "Liens (glisser pour réorganiser)",
+      "linkLabel": "Étiquette",
+      "linkUrl": "https://",
+      "addLink": "Ajouter un lien",
+      "maxReached": "10 liens maximum",
+      "dragHandle": "Déplacer",
+      "remove": "Retirer"
+    }
+  },
+  "account": {
+    "title": "Compte",
+    "subtitle": "Informations de profil de votre compte Google."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "La page recherchée n'existe pas.",
+    "backHome": "Retour à l'accueil"
+  },
+  "auth": {
+    "loading": "Chargement…"
+  }
+}

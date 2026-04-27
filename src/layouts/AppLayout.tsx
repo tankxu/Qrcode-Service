@@ -1,19 +1,22 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { QrCode, LayoutDashboard, Wrench, User, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "@/src/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { to: "/app", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/app/tools/static-qr", label: "Static QR", icon: Wrench },
-  { to: "/app/account", label: "Account", icon: User },
-];
+import { LanguageSwitcher } from "@/src/components/LanguageSwitcher";
 
 export default function AppLayout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navItems = [
+    { to: "/app", label: t("nav.dashboard"), icon: LayoutDashboard, end: true },
+    { to: "/app/tools/static-qr", label: t("nav.staticQr"), icon: Wrench },
+    { to: "/app/account", label: t("nav.account"), icon: User },
+  ];
 
   const handleLogout = async () => {
     await logout();
@@ -22,13 +25,12 @@ export default function AppLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex">
-      {/* Sidebar - desktop */}
       <aside className="hidden lg:flex w-60 flex-col border-r border-slate-200 bg-white">
         <Link to="/app" className="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
           <div className="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
             <QrCode className="w-5 h-5" />
           </div>
-          <span className="font-bold text-lg tracking-tight">QuickQR</span>
+          <span className="font-bold text-lg tracking-tight">{t("brand")}</span>
         </Link>
         <nav className="flex-1 p-3 space-y-1">
           {navItems.map(({ to, label, icon: Icon, end }) => (
@@ -47,29 +49,31 @@ export default function AppLayout() {
             </NavLink>
           ))}
         </nav>
-        <div className="p-3 border-t border-slate-100 flex items-center gap-3">
-          {user?.picture ? (
-            <img src={user.picture} alt="" referrerPolicy="no-referrer" className="w-8 h-8 rounded-full border border-slate-200" />
-          ) : (
-            <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
-              {(user?.name || user?.email || "?").slice(0, 1).toUpperCase()}
+        <div className="p-3 border-t border-slate-100 space-y-2">
+          <LanguageSwitcher align="left" />
+          <div className="flex items-center gap-3">
+            {user?.picture ? (
+              <img src={user.picture} alt="" referrerPolicy="no-referrer" className="w-8 h-8 rounded-full border border-slate-200" />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
+                {(user?.name || user?.email || "?").slice(0, 1).toUpperCase()}
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-medium truncate">{user?.name || user?.email}</div>
             </div>
-          )}
-          <div className="flex-1 min-w-0">
-            <div className="text-xs font-medium truncate">{user?.name || user?.email}</div>
+            <button onClick={handleLogout} className="text-slate-400 hover:text-red-600" title={t("nav.signOut")}>
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
-          <button onClick={handleLogout} className="text-slate-400 hover:text-red-600" title="Sign out">
-            <LogOut className="w-4 h-4" />
-          </button>
         </div>
       </aside>
 
-      {/* Mobile drawer */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-black/40" onClick={() => setMobileOpen(false)}>
           <aside className="w-64 h-full bg-white flex flex-col" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between h-16 px-6 border-b border-slate-100">
-              <span className="font-bold text-lg">QuickQR</span>
+              <span className="font-bold text-lg">{t("brand")}</span>
               <button onClick={() => setMobileOpen(false)} className="text-slate-500">
                 <X className="w-5 h-5" />
               </button>
@@ -92,10 +96,13 @@ export default function AppLayout() {
                 </NavLink>
               ))}
             </nav>
-            <Button variant="ghost" onClick={handleLogout} className="m-3 justify-start">
-              <LogOut className="w-4 h-4 mr-2" />
-              Sign out
-            </Button>
+            <div className="p-3 border-t border-slate-100 space-y-2">
+              <LanguageSwitcher align="left" />
+              <Button variant="ghost" onClick={handleLogout} className="w-full justify-start">
+                <LogOut className="w-4 h-4 mr-2" />
+                {t("nav.signOut")}
+              </Button>
+            </div>
           </aside>
         </div>
       )}
@@ -105,7 +112,7 @@ export default function AppLayout() {
           <button onClick={() => setMobileOpen(true)} className="text-slate-700">
             <Menu className="w-6 h-6" />
           </button>
-          <Link to="/app" className="font-bold text-lg">QuickQR</Link>
+          <Link to="/app" className="font-bold text-lg">{t("brand")}</Link>
           <div className="w-6" />
         </header>
         <main className="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl w-full mx-auto">

@@ -1,0 +1,220 @@
+{
+  "brand": "QuickQR",
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "create": "Create",
+    "copy": "Copy",
+    "copied": "Copied",
+    "uploading": "Uploading...",
+    "saved": "Saved",
+    "deleted": "Deleted",
+    "error": "Error",
+    "open": "Open",
+    "edit": "Edit",
+    "remove": "Remove",
+    "language": "Language"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "newQr": "New QR",
+    "staticQr": "Static QR",
+    "account": "Account",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "goToDashboard": "Go to dashboard"
+  },
+  "footer": {
+    "tagline": "One QR. Forever yours."
+  },
+  "marketing": {
+    "badge": "Permanent QR · Forever editable",
+    "heroTitle1": "One QR.",
+    "heroTitle2": "Forever yours.",
+    "heroSubtitle": "Print once. Update the destination anytime — your group invite, link, or page never goes stale, and your printed QR never has to change.",
+    "heroCta": "Create your QR free",
+    "scenariosTitle": "Built for things that change",
+    "scenarios": {
+      "groups": {
+        "title": "WeChat / Telegram group invites",
+        "body": "WeChat group QR expires after 7 days. Telegram invites get rotated. Solve it once."
+      },
+      "menu": {
+        "title": "Restaurant menus & pricing",
+        "body": "Stick a QR on every table. Update the menu PDF, no reprint."
+      },
+      "events": {
+        "title": "Event flyers & posters",
+        "body": "Same flyer, different campaigns. Switch the landing link any time."
+      }
+    },
+    "typesTitle": "Three ways to use one QR",
+    "types": {
+      "image": {
+        "title": "Image",
+        "body": "Upload a screenshot of your group QR or any image. Replace anytime."
+      },
+      "url": {
+        "title": "URL",
+        "body": "Redirect to any website. Change the destination without reprinting."
+      },
+      "multilink": {
+        "title": "Multilink",
+        "body": "A simple link-in-bio page. List all your destinations in one place."
+      }
+    },
+    "features": {
+      "realtime": {
+        "title": "Real-time updates",
+        "body": "Edit the destination, the next scan sees it within 60 seconds."
+      },
+      "global": {
+        "title": "Global edge",
+        "body": "Served from 300+ Cloudflare locations. Fast scans everywhere."
+      },
+      "mobile": {
+        "title": "Mobile-first",
+        "body": "Scan-to-content in under 1.5 seconds on any phone."
+      }
+    },
+    "finalCtaTitle": "Stop reprinting. Start editing.",
+    "finalCtaBody": "Sign in with Google, create your first permanent QR in minutes.",
+    "finalCta": "Get started"
+  },
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to manage your permanent QR codes.",
+    "googleButton": "Continue with Google",
+    "terms": "By continuing you agree to our <0>Terms</0> and <1>Privacy Policy</1>."
+  },
+  "dashboard": {
+    "title": "Your permanent QRs",
+    "subtitle": "Print once. Update the destination anytime.",
+    "newQr": "New QR",
+    "scans": "{{count}} scans",
+    "updated": "Updated {{when}}",
+    "paused": "Paused",
+    "empty": {
+      "title": "Create your first permanent QR",
+      "body": "Pick a target — image, link, or multi-link page — and we'll give you a QR that can be edited any time."
+    },
+    "time": {
+      "justNow": "just now",
+      "mAgo": "{{n}}m ago",
+      "hAgo": "{{n}}h ago",
+      "dAgo": "{{n}}d ago"
+    }
+  },
+  "wizard": {
+    "backToDashboard": "Back to dashboard",
+    "steps": {
+      "type": "Choose type",
+      "configure": "Configure",
+      "done": "Done"
+    },
+    "createQr": "Create QR",
+    "creating": "Creating...",
+    "titleLabel": "Title (optional)",
+    "titlePlaceholder": "e.g. Spring 2026 group",
+    "validation": {
+      "pickTarget": "Pick a target",
+      "uploadImage": "Upload an image",
+      "enterUrl": "Enter a URL",
+      "atLeastOneLink": "Add at least one link",
+      "fillAllLinks": "Fill in all link fields",
+      "createFailed": "Failed to create"
+    },
+    "success": {
+      "title": "Your QR is ready",
+      "body": "Print it, share it, paste it into anything. Edit the destination any time.",
+      "downloadPng": "Download PNG",
+      "openDetails": "Open details"
+    }
+  },
+  "detail": {
+    "back": "Back",
+    "loadFailed": "Failed to load",
+    "downloadPng": "Download PNG",
+    "publicUrl": "Public URL",
+    "status": "Status",
+    "totalScans": "Total scans",
+    "tabs": {
+      "target": "Target",
+      "analytics": "Analytics",
+      "settings": "Settings"
+    },
+    "target": {
+      "saveTarget": "Save target",
+      "saving": "Saving..."
+    },
+    "analytics": {
+      "totalScans": "Total scans",
+      "last7Days": "Last 7 days",
+      "lastScan": "Last scan",
+      "trend7d": "7-day trend",
+      "noScans": "No scans yet",
+      "loadFailed": "Failed to load analytics"
+    },
+    "settings": {
+      "title": "Title",
+      "description": "Description",
+      "pause": "Pause",
+      "resume": "Resume",
+      "paused": "Paused",
+      "resumed": "Resumed",
+      "saveFailed": "Failed to save",
+      "saved": "Saved",
+      "danger": {
+        "title": "Danger zone",
+        "body": "Deleting permanently removes this QR, its image (if any), and all scan history.",
+        "delete": "Delete this QR",
+        "confirm": "Delete \"{{name}}\" permanently? This cannot be undone."
+      }
+    }
+  },
+  "targetForm": {
+    "image": {
+      "label": "Image (PNG / JPG / WebP, max 2MB)",
+      "uploadCta": "Click to upload",
+      "uploadHint": "PNG / JPG / WebP up to 2MB",
+      "uploaded": "Image uploaded",
+      "uploadFailed": "Upload failed",
+      "tooLarge": "File too large. Max 2MB.",
+      "unsupported": "Unsupported format. Use PNG / JPG / WebP."
+    },
+    "url": {
+      "label": "Destination URL",
+      "placeholder": "https://example.com/your-page",
+      "hint": "Visitors will see a quick confirmation page, then auto-redirect."
+    },
+    "multilink": {
+      "pageTitle": "Page title",
+      "pageTitlePlaceholder": "My links",
+      "pageDesc": "Description (optional)",
+      "pageDescPlaceholder": "Short tagline",
+      "links": "Links (drag to reorder)",
+      "linkLabel": "Label",
+      "linkUrl": "https://",
+      "addLink": "Add link",
+      "maxReached": "Maximum 10 links",
+      "dragHandle": "Drag",
+      "remove": "Remove"
+    }
+  },
+  "account": {
+    "title": "Account",
+    "subtitle": "Your profile information from Google."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist.",
+    "backHome": "Back home"
+  },
+  "auth": {
+    "loading": "Loading..."
+  }
+}

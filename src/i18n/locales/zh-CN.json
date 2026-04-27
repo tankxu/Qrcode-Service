@@ -1,0 +1,220 @@
+{
+  "brand": "QuickQR",
+  "common": {
+    "loading": "加载中……",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "back": "返回",
+    "next": "下一步",
+    "create": "创建",
+    "copy": "复制",
+    "copied": "已复制",
+    "uploading": "上传中……",
+    "saved": "已保存",
+    "deleted": "已删除",
+    "error": "错误",
+    "open": "打开",
+    "edit": "编辑",
+    "remove": "移除",
+    "language": "语言"
+  },
+  "nav": {
+    "dashboard": "工作台",
+    "newQr": "新建二维码",
+    "staticQr": "静态二维码",
+    "account": "账号",
+    "signIn": "登录",
+    "signOut": "退出登录",
+    "goToDashboard": "进入工作台"
+  },
+  "footer": {
+    "tagline": "一码永久,随时更新。"
+  },
+  "marketing": {
+    "badge": "永久二维码 · 随时可改内容",
+    "heroTitle1": "一个二维码,",
+    "heroTitle2": "永远属于你。",
+    "heroSubtitle": "印一次就够。随时更新指向的内容——无论是入群链接、网页还是介绍页,都不会失效;印出去的二维码也永远不用换。",
+    "heroCta": "免费创建",
+    "scenariosTitle": "为会变化的内容而生",
+    "scenarios": {
+      "groups": {
+        "title": "微信 / Telegram 群邀请码",
+        "body": "微信群码 7 天就过期、Telegram 邀请链接经常被刷新。一次解决,长期有效。"
+      },
+      "menu": {
+        "title": "餐厅菜单与价目表",
+        "body": "每张餐桌贴一个码。换了菜单 PDF,无需重新印刷。"
+      },
+      "events": {
+        "title": "活动海报与传单",
+        "body": "同一张海报跑多次活动。落地链接随时切换。"
+      }
+    },
+    "typesTitle": "三种用法,一个二维码",
+    "types": {
+      "image": {
+        "title": "图片",
+        "body": "上传群二维码截图或任何图片,随时可换。"
+      },
+      "url": {
+        "title": "网址",
+        "body": "跳转到任何页面。换目标无需重印。"
+      },
+      "multilink": {
+        "title": "多链聚合",
+        "body": "一个简单的多链落地页,把所有目标集中展示。"
+      }
+    },
+    "features": {
+      "realtime": {
+        "title": "实时更新",
+        "body": "改完目标,下一次扫码 60 秒内即可生效。"
+      },
+      "global": {
+        "title": "全球边缘",
+        "body": "Cloudflare 300+ 节点服务,扫哪都快。"
+      },
+      "mobile": {
+        "title": "移动优先",
+        "body": "扫码到内容,任何手机 1.5 秒内打开。"
+      }
+    },
+    "finalCtaTitle": "别再重印了,改起来更省事。",
+    "finalCtaBody": "用 Google 登录,几分钟就能创建第一个永久二维码。",
+    "finalCta": "立即开始"
+  },
+  "login": {
+    "title": "欢迎回来",
+    "subtitle": "登录后管理你的永久二维码。",
+    "googleButton": "使用 Google 登录",
+    "terms": "继续即表示同意 <0>服务条款</0> 与 <1>隐私政策</1>。"
+  },
+  "dashboard": {
+    "title": "你的永久二维码",
+    "subtitle": "印一次就够,随时更新内容。",
+    "newQr": "新建二维码",
+    "scans": "{{count}} 次扫码",
+    "updated": "更新于 {{when}}",
+    "paused": "已暂停",
+    "empty": {
+      "title": "创建你的第一个永久二维码",
+      "body": "选择目标类型——图片、链接,或多链聚合页——我们立刻给你一个可随时编辑的二维码。"
+    },
+    "time": {
+      "justNow": "刚刚",
+      "mAgo": "{{n}} 分钟前",
+      "hAgo": "{{n}} 小时前",
+      "dAgo": "{{n}} 天前"
+    }
+  },
+  "wizard": {
+    "backToDashboard": "返回工作台",
+    "steps": {
+      "type": "选择类型",
+      "configure": "填写内容",
+      "done": "完成"
+    },
+    "createQr": "创建二维码",
+    "creating": "创建中……",
+    "titleLabel": "标题(可选)",
+    "titlePlaceholder": "例如:2026 春季群",
+    "validation": {
+      "pickTarget": "请选择目标类型",
+      "uploadImage": "请上传图片",
+      "enterUrl": "请输入链接",
+      "atLeastOneLink": "至少添加一条链接",
+      "fillAllLinks": "请把所有链接字段填完整",
+      "createFailed": "创建失败"
+    },
+    "success": {
+      "title": "二维码已生成",
+      "body": "印出去、发出去、贴到任意物料上。内容随时可改。",
+      "downloadPng": "下载 PNG",
+      "openDetails": "查看详情"
+    }
+  },
+  "detail": {
+    "back": "返回",
+    "loadFailed": "加载失败",
+    "downloadPng": "下载 PNG",
+    "publicUrl": "公开链接",
+    "status": "状态",
+    "totalScans": "扫码总数",
+    "tabs": {
+      "target": "目标内容",
+      "analytics": "分析",
+      "settings": "设置"
+    },
+    "target": {
+      "saveTarget": "保存目标",
+      "saving": "保存中……"
+    },
+    "analytics": {
+      "totalScans": "扫码总数",
+      "last7Days": "近 7 天",
+      "lastScan": "最近一次扫码",
+      "trend7d": "近 7 天趋势",
+      "noScans": "暂无扫码",
+      "loadFailed": "加载分析失败"
+    },
+    "settings": {
+      "title": "标题",
+      "description": "描述",
+      "pause": "暂停",
+      "resume": "恢复",
+      "paused": "已暂停",
+      "resumed": "已恢复",
+      "saveFailed": "保存失败",
+      "saved": "已保存",
+      "danger": {
+        "title": "危险区",
+        "body": "删除将永久移除该二维码、关联图片以及所有扫码历史。",
+        "delete": "删除此二维码",
+        "confirm": "确认永久删除 \"{{name}}\"?该操作不可撤销。"
+      }
+    }
+  },
+  "targetForm": {
+    "image": {
+      "label": "图片(PNG / JPG / WebP,最大 2MB)",
+      "uploadCta": "点击上传",
+      "uploadHint": "PNG / JPG / WebP,最大 2MB",
+      "uploaded": "已上传",
+      "uploadFailed": "上传失败",
+      "tooLarge": "文件过大,最多 2MB。",
+      "unsupported": "格式不支持,请使用 PNG / JPG / WebP。"
+    },
+    "url": {
+      "label": "目标网址",
+      "placeholder": "https://example.com/your-page",
+      "hint": "访客会看到一个快速确认页,然后自动跳转。"
+    },
+    "multilink": {
+      "pageTitle": "页面标题",
+      "pageTitlePlaceholder": "我的链接",
+      "pageDesc": "简介(可选)",
+      "pageDescPlaceholder": "一句话简介",
+      "links": "链接(可拖拽排序)",
+      "linkLabel": "名称",
+      "linkUrl": "https://",
+      "addLink": "添加链接",
+      "maxReached": "最多 10 条链接",
+      "dragHandle": "拖动",
+      "remove": "移除"
+    }
+  },
+  "account": {
+    "title": "账号",
+    "subtitle": "来自 Google 账号的资料。"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "body": "你访问的页面不存在。",
+    "backHome": "返回首页"
+  },
+  "auth": {
+    "loading": "加载中……"
+  }
+}

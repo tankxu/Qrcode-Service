@@ -1,0 +1,220 @@
+{
+  "brand": "QuickQR",
+  "common": {
+    "loading": "読み込み中…",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "back": "戻る",
+    "next": "次へ",
+    "create": "作成",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "uploading": "アップロード中…",
+    "saved": "保存しました",
+    "deleted": "削除しました",
+    "error": "エラー",
+    "open": "開く",
+    "edit": "編集",
+    "remove": "削除",
+    "language": "言語"
+  },
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "newQr": "新しい QR",
+    "staticQr": "静的 QR",
+    "account": "アカウント",
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "goToDashboard": "ダッシュボードへ"
+  },
+  "footer": {
+    "tagline": "ひとつの QR を、ずっと。"
+  },
+  "marketing": {
+    "badge": "永続 QR · いつでも編集可能",
+    "heroTitle1": "ひとつの QR、",
+    "heroTitle2": "ずっとあなたのもの。",
+    "heroSubtitle": "印刷は一度だけ。リンク先はいつでも更新できます——グループ招待もページもリンクも、期限切れにならず、印刷した QR を作り直す必要もありません。",
+    "heroCta": "無料で QR を作る",
+    "scenariosTitle": "変わるものに、強い QR",
+    "scenarios": {
+      "groups": {
+        "title": "WeChat / Telegram のグループ招待",
+        "body": "WeChat のグループ QR は 7 日で期限切れ。Telegram の招待リンクもよく更新されます。一度で解決。"
+      },
+      "menu": {
+        "title": "飲食店のメニューと価格",
+        "body": "テーブルごとに QR を貼っておけば、メニュー PDF を更新するだけで OK。"
+      },
+      "events": {
+        "title": "イベントのチラシとポスター",
+        "body": "同じチラシを別キャンペーンに流用。リンク先はいつでも切り替え。"
+      }
+    },
+    "typesTitle": "ひとつの QR、3 つの使い方",
+    "types": {
+      "image": {
+        "title": "画像",
+        "body": "グループ QR のスクショや任意の画像をアップロード。いつでも差し替え可能。"
+      },
+      "url": {
+        "title": "URL",
+        "body": "好きなページにリダイレクト。リンク先は再印刷なしで変更できます。"
+      },
+      "multilink": {
+        "title": "マルチリンク",
+        "body": "シンプルなリンク集ページ。すべての行き先を一箇所にまとめます。"
+      }
+    },
+    "features": {
+      "realtime": {
+        "title": "リアルタイム更新",
+        "body": "リンク先を変更すれば、次の読み取りから 60 秒以内に反映されます。"
+      },
+      "global": {
+        "title": "グローバルエッジ",
+        "body": "Cloudflare の 300+ 拠点から配信。世界中で高速に読み取れます。"
+      },
+      "mobile": {
+        "title": "モバイル最適",
+        "body": "どんなスマホでも 1.5 秒以内にコンテンツを表示。"
+      }
+    },
+    "finalCtaTitle": "もう刷り直さない。編集だけ。",
+    "finalCtaBody": "Google でログインして、数分で最初の永続 QR を作成。",
+    "finalCta": "始める"
+  },
+  "login": {
+    "title": "おかえりなさい",
+    "subtitle": "ログインして永続 QR を管理しましょう。",
+    "googleButton": "Google でログイン",
+    "terms": "続行することで <0>利用規約</0> と <1>プライバシーポリシー</1> に同意したことになります。"
+  },
+  "dashboard": {
+    "title": "あなたの永続 QR",
+    "subtitle": "印刷は一度だけ、リンク先はいつでも更新。",
+    "newQr": "新しい QR",
+    "scans": "スキャン {{count}} 回",
+    "updated": "更新: {{when}}",
+    "paused": "停止中",
+    "empty": {
+      "title": "最初の永続 QR を作成しましょう",
+      "body": "ターゲットを選んでください——画像、リンク、マルチリンクのいずれか——いつでも編集できる QR をすぐに発行します。"
+    },
+    "time": {
+      "justNow": "たった今",
+      "mAgo": "{{n}} 分前",
+      "hAgo": "{{n}} 時間前",
+      "dAgo": "{{n}} 日前"
+    }
+  },
+  "wizard": {
+    "backToDashboard": "ダッシュボードに戻る",
+    "steps": {
+      "type": "種類を選択",
+      "configure": "設定",
+      "done": "完了"
+    },
+    "createQr": "QR を作成",
+    "creating": "作成中…",
+    "titleLabel": "タイトル(任意)",
+    "titlePlaceholder": "例: 2026 春のグループ",
+    "validation": {
+      "pickTarget": "ターゲットを選んでください",
+      "uploadImage": "画像をアップロードしてください",
+      "enterUrl": "URL を入力してください",
+      "atLeastOneLink": "リンクを 1 件以上追加してください",
+      "fillAllLinks": "すべてのリンク項目を入力してください",
+      "createFailed": "作成に失敗しました"
+    },
+    "success": {
+      "title": "QR の準備ができました",
+      "body": "印刷、共有、貼り付けなんでも OK。リンク先はいつでも変更できます。",
+      "downloadPng": "PNG をダウンロード",
+      "openDetails": "詳細を開く"
+    }
+  },
+  "detail": {
+    "back": "戻る",
+    "loadFailed": "読み込みに失敗しました",
+    "downloadPng": "PNG をダウンロード",
+    "publicUrl": "公開 URL",
+    "status": "ステータス",
+    "totalScans": "総スキャン数",
+    "tabs": {
+      "target": "ターゲット",
+      "analytics": "分析",
+      "settings": "設定"
+    },
+    "target": {
+      "saveTarget": "ターゲットを保存",
+      "saving": "保存中…"
+    },
+    "analytics": {
+      "totalScans": "総スキャン数",
+      "last7Days": "過去 7 日",
+      "lastScan": "最終スキャン",
+      "trend7d": "7 日間トレンド",
+      "noScans": "まだスキャンされていません",
+      "loadFailed": "分析の取得に失敗"
+    },
+    "settings": {
+      "title": "タイトル",
+      "description": "説明",
+      "pause": "一時停止",
+      "resume": "再開",
+      "paused": "停止しました",
+      "resumed": "再開しました",
+      "saveFailed": "保存に失敗しました",
+      "saved": "保存しました",
+      "danger": {
+        "title": "危険な操作",
+        "body": "削除すると、この QR、関連する画像、すべてのスキャン履歴が完全に削除されます。",
+        "delete": "この QR を削除",
+        "confirm": "「{{name}}」を完全に削除しますか?この操作は取り消せません。"
+      }
+    }
+  },
+  "targetForm": {
+    "image": {
+      "label": "画像 (PNG / JPG / WebP, 最大 2MB)",
+      "uploadCta": "クリックしてアップロード",
+      "uploadHint": "PNG / JPG / WebP, 最大 2MB",
+      "uploaded": "アップロード完了",
+      "uploadFailed": "アップロードに失敗しました",
+      "tooLarge": "ファイルが大きすぎます (最大 2MB)。",
+      "unsupported": "対応していない形式です。PNG / JPG / WebP を使用してください。"
+    },
+    "url": {
+      "label": "リンク先 URL",
+      "placeholder": "https://example.com/your-page",
+      "hint": "ユーザーは確認ページを経由してから自動的に遷移します。"
+    },
+    "multilink": {
+      "pageTitle": "ページタイトル",
+      "pageTitlePlaceholder": "マイリンク",
+      "pageDesc": "説明 (任意)",
+      "pageDescPlaceholder": "短いキャッチコピー",
+      "links": "リンク (ドラッグで並び替え)",
+      "linkLabel": "ラベル",
+      "linkUrl": "https://",
+      "addLink": "リンクを追加",
+      "maxReached": "リンクは最大 10 件までです",
+      "dragHandle": "ドラッグ",
+      "remove": "削除"
+    }
+  },
+  "account": {
+    "title": "アカウント",
+    "subtitle": "Google アカウントから取得した情報です。"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "body": "お探しのページは存在しません。",
+    "backHome": "ホームへ戻る"
+  },
+  "auth": {
+    "loading": "読み込み中…"
+  }
+}

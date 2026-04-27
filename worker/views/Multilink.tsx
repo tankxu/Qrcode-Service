@@ -1,22 +1,18 @@
 import type { FC } from "hono/jsx";
 import { Layout } from "./Layout";
+import type { Locale, Strings } from "../lib/i18n";
 
 interface Props {
   title?: string | null;
   description?: string | null;
   items: { label: string; url: string }[];
-  locale: "en" | "zh-CN";
+  locale: Locale;
+  s: Strings;
 }
 
-const t = {
-  "en": { poweredBy: "Powered by QuickQR" },
-  "zh-CN": { poweredBy: "由 QuickQR 提供" },
-};
-
-export const MultilinkView: FC<Props> = ({ title, description, items, locale }) => {
-  const tt = t[locale];
+export const MultilinkView: FC<Props> = ({ title, description, items, locale, s }) => {
   return (
-    <Layout title={title || "QuickQR"} description={description || undefined}>
+    <Layout lang={locale} title={title || "QuickQR"} description={description || undefined}>
       <div class="center">
         <div class="frame">
           <div class="card" style="padding:24px">
@@ -38,7 +34,7 @@ export const MultilinkView: FC<Props> = ({ title, description, items, locale }) 
           </div>
           <div class="brand">
             <span class="brand-logo">Q</span>
-            <span>{tt.poweredBy}</span>
+            <span>{s.poweredBy}</span>
           </div>
         </div>
       </div>

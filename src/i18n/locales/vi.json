@@ -1,0 +1,220 @@
+{
+  "brand": "QuickQR",
+  "common": {
+    "loading": "Đang tải...",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "back": "Quay lại",
+    "next": "Tiếp",
+    "create": "Tạo",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép",
+    "uploading": "Đang tải lên...",
+    "saved": "Đã lưu",
+    "deleted": "Đã xóa",
+    "error": "Lỗi",
+    "open": "Mở",
+    "edit": "Sửa",
+    "remove": "Gỡ bỏ",
+    "language": "Ngôn ngữ"
+  },
+  "nav": {
+    "dashboard": "Bảng điều khiển",
+    "newQr": "QR mới",
+    "staticQr": "QR tĩnh",
+    "account": "Tài khoản",
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "goToDashboard": "Vào bảng điều khiển"
+  },
+  "footer": {
+    "tagline": "Một QR. Mãi là của bạn."
+  },
+  "marketing": {
+    "badge": "QR vĩnh viễn · Sửa nội dung bất cứ lúc nào",
+    "heroTitle1": "Một QR.",
+    "heroTitle2": "Mãi là của bạn.",
+    "heroSubtitle": "In một lần là đủ. Đổi điểm đến bất cứ lúc nào — link mời nhóm, đường dẫn hay trang giới thiệu không bao giờ hết hạn, và mã QR đã in cũng không cần thay đổi.",
+    "heroCta": "Tạo QR miễn phí",
+    "scenariosTitle": "Dành cho những thứ luôn thay đổi",
+    "scenarios": {
+      "groups": {
+        "title": "Lời mời nhóm WeChat / Telegram",
+        "body": "QR nhóm WeChat hết hạn sau 7 ngày. Link mời Telegram thường xuyên thay đổi. Giải quyết một lần."
+      },
+      "menu": {
+        "title": "Thực đơn và bảng giá",
+        "body": "Dán QR lên mỗi bàn. Cập nhật PDF thực đơn, không cần in lại."
+      },
+      "events": {
+        "title": "Tờ rơi và áp phích sự kiện",
+        "body": "Cùng một tờ rơi cho nhiều chiến dịch. Đổi link landing bất cứ lúc nào."
+      }
+    },
+    "typesTitle": "Ba cách dùng cho một QR",
+    "types": {
+      "image": {
+        "title": "Hình ảnh",
+        "body": "Tải lên ảnh chụp màn hình QR nhóm hoặc bất kỳ ảnh nào. Thay thế bất cứ lúc nào."
+      },
+      "url": {
+        "title": "URL",
+        "body": "Chuyển hướng tới bất kỳ trang web nào. Đổi điểm đến mà không cần in lại."
+      },
+      "multilink": {
+        "title": "Nhiều liên kết",
+        "body": "Một trang link đơn giản. Tổng hợp mọi điểm đến tại một nơi."
+      }
+    },
+    "features": {
+      "realtime": {
+        "title": "Cập nhật thời gian thực",
+        "body": "Sửa điểm đến, lần quét tiếp theo sẽ thấy thay đổi trong 60 giây."
+      },
+      "global": {
+        "title": "Edge toàn cầu",
+        "body": "Phục vụ từ hơn 300 điểm Cloudflare. Quét nhanh ở khắp nơi."
+      },
+      "mobile": {
+        "title": "Ưu tiên di động",
+        "body": "Quét đến nội dung dưới 1.5 giây trên mọi điện thoại."
+      }
+    },
+    "finalCtaTitle": "Đừng in lại nữa. Hãy chỉnh sửa.",
+    "finalCtaBody": "Đăng nhập bằng Google, tạo QR vĩnh viễn đầu tiên trong vài phút.",
+    "finalCta": "Bắt đầu"
+  },
+  "login": {
+    "title": "Chào mừng trở lại",
+    "subtitle": "Đăng nhập để quản lý các mã QR vĩnh viễn của bạn.",
+    "googleButton": "Tiếp tục với Google",
+    "terms": "Tiếp tục đồng nghĩa với việc bạn đồng ý <0>Điều khoản</0> và <1>Chính sách quyền riêng tư</1>."
+  },
+  "dashboard": {
+    "title": "QR vĩnh viễn của bạn",
+    "subtitle": "In một lần. Đổi điểm đến bất cứ lúc nào.",
+    "newQr": "QR mới",
+    "scans": "{{count}} lượt quét",
+    "updated": "Cập nhật {{when}}",
+    "paused": "Đã tạm dừng",
+    "empty": {
+      "title": "Tạo QR vĩnh viễn đầu tiên",
+      "body": "Chọn loại điểm đến — ảnh, link, hay trang nhiều link — chúng tôi sẽ phát hành QR mà bạn có thể chỉnh sửa bất cứ lúc nào."
+    },
+    "time": {
+      "justNow": "vừa xong",
+      "mAgo": "{{n}} phút trước",
+      "hAgo": "{{n}} giờ trước",
+      "dAgo": "{{n}} ngày trước"
+    }
+  },
+  "wizard": {
+    "backToDashboard": "Quay lại bảng điều khiển",
+    "steps": {
+      "type": "Chọn loại",
+      "configure": "Cấu hình",
+      "done": "Xong"
+    },
+    "createQr": "Tạo QR",
+    "creating": "Đang tạo...",
+    "titleLabel": "Tiêu đề (tùy chọn)",
+    "titlePlaceholder": "VD: Nhóm Xuân 2026",
+    "validation": {
+      "pickTarget": "Hãy chọn điểm đến",
+      "uploadImage": "Hãy tải ảnh lên",
+      "enterUrl": "Hãy nhập URL",
+      "atLeastOneLink": "Thêm ít nhất một liên kết",
+      "fillAllLinks": "Điền đầy đủ các trường liên kết",
+      "createFailed": "Tạo thất bại"
+    },
+    "success": {
+      "title": "QR đã sẵn sàng",
+      "body": "In, chia sẻ, dán vào bất cứ đâu. Đổi điểm đến bất cứ lúc nào.",
+      "downloadPng": "Tải PNG",
+      "openDetails": "Mở chi tiết"
+    }
+  },
+  "detail": {
+    "back": "Quay lại",
+    "loadFailed": "Tải thất bại",
+    "downloadPng": "Tải PNG",
+    "publicUrl": "URL công khai",
+    "status": "Trạng thái",
+    "totalScans": "Tổng lượt quét",
+    "tabs": {
+      "target": "Điểm đến",
+      "analytics": "Phân tích",
+      "settings": "Cài đặt"
+    },
+    "target": {
+      "saveTarget": "Lưu điểm đến",
+      "saving": "Đang lưu..."
+    },
+    "analytics": {
+      "totalScans": "Tổng lượt quét",
+      "last7Days": "7 ngày qua",
+      "lastScan": "Lần quét gần nhất",
+      "trend7d": "Xu hướng 7 ngày",
+      "noScans": "Chưa có lượt quét",
+      "loadFailed": "Không tải được phân tích"
+    },
+    "settings": {
+      "title": "Tiêu đề",
+      "description": "Mô tả",
+      "pause": "Tạm dừng",
+      "resume": "Tiếp tục",
+      "paused": "Đã tạm dừng",
+      "resumed": "Đã tiếp tục",
+      "saveFailed": "Lưu thất bại",
+      "saved": "Đã lưu",
+      "danger": {
+        "title": "Vùng nguy hiểm",
+        "body": "Xóa sẽ xóa vĩnh viễn QR này, ảnh liên quan và toàn bộ lịch sử quét.",
+        "delete": "Xóa QR này",
+        "confirm": "Xóa vĩnh viễn \"{{name}}\"? Không thể hoàn tác."
+      }
+    }
+  },
+  "targetForm": {
+    "image": {
+      "label": "Ảnh (PNG / JPG / WebP, tối đa 2MB)",
+      "uploadCta": "Bấm để tải lên",
+      "uploadHint": "PNG / JPG / WebP, tối đa 2MB",
+      "uploaded": "Đã tải lên",
+      "uploadFailed": "Tải lên thất bại",
+      "tooLarge": "Tệp quá lớn. Tối đa 2MB.",
+      "unsupported": "Định dạng không hỗ trợ. Dùng PNG / JPG / WebP."
+    },
+    "url": {
+      "label": "URL điểm đến",
+      "placeholder": "https://example.com/trang-cua-ban",
+      "hint": "Khách truy cập sẽ thấy trang xác nhận ngắn rồi tự động chuyển hướng."
+    },
+    "multilink": {
+      "pageTitle": "Tiêu đề trang",
+      "pageTitlePlaceholder": "Liên kết của tôi",
+      "pageDesc": "Mô tả (tùy chọn)",
+      "pageDescPlaceholder": "Câu giới thiệu ngắn",
+      "links": "Liên kết (kéo để sắp xếp)",
+      "linkLabel": "Nhãn",
+      "linkUrl": "https://",
+      "addLink": "Thêm liên kết",
+      "maxReached": "Tối đa 10 liên kết",
+      "dragHandle": "Kéo",
+      "remove": "Xóa"
+    }
+  },
+  "account": {
+    "title": "Tài khoản",
+    "subtitle": "Thông tin hồ sơ từ Google."
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "body": "Trang bạn tìm không tồn tại.",
+    "backHome": "Về trang chủ"
+  },
+  "auth": {
+    "loading": "Đang tải..."
+  }
+}

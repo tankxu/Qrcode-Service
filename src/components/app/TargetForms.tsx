@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { GripVertical, Plus, Trash2, Upload, Loader2, X } from "lucide-react";
 import {
   DndContext,
@@ -41,24 +42,25 @@ export function TargetForm({ value, onChange }: Props) {
 function ImageForm({ value, onChange }: { value: ImagePayload; onChange: (v: ImagePayload) => void }) {
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
 
   const handleFile = async (file: File | null) => {
     if (!file) return;
     if (file.size > 2 * 1024 * 1024) {
-      toast.error("File too large. Max 2MB.");
+      toast.error(t("targetForm.image.tooLarge"));
       return;
     }
     if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) {
-      toast.error("Unsupported format. Use PNG / JPG / WebP.");
+      toast.error(t("targetForm.image.unsupported"));
       return;
     }
     setUploading(true);
     try {
       const res = await qrsApi.uploadImage(file);
       onChange({ r2_key: res.r2_key, mime: res.mime as ImagePayload["mime"] });
-      toast.success("Image uploaded");
+      toast.success(t("targetForm.image.uploaded"));
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Upload failed");
+      toast.error(e instanceof Error ? e.message : t("targetForm.image.uploadFailed"));
     } finally {
       setUploading(false);
     }
@@ -67,16 +69,16 @@ function ImageForm({ value, onChange }: { value: ImagePayload; onChange: (v: Ima
   return (
     <div>
       <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3 block">
-        Image (PNG / JPG / WebP, max 2MB)
+        {t("targetForm.image.label")}
       </label>
       {value.r2_key ? (
         <div className="relative rounded-xl border border-slate-200 overflow-hidden bg-slate-50">
-          <img src={`/r/${value.r2_key}`} alt="Target" className="w-full max-h-80 object-contain" />
+          <img src={`/r/${value.r2_key}`} alt="" className="w-full max-h-80 object-contain" />
           <button
             type="button"
             onClick={() => onChange({ r2_key: "", mime: "image/png" })}
             className="absolute top-2 right-2 w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center shadow-sm hover:bg-red-50 hover:border-red-200"
-            aria-label="Remove image"
+            aria-label={t("common.remove")}
           >
             <X className="w-4 h-4 text-slate-600" />
           </button>
@@ -89,8 +91,8 @@ function ImageForm({ value, onChange }: { value: ImagePayload; onChange: (v: Ima
           disabled={uploading}
         >
           {uploading ? <Loader2 className="w-6 h-6 animate-spin text-indigo-600" /> : <Upload className="w-6 h-6 text-slate-400" />}
-          <span className="text-sm font-medium text-slate-600">{uploading ? "Uploading..." : "Click to upload"}</span>
-          <span className="text-xs text-slate-400">PNG / JPG / WebP up to 2MB</span>
+          <span className="text-sm font-medium text-slate-600">{uploading ? t("common.uploading") : t("targetForm.image.uploadCta")}</span>
+          <span className="text-xs text-slate-400">{t("targetForm.image.uploadHint")}</span>
         </button>
       )}
       <input
@@ -105,23 +107,25 @@ function ImageForm({ value, onChange }: { value: ImagePayload; onChange: (v: Ima
 }
 
 function UrlForm({ value, onChange }: { value: UrlPayload; onChange: (v: UrlPayload) => void }) {
+  const { t } = useTranslation();
   return (
     <div className="space-y-3">
-      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Destination URL</label>
+      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("targetForm.url.label")}</label>
       <Input
         type="url"
-        placeholder="https://example.com/your-page"
+        placeholder={t("targetForm.url.placeholder")}
         value={value.url}
         onChange={(e) => onChange({ url: e.target.value })}
         className="h-12"
       />
-      <p className="text-xs text-slate-500">Visitors will see a quick confirmation page, then auto-redirect.</p>
+      <p className="text-xs text-slate-500">{t("targetForm.url.hint")}</p>
     </div>
   );
 }
 
 function MultilinkForm({ value, onChange }: { value: MultilinkPayload; onChange: (v: MultilinkPayload) => void }) {
   const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor));
+  const { t } = useTranslation();
 
   const handleDragEnd = (e: DragEndEvent) => {
     const { active, over } = e;
@@ -147,7 +151,7 @@ function MultilinkForm({ value, onChange }: { value: MultilinkPayload; onChange:
 
   const addItem = () => {
     if (value.items.length >= 10) {
-      toast.error("Maximum 10 links");
+      toast.error(t("targetForm.multilink.maxReached"));
       return;
     }
     onChange({ ...value, items: [...value.items, { label: "", url: "" }] });
@@ -156,25 +160,25 @@ function MultilinkForm({ value, onChange }: { value: MultilinkPayload; onChange:
   return (
     <div className="space-y-5">
       <div className="space-y-3">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Page title</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("targetForm.multilink.pageTitle")}</label>
         <Input
-          placeholder="My links"
+          placeholder={t("targetForm.multilink.pageTitlePlaceholder")}
           value={value.title || ""}
           onChange={(e) => onChange({ ...value, title: e.target.value })}
           className="h-11"
         />
       </div>
       <div className="space-y-3">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Description (optional)</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("targetForm.multilink.pageDesc")}</label>
         <Input
-          placeholder="Short tagline"
+          placeholder={t("targetForm.multilink.pageDescPlaceholder")}
           value={value.description || ""}
           onChange={(e) => onChange({ ...value, description: e.target.value })}
           className="h-11"
         />
       </div>
       <div className="space-y-3">
-        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">Links (drag to reorder)</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("targetForm.multilink.links")}</label>
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={value.items.map((_, i) => `item-${i}`)} strategy={verticalListSortingStrategy}>
             <div className="space-y-2">
@@ -193,7 +197,7 @@ function MultilinkForm({ value, onChange }: { value: MultilinkPayload; onChange:
         </DndContext>
         <Button type="button" variant="outline" onClick={addItem} className="w-full">
           <Plus className="w-4 h-4 mr-1" />
-          Add link
+          {t("targetForm.multilink.addLink")}
         </Button>
       </div>
     </div>
@@ -214,6 +218,7 @@ function SortableLinkRow({
   canRemove: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
+  const { t } = useTranslation();
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -221,28 +226,28 @@ function SortableLinkRow({
   };
   return (
     <div ref={setNodeRef} style={style} className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg p-2">
-      <button type="button" {...attributes} {...listeners} className="text-slate-400 hover:text-slate-600 cursor-grab" aria-label="Drag">
+      <button type="button" {...attributes} {...listeners} className="text-slate-400 hover:text-slate-600 cursor-grab" aria-label={t("targetForm.multilink.dragHandle")}>
         <GripVertical className="w-4 h-4" />
       </button>
       <Input
-        placeholder="Label"
+        placeholder={t("targetForm.multilink.linkLabel")}
         value={item.label}
         onChange={(e) => onChange({ label: e.target.value })}
         className="h-9 flex-1"
       />
       <Input
         type="url"
-        placeholder="https://"
+        placeholder={t("targetForm.multilink.linkUrl")}
         value={item.url}
         onChange={(e) => onChange({ url: e.target.value })}
-        className="h-9 flex-[2]"
+        className="h-9 flex-2"
       />
       <button
         type="button"
         onClick={onRemove}
         disabled={!canRemove}
         className="text-slate-400 hover:text-red-600 disabled:opacity-30 disabled:hover:text-slate-400"
-        aria-label="Remove"
+        aria-label={t("targetForm.multilink.remove")}
       >
         <Trash2 className="w-4 h-4" />
       </button>
