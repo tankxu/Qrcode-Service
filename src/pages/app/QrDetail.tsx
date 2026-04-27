@@ -42,7 +42,7 @@ export default function QrDetail() {
         <ArrowLeft className="w-4 h-4 mr-1" /> {t("detail.back")}
       </Link>
 
-      <div className="grid lg:grid-cols-[320px_1fr] gap-8">
+      <div className="grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] gap-8">
         <aside className="space-y-4">
           <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
             <div className="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center">
