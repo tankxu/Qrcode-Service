@@ -4,9 +4,10 @@ import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { qrsApi, type Qr } from "@/src/lib/api";
+import { qrsApi, type Qr, type Analytics } from "@/src/lib/api";
 import { QRPreview, downloadQrPng } from "@/src/components/app/QRPreview";
 import { TargetForm, type TargetValue } from "@/src/components/app/TargetForms";
+import { Sparkline } from "@/src/components/app/Sparkline";
 import { toast } from "sonner";
 
 export default function QrDetail() {
@@ -141,16 +142,44 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
 }
 
 function AnalyticsTab({ qrId, total }: { qrId: string; total: number }) {
-  // Phase F will implement /api/qrs/:id/analytics; placeholder for now
+  const [data, setData] = useState<Analytics | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    qrsApi.analytics(qrId, "7d")
+      .then(setData)
+      .catch((e) => setError(e.message));
+  }, [qrId]);
+
+  const last7 = data ? data.daily.reduce((a, b) => a + b.count, 0) : 0;
+  const lastScan = data?.last_scan_at
+    ? new Date(data.last_scan_at).toLocaleString()
+    : "—";
+
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <Stat label="Total scans" value={total.toString()} />
-        <Stat label="Last 7 days" value="—" />
-        <Stat label="Last scan" value="—" />
+        <Stat label="Last 7 days" value={data ? last7.toString() : "—"} />
+        <Stat label="Last scan" value={lastScan} />
       </div>
-      <p className="text-xs text-slate-400 mt-6">Sparkline & breakdown wired up in the next iteration.</p>
-      <span className="sr-only">qr {qrId}</span>
+
+      <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">7-day trend</div>
+      {error ? (
+        <div className="text-red-600 text-sm">Error: {error}</div>
+      ) : !data ? (
+        <div className="h-20 flex items-center text-slate-400 text-sm">
+          <Loader2 className="w-4 h-4 animate-spin mr-2" /> Loading...
+        </div>
+      ) : data.daily.every((d) => d.count === 0) ? (
+        <div className="h-20 flex items-center justify-center bg-slate-50 rounded-xl text-slate-400 text-sm">
+          No scans yet
+        </div>
+      ) : (
+        <div className="bg-slate-50 rounded-xl p-4">
+          <Sparkline data={data.daily} width={640} height={120} className="w-full h-auto" />
+        </div>
+      )}
     </div>
   );
 }

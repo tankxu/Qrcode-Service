@@ -7,6 +7,7 @@ import qrsRoute from "./routes/qrs";
 import uploadsRoute from "./routes/uploads";
 import rRoute from "./routes/r";
 import qRoute from "./routes/q";
+import analyticsRoute from "./routes/analytics";
 
 export type Bindings = {
   GOOGLE_CLIENT_ID: string;
@@ -148,6 +149,7 @@ app.post("/api/auth/logout", (c) => {
   return c.json({ ok: true });
 });
 
+app.route("/api/qrs", analyticsRoute); // mount more specific :id/analytics first
 app.route("/api/qrs", qrsRoute);
 app.route("/api/uploads", uploadsRoute);
 app.route("/r", rRoute);

@@ -56,9 +56,18 @@ export interface ImagePayload { r2_key: string; mime: string; width?: number; he
 export interface UrlPayload { url: string }
 export interface MultilinkPayload { title?: string; description?: string; items: { label: string; url: string }[] }
 
+export interface Analytics {
+  total: number;
+  last_scan_at: number | null;
+  range_days: number;
+  daily: { day: string; count: number }[];
+}
+
 export const qrsApi = {
   list: () => api<{ qrs: Qr[] }>("/api/qrs"),
   get: (id: string) => api<{ qr: Qr }>(`/api/qrs/${id}`),
+  analytics: (id: string, range: "7d" | "30d" = "7d") =>
+    api<Analytics>(`/api/qrs/${id}/analytics?range=${range}`),
   create: (input: { title?: string; description?: string; target: Qr["target"] }) =>
     api<{ qr: Qr }>("/api/qrs", { json: input }),
   update: (id: string, patch: Partial<Pick<Qr, "title" | "description" | "status">> & { target?: Qr["target"] }) =>
