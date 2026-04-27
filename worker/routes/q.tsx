@@ -66,13 +66,15 @@ r.get("/:slug", async (c) => {
     Promise.allSettled([
       incrementScan(c.env.DB, qrId),
       bumpDaily(c.env.DB, qrId, today),
-      Promise.resolve(
-        c.env.SCAN_EVENTS.writeDataPoint({
-          blobs: [qrId, country],
-          doubles: [1],
-          indexes: [qrId],
-        }),
-      ),
+      c.env.SCAN_EVENTS
+        ? Promise.resolve(
+            c.env.SCAN_EVENTS.writeDataPoint({
+              blobs: [qrId, country],
+              doubles: [1],
+              indexes: [qrId],
+            }),
+          )
+        : Promise.resolve(),
     ]),
   );
 

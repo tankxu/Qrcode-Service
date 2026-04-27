@@ -30,6 +30,9 @@ bucket_name = "qrcode-service-images"
 binding = "CACHE"
 id = "6d7a1d45cd6d4f9ebfbc8bac392a6f6e"
 
-[[analytics_engine_datasets]]
-binding = "SCAN_EVENTS"
-dataset = "qrcode_scans"
+# Analytics Engine left out for MVP — sparkline runs off D1 scan_daily.
+# Enable at https://dash.cloudflare.com/<account>/workers/analytics-engine
+# and re-add this block when needed:
+# [[analytics_engine_datasets]]
+# binding = "SCAN_EVENTS"
+# dataset = "qrcode_scans"

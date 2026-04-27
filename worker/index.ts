@@ -19,7 +19,7 @@ export type Bindings = {
   DB: D1Database;
   IMAGES: R2Bucket;
   CACHE: KVNamespace;
-  SCAN_EVENTS: AnalyticsEngineDataset;
+  SCAN_EVENTS?: AnalyticsEngineDataset;
 };
 
 export type AppEnv = { Bindings: Bindings; Variables: { user: AuthedUser } };
