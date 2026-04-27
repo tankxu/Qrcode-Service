@@ -39,6 +39,9 @@ i18n
     fallbackLng: "en",
     supportedLngs: SUPPORTED_LOCALES.map((l) => l.code),
     nonExplicitSupportedLngs: true,
+    lowerCaseLng: false,
+    cleanCode: false,
+    load: "currentOnly",
     interpolation: { escapeValue: false },
     detection: {
       order: ["cookie", "localStorage", "navigator"],
@@ -47,6 +50,20 @@ i18n
       lookupLocalStorage: LOCALE_COOKIE,
       cookieMinutes: 60 * 24 * 365, // 1 year
       cookieOptions: { path: "/", sameSite: "lax" },
+      // Normalize anything we detect (cookie / localStorage / navigator)
+      // into one of our 7 supported codes. Without this, a stored "zh-cn"
+      // (from libs that lowercase) would not match the resource key "zh-CN"
+      // and would fall back to English.
+      convertDetectedLanguage: (lng: string) => {
+        const lower = (lng || "").toLowerCase();
+        if (lower.startsWith("zh")) return "zh-CN";
+        if (lower.startsWith("ja")) return "ja";
+        if (lower.startsWith("ko")) return "ko";
+        if (lower.startsWith("vi")) return "vi";
+        if (lower.startsWith("de")) return "de";
+        if (lower.startsWith("fr")) return "fr";
+        return "en";
+      },
     },
   });
 

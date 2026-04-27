@@ -22,7 +22,11 @@ export function LanguageSwitcher({ align = "right", variant = "header" }: Props)
     return () => document.removeEventListener("mousedown", handler);
   }, [open]);
 
-  const current = SUPPORTED_LOCALES.find((l) => l.code === i18n.resolvedLanguage) || SUPPORTED_LOCALES[0];
+  const active = (i18n.resolvedLanguage || i18n.language || "").toLowerCase();
+  const current =
+    SUPPORTED_LOCALES.find((l) => l.code.toLowerCase() === active) ||
+    SUPPORTED_LOCALES.find((l) => active.startsWith(l.code.toLowerCase().split("-")[0])) ||
+    SUPPORTED_LOCALES[0];
 
   const change = (code: string) => {
     i18n.changeLanguage(code);
@@ -46,7 +50,7 @@ export function LanguageSwitcher({ align = "right", variant = "header" }: Props)
       </button>
       {open && (
         <div
-          className={`absolute mt-2 ${align === "right" ? "right-0" : "left-0"} bg-white border border-slate-200 rounded-lg shadow-lg py-1 min-w-[160px] z-50`}
+          className={`absolute mt-2 ${align === "right" ? "right-0" : "left-0"} bg-white border border-slate-200 rounded-lg shadow-lg py-1 min-w-40 z-50`}
         >
           {SUPPORTED_LOCALES.map((l) => (
             <button
