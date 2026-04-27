@@ -5,10 +5,11 @@ import { SUPPORTED_LOCALES } from "@/src/i18n";
 
 interface Props {
   align?: "left" | "right";
+  direction?: "down" | "up";
   variant?: "header" | "inline";
 }
 
-export function LanguageSwitcher({ align = "right", variant = "header" }: Props) {
+export function LanguageSwitcher({ align = "right", direction = "down", variant = "header" }: Props) {
   const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -25,13 +26,18 @@ export function LanguageSwitcher({ align = "right", variant = "header" }: Props)
   const active = (i18n.resolvedLanguage || i18n.language || "").toLowerCase();
   const current =
     SUPPORTED_LOCALES.find((l) => l.code.toLowerCase() === active) ||
-    SUPPORTED_LOCALES.find((l) => active.startsWith(l.code.toLowerCase().split("-")[0])) ||
+    SUPPORTED_LOCALES.find((l) => active.startsWith(l.code.toLowerCase())) ||
     SUPPORTED_LOCALES[0];
 
   const change = (code: string) => {
     i18n.changeLanguage(code);
     setOpen(false);
   };
+
+  const menuPos =
+    direction === "up"
+      ? `bottom-full mb-2 ${align === "right" ? "right-0" : "left-0"}`
+      : `mt-2 ${align === "right" ? "right-0" : "left-0"}`;
 
   return (
     <div ref={ref} className="relative">
@@ -49,9 +55,7 @@ export function LanguageSwitcher({ align = "right", variant = "header" }: Props)
         <span>{current.label}</span>
       </button>
       {open && (
-        <div
-          className={`absolute mt-2 ${align === "right" ? "right-0" : "left-0"} bg-white border border-slate-200 rounded-lg shadow-lg py-1 min-w-40 z-50`}
-        >
+        <div className={`absolute ${menuPos} bg-white border border-slate-200 rounded-lg shadow-lg py-1 min-w-40 z-50`}>
           {SUPPORTED_LOCALES.map((l) => (
             <button
               key={l.code}

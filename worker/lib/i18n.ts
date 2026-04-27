@@ -1,6 +1,6 @@
 // SSR locale handling for /q/:slug landing pages.
 
-export const SUPPORTED = ["en", "zh-CN", "ja", "ko", "vi", "de", "fr"] as const;
+export const SUPPORTED = ["en", "zh", "ja", "ko", "vi", "de", "fr"] as const;
 export type Locale = (typeof SUPPORTED)[number];
 
 const COOKIE = "qr_locale";
@@ -10,9 +10,9 @@ function normalize(input: string): Locale | null {
   if (!v) return null;
   // Exact match
   if ((SUPPORTED as readonly string[]).includes(v)) return v as Locale;
-  // zh-* → zh-CN (we only ship Simplified Chinese for MVP)
+  // zh-* (zh-CN, zh-Hans, zh-TW...) → zh (we only ship Simplified Chinese for MVP)
   const lower = v.toLowerCase();
-  if (lower.startsWith("zh")) return "zh-CN";
+  if (lower.startsWith("zh")) return "zh";
   if (lower.startsWith("ja")) return "ja";
   if (lower.startsWith("ko")) return "ko";
   if (lower.startsWith("vi")) return "vi";
@@ -80,7 +80,7 @@ const STRINGS: Record<Locale, Strings> = {
     errDeletedBody: "The owner has removed this QR.",
     visitHome: "Visit QuickQR",
   },
-  "zh-CN": {
+  "zh": {
     longPress: "长按图片保存到相册,或在微信中长按识别二维码",
     poweredBy: "由 QuickQR 提供",
     urlGoingTo: "即将前往",
@@ -168,5 +168,5 @@ const STRINGS: Record<Locale, Strings> = {
 
 export const strings = (l: Locale): Strings => STRINGS[l];
 
-// HTML lang attribute mapping (e.g. "zh-CN" stays as-is)
+// HTML lang attribute mapping (e.g. "zh" stays as-is)
 export const htmlLang = (l: Locale): string => l;

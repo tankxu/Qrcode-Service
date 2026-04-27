@@ -50,7 +50,7 @@ export default function AppLayout() {
           ))}
         </nav>
         <div className="p-3 border-t border-slate-100 space-y-2">
-          <LanguageSwitcher align="left" />
+          <LanguageSwitcher align="left" direction="up" />
           <div className="flex items-center gap-3">
             {user?.picture ? (
               <img src={user.picture} alt="" referrerPolicy="no-referrer" className="w-8 h-8 rounded-full border border-slate-200" />
@@ -97,7 +97,7 @@ export default function AppLayout() {
               ))}
             </nav>
             <div className="p-3 border-t border-slate-100 space-y-2">
-              <LanguageSwitcher align="left" />
+              <LanguageSwitcher align="left" direction="up" />
               <Button variant="ghost" onClick={handleLogout} className="w-full justify-start">
                 <LogOut className="w-4 h-4 mr-2" />
                 {t("nav.signOut")}
