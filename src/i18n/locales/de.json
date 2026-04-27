@@ -217,6 +217,11 @@
   "auth": {
     "loading": "Wird geladen..."
   },
+  "note": {
+    "label": "Notiz (auf der Landingpage sichtbar)",
+    "placeholder": "z. B. Wenn die Gruppe voll ist, schreib mir direkt: yourID oder me@example.com",
+    "help": "Bleibt immer auf der öffentlichen Landingpage sichtbar — perfekt als Fallback, wenn dein eigentliches Ziel veraltet ist."
+  },
   "meta": {
     "marketing": "QuickQR — Ein QR. Für immer dein.",
     "login": "Anmelden · QuickQR",

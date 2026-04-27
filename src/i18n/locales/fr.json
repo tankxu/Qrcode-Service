@@ -217,6 +217,11 @@
   "auth": {
     "loading": "Chargement…"
   },
+  "note": {
+    "label": "Notes (affichées sur la page d'atterrissage)",
+    "placeholder": "Ex. : si le groupe est plein, contactez-moi directement : yourID ou me@example.com",
+    "help": "Toujours visible sur la page publique. Pratique comme solution de repli si la destination devient obsolète."
+  },
   "meta": {
     "marketing": "QuickQR — Un QR. Pour toujours.",
     "login": "Connexion · QuickQR",

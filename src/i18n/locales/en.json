@@ -217,6 +217,11 @@
   "auth": {
     "loading": "Loading..."
   },
+  "note": {
+    "label": "Notes (shown on the landing page)",
+    "placeholder": "e.g. If the WeChat group is full, add me directly: yourID — or email me@example.com",
+    "help": "Stays visible on the public landing page. Useful as a fallback when your destination becomes stale."
+  },
   "meta": {
     "marketing": "QuickQR — One QR. Forever yours.",
     "login": "Sign in · QuickQR",

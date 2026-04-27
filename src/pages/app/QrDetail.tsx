@@ -117,13 +117,14 @@ export default function QrDetail() {
 
 function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
   const [target, setTarget] = useState<TargetValue>({ type: qr.target.type, payload: qr.target.payload as never });
+  const [note, setNote] = useState(qr.note ?? "");
   const [saving, setSaving] = useState(false);
   const { t } = useTranslation();
 
   const handleSave = async () => {
     setSaving(true);
     try {
-      await qrsApi.update(qr.id, { target });
+      await qrsApi.update(qr.id, { target, note });
       toast.success(t("common.saved"));
       onSaved();
     } catch (e) {
@@ -136,6 +137,18 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
       <TargetForm value={target} onChange={setTarget} />
+      <div className="mt-6 pt-6 border-t border-slate-100 space-y-3">
+        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("note.label")}</label>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder={t("note.placeholder")}
+          rows={3}
+          maxLength={1000}
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 resize-y"
+        />
+        <p className="text-xs text-slate-500">{t("note.help")}</p>
+      </div>
       <div className="mt-6 pt-6 border-t border-slate-100 flex justify-end">
         <Button onClick={handleSave} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
           {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}

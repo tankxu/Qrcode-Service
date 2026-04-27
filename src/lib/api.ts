@@ -44,6 +44,7 @@ export interface Qr {
   slug: string;
   title: string | null;
   description: string | null;
+  note: string | null;
   status: "active" | "paused";
   target: { type: TargetType; payload: unknown };
   scan_total: number;
@@ -68,9 +69,9 @@ export const qrsApi = {
   get: (id: string) => api<{ qr: Qr }>(`/api/qrs/${id}`),
   analytics: (id: string, range: "7d" | "30d" = "7d") =>
     api<Analytics>(`/api/qrs/${id}/analytics?range=${range}`),
-  create: (input: { title?: string; description?: string; target: Qr["target"] }) =>
+  create: (input: { title?: string; description?: string; note?: string; target: Qr["target"] }) =>
     api<{ qr: Qr }>("/api/qrs", { json: input }),
-  update: (id: string, patch: Partial<Pick<Qr, "title" | "description" | "status">> & { target?: Qr["target"] }) =>
+  update: (id: string, patch: Partial<Pick<Qr, "title" | "description" | "note" | "status">> & { target?: Qr["target"] }) =>
     api<{ qr: Qr }>(`/api/qrs/${id}`, { method: "PATCH", json: patch }),
   remove: (id: string) => api<{ deleted: true }>(`/api/qrs/${id}`, { method: "DELETE" }),
   uploadImage: async (file: File) => {

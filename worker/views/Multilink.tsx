@@ -1,16 +1,18 @@
 import type { FC } from "hono/jsx";
 import { Layout } from "./Layout";
+import { NoteCard } from "./NoteCard";
 import type { Locale, Strings } from "../lib/i18n";
 
 interface Props {
   title?: string | null;
   description?: string | null;
   items: { label: string; url: string }[];
+  note?: string | null;
   locale: Locale;
   s: Strings;
 }
 
-export const MultilinkView: FC<Props> = ({ title, description, items, locale, s }) => {
+export const MultilinkView: FC<Props> = ({ title, description, items, note, locale, s }) => {
   return (
     <Layout lang={locale} title={title || "QuickQR"} description={description || undefined}>
       <div class="center">
@@ -32,6 +34,7 @@ export const MultilinkView: FC<Props> = ({ title, description, items, locale, s 
               ))}
             </div>
           </div>
+          <NoteCard note={note} s={s} />
           <div class="brand">
             <span class="brand-logo">Q</span>
             <span>{s.poweredBy}</span>

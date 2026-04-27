@@ -56,6 +56,7 @@ export interface Strings {
   urlGoingTo: string;
   urlContinue: string;
   urlAuto: string;
+  noteHeading: string;
   errNotFoundTitle: string;
   errNotFoundBody: string;
   errPausedTitle: string;
@@ -72,6 +73,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "You're heading to",
     urlContinue: "Continue",
     urlAuto: "Auto-redirecting in 1.5 seconds...",
+    noteHeading: "Other ways to reach",
     errNotFoundTitle: "QR not found",
     errNotFoundBody: "This code may be invalid or no longer exists.",
     errPausedTitle: "Temporarily unavailable",
@@ -86,6 +88,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "即将前往",
     urlContinue: "继续",
     urlAuto: "1.5 秒后自动跳转……",
+    noteHeading: "其他联系方式",
     errNotFoundTitle: "二维码不存在",
     errNotFoundBody: "可能链接无效或已被移除。",
     errPausedTitle: "暂时不可用",
@@ -100,6 +103,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "次のページへ移動します",
     urlContinue: "続ける",
     urlAuto: "1.5 秒後に自動でリダイレクトします…",
+    noteHeading: "他の連絡方法",
     errNotFoundTitle: "QR が見つかりません",
     errNotFoundBody: "コードが無効か、既に削除された可能性があります。",
     errPausedTitle: "一時的に利用できません",
@@ -114,6 +118,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "이동합니다",
     urlContinue: "계속",
     urlAuto: "1.5초 후 자동으로 이동합니다...",
+    noteHeading: "다른 연락 방법",
     errNotFoundTitle: "QR을 찾을 수 없습니다",
     errNotFoundBody: "코드가 유효하지 않거나 삭제되었을 수 있습니다.",
     errPausedTitle: "일시적으로 사용할 수 없음",
@@ -128,6 +133,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "Bạn sắp đến",
     urlContinue: "Tiếp tục",
     urlAuto: "Tự động chuyển hướng sau 1,5 giây...",
+    noteHeading: "Cách liên hệ khác",
     errNotFoundTitle: "Không tìm thấy QR",
     errNotFoundBody: "Mã có thể không hợp lệ hoặc đã bị xóa.",
     errPausedTitle: "Tạm thời không khả dụng",
@@ -142,6 +148,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "Du wirst weitergeleitet zu",
     urlContinue: "Weiter",
     urlAuto: "Automatische Weiterleitung in 1,5 Sekunden...",
+    noteHeading: "Weitere Kontaktmöglichkeiten",
     errNotFoundTitle: "QR nicht gefunden",
     errNotFoundBody: "Dieser Code ist möglicherweise ungültig oder wurde entfernt.",
     errPausedTitle: "Vorübergehend nicht verfügbar",
@@ -156,6 +163,7 @@ const STRINGS: Record<Locale, Strings> = {
     urlGoingTo: "Vous allez vers",
     urlContinue: "Continuer",
     urlAuto: "Redirection automatique dans 1,5 seconde...",
+    noteHeading: "Autres moyens de contact",
     errNotFoundTitle: "QR introuvable",
     errNotFoundBody: "Ce code est peut-être invalide ou a été supprimé.",
     errPausedTitle: "Temporairement indisponible",

@@ -217,6 +217,11 @@
   "auth": {
     "loading": "加载中……"
   },
+  "note": {
+    "label": "备注(展示在落地页)",
+    "placeholder": "例如:微信群满了请直接加我:yourID,或发邮件 me@example.com",
+    "help": "始终显示在公开落地页上。当主目标失效(如群码过期)时,可以用这段文字引导扫码者其它联系方式。"
+  },
   "meta": {
     "marketing": "QuickQR — 一个二维码,永远属于你",
     "login": "登录 · QuickQR",

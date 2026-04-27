@@ -62,12 +62,14 @@ export type TargetInput = z.infer<typeof targetSchema>;
 export const createQrInputSchema = z.object({
   title: z.string().max(120).optional(),
   description: z.string().max(500).optional(),
+  note: z.string().max(1000).optional(),
   target: targetSchema,
 });
 
 export const updateQrInputSchema = z.object({
   title: z.string().max(120).optional(),
   description: z.string().max(500).optional(),
+  note: z.string().max(1000).nullable().optional(),
   status: z.enum(["active", "paused"]).optional(),
   target: targetSchema.optional(),
 });

@@ -217,6 +217,11 @@
   "auth": {
     "loading": "불러오는 중…"
   },
+  "note": {
+    "label": "메모 (랜딩 페이지에 표시)",
+    "placeholder": "예: 그룹이 가득 찼다면 직접 연락 주세요: yourID 또는 me@example.com",
+    "help": "공개 랜딩 페이지에 항상 표시됩니다. 목적지가 오래되어 사용 못 할 때의 대체 안내로 유용합니다."
+  },
   "meta": {
     "marketing": "QuickQR — 하나의 QR, 영원히 당신의 것",
     "login": "로그인 · QuickQR",

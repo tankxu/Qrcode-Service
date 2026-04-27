@@ -22,6 +22,7 @@ export default function NewQrWizard() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [, setType] = useState<TargetType | null>(null);
   const [title, setTitle] = useState("");
+  const [note, setNote] = useState("");
   const [target, setTarget] = useState<TargetValue | null>(null);
   const [creating, setCreating] = useState(false);
   const [createdSlug, setCreatedSlug] = useState<string | null>(null);
@@ -52,7 +53,11 @@ export default function NewQrWizard() {
     if (err) { toast.error(err); return; }
     setCreating(true);
     try {
-      const { qr } = await qrsApi.create({ title: title || undefined, target: target! });
+      const { qr } = await qrsApi.create({
+        title: title || undefined,
+        note: note || undefined,
+        target: target!,
+      });
       setCreatedSlug(qr.slug);
       setCreatedId(qr.id);
       setStep(3);
@@ -97,6 +102,18 @@ export default function NewQrWizard() {
           </div>
           <div className="border-t border-slate-100 pt-6">
             <TargetForm value={target} onChange={setTarget} />
+          </div>
+          <div className="border-t border-slate-100 pt-6 space-y-3">
+            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 block">{t("note.label")}</label>
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder={t("note.placeholder")}
+              rows={3}
+              maxLength={1000}
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 resize-y"
+            />
+            <p className="text-xs text-slate-500">{t("note.help")}</p>
           </div>
           <div className="flex items-center justify-between border-t border-slate-100 pt-6">
             <Button variant="outline" onClick={() => setStep(1)} disabled={creating}>

@@ -12,6 +12,7 @@ interface CachedTarget {
   status: "active" | "paused";
   title: string | null;
   description: string | null;
+  note: string | null;
   target_type: "image" | "url" | "multilink";
   target_payload: unknown;
 }
@@ -41,6 +42,7 @@ r.get("/:slug", async (c) => {
       status: row.status,
       title: row.title,
       description: row.description,
+      note: row.note,
       target_type: row.target_type,
       target_payload: JSON.parse(row.target_payload),
     };
@@ -84,6 +86,7 @@ r.get("/:slug", async (c) => {
           imageUrl={`/r/${p.r2_key}`}
           title={cached.title}
           description={cached.description}
+          note={cached.note}
           locale={locale}
           s={s}
         />,
@@ -91,7 +94,7 @@ r.get("/:slug", async (c) => {
     }
     case "url": {
       const p = cached.target_payload as { url: string };
-      return c.html(<UrlView url={p.url} locale={locale} s={s} />);
+      return c.html(<UrlView url={p.url} note={cached.note} locale={locale} s={s} />);
     }
     case "multilink": {
       const p = cached.target_payload as { title?: string; description?: string; items: { label: string; url: string }[] };
@@ -100,6 +103,7 @@ r.get("/:slug", async (c) => {
           title={p.title || cached.title}
           description={p.description || cached.description}
           items={p.items}
+          note={cached.note}
           locale={locale}
           s={s}
         />,

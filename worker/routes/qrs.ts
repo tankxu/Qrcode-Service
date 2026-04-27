@@ -13,6 +13,7 @@ const presentQr = (q: QrWithCounter) => ({
   slug: q.slug,
   title: q.title,
   description: q.description,
+  note: q.note,
   status: q.status,
   target: { type: q.target_type, payload: JSON.parse(q.target_payload) },
   scan_total: q.scan_total,

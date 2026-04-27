@@ -18,6 +18,7 @@ export interface QrRow {
   user_id: string;
   title: string | null;
   description: string | null;
+  note: string | null;
   status: "active" | "paused";
   target_type: "image" | "url" | "multilink";
   target_payload: string;
@@ -106,7 +107,7 @@ export async function getQrBySlug(db: D1Database, slug: string): Promise<QrRow |
 export async function createQr(
   db: D1Database,
   userId: string,
-  input: { title?: string; description?: string; target: TargetInput },
+  input: { title?: string; description?: string; note?: string; target: TargetInput },
 ): Promise<QrRow> {
   const id = newId();
   const ts = now();
@@ -123,10 +124,10 @@ export async function createQr(
 
   await db
     .prepare(
-      `INSERT INTO qrs (id, slug, user_id, title, description, status, target_type, target_payload, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, 'active', ?, ?, ?, ?)`,
+      `INSERT INTO qrs (id, slug, user_id, title, description, note, status, target_type, target_payload, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, 'active', ?, ?, ?, ?)`,
     )
-    .bind(id, slug, userId, input.title ?? null, input.description ?? null, targetType, targetPayload, ts, ts)
+    .bind(id, slug, userId, input.title ?? null, input.description ?? null, input.note ?? null, targetType, targetPayload, ts, ts)
     .run();
 
   await db.prepare("INSERT INTO scan_counters (qr_id, total, last_scan_at) VALUES (?, 0, NULL)").bind(id).run();
@@ -137,6 +138,7 @@ export async function createQr(
     user_id: userId,
     title: input.title ?? null,
     description: input.description ?? null,
+    note: input.note ?? null,
     status: "active",
     target_type: targetType,
     target_payload: targetPayload,
@@ -149,7 +151,7 @@ export async function updateQr(
   db: D1Database,
   id: string,
   userId: string,
-  patch: { title?: string; description?: string; status?: "active" | "paused"; target?: TargetInput },
+  patch: { title?: string; description?: string; note?: string | null; status?: "active" | "paused"; target?: TargetInput },
 ): Promise<QrWithCounter | null> {
   const existing = await getQrById(db, id, userId);
   if (!existing) return null;
@@ -160,6 +162,7 @@ export async function updateQr(
 
   if (patch.title !== undefined) { updates.push("title = ?"); values.push(patch.title); }
   if (patch.description !== undefined) { updates.push("description = ?"); values.push(patch.description); }
+  if (patch.note !== undefined) { updates.push("note = ?"); values.push(patch.note); }
   if (patch.status !== undefined) { updates.push("status = ?"); values.push(patch.status); }
   if (patch.target !== undefined) {
     updates.push("target_type = ?"); values.push(patch.target.type);

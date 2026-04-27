@@ -217,6 +217,11 @@
   "auth": {
     "loading": "読み込み中…"
   },
+  "note": {
+    "label": "メモ(ランディングページに表示)",
+    "placeholder": "例: グループが満員の場合は直接ご連絡を: yourID または me@example.com",
+    "help": "公開ランディングページに常に表示されます。リンク先が古くなった場合のフォールバックとして使えます。"
+  },
   "meta": {
     "marketing": "QuickQR — ひとつの QR を、ずっと",
     "login": "ログイン · QuickQR",
