@@ -216,5 +216,15 @@
   },
   "auth": {
     "loading": "読み込み中…"
+  },
+  "meta": {
+    "marketing": "QuickQR — ひとつの QR を、ずっと",
+    "login": "ログイン · QuickQR",
+    "dashboard": "ダッシュボード · QuickQR",
+    "newQr": "新しい QR · QuickQR",
+    "qrDetail": "{{name}} · QuickQR",
+    "account": "アカウント · QuickQR",
+    "staticQr": "静的 QR · QuickQR",
+    "notFound": "ページが見つかりません · QuickQR"
   }
 }

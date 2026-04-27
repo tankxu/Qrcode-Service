@@ -2,11 +2,13 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 export default function Account() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  usePageTitle("meta.account");
   return (
     <div className="max-w-2xl">
       <h1 className="text-2xl font-bold mb-1">{t("account.title")}</h1>

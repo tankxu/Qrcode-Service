@@ -216,5 +216,15 @@
   },
   "auth": {
     "loading": "加载中……"
+  },
+  "meta": {
+    "marketing": "QuickQR — 一个二维码,永远属于你",
+    "login": "登录 · QuickQR",
+    "dashboard": "工作台 · QuickQR",
+    "newQr": "新建二维码 · QuickQR",
+    "qrDetail": "{{name}} · QuickQR",
+    "account": "账号 · QuickQR",
+    "staticQr": "静态二维码 · QuickQR",
+    "notFound": "页面未找到 · QuickQR"
   }
 }

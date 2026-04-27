@@ -1,8 +1,10 @@
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 export default function NotFound() {
   const { t } = useTranslation();
+  usePageTitle("meta.notFound");
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-center px-4">
       <div className="text-7xl font-bold text-slate-200">404</div>

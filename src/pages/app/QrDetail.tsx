@@ -9,6 +9,7 @@ import { qrsApi, type Qr, type Analytics } from "@/src/lib/api";
 import { QRPreview, downloadQrPng } from "@/src/components/app/QRPreview";
 import { TargetForm, type TargetValue } from "@/src/components/app/TargetForms";
 import { Sparkline } from "@/src/components/app/Sparkline";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 import { toast } from "sonner";
 
 export default function QrDetail() {
@@ -16,6 +17,7 @@ export default function QrDetail() {
   const [qr, setQr] = useState<Qr | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
+  usePageTitle("meta.qrDetail", { name: qr?.title || qr?.slug || "QR" });
 
   const reload = async () => {
     if (!id) return;

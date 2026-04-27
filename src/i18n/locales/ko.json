@@ -216,5 +216,15 @@
   },
   "auth": {
     "loading": "불러오는 중…"
+  },
+  "meta": {
+    "marketing": "QuickQR — 하나의 QR, 영원히 당신의 것",
+    "login": "로그인 · QuickQR",
+    "dashboard": "대시보드 · QuickQR",
+    "newQr": "새 QR · QuickQR",
+    "qrDetail": "{{name}} · QuickQR",
+    "account": "계정 · QuickQR",
+    "staticQr": "정적 QR · QuickQR",
+    "notFound": "페이지 없음 · QuickQR"
   }
 }

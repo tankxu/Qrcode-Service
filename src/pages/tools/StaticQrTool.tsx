@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 import { toast } from "sonner";
 
 const hexToRgbApi = (hex: string) => {
@@ -29,6 +30,7 @@ interface QRSettings {
 }
 
 export default function StaticQrTool() {
+  usePageTitle("meta.staticQr");
   const [settings, setSettings] = useState<QRSettings>({
     data: "https://github.com/shadcn-ui/ui",
     size: 300,
@@ -94,7 +96,7 @@ export default function StaticQrTool() {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
-      <div className="w-full lg:w-[540px] bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col h-fit">
+      <div className="w-full lg:w-135 bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col h-fit">
         <div className="p-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold flex items-center gap-2">
             <Settings2 className="w-5 h-5 text-indigo-600" />
@@ -195,7 +197,7 @@ export default function StaticQrTool() {
       </div>
 
       <div className="flex-1 flex flex-col gap-8">
-        <Card className="flex-1 bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col items-center justify-center relative p-12 min-h-[460px]">
+        <Card className="flex-1 bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col items-center justify-center relative p-12 min-h-115">
           <div className="relative p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-inner">
             <AnimatePresence mode="wait">
               <motion.div

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { qrsApi, type TargetType } from "@/src/lib/api";
 import { TargetForm, emptyTarget, type TargetValue } from "@/src/components/app/TargetForms";
 import { QRPreview, downloadQrPng } from "@/src/components/app/QRPreview";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 import { toast } from "sonner";
 
 const typeOptions: { type: TargetType; icon: React.FC<{ className?: string }>; color: string }[] = [
@@ -17,6 +18,7 @@ const typeOptions: { type: TargetType; icon: React.FC<{ className?: string }>; c
 
 export default function NewQrWizard() {
   const { t } = useTranslation();
+  usePageTitle("meta.newQr");
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [, setType] = useState<TargetType | null>(null);
   const [title, setTitle] = useState("");

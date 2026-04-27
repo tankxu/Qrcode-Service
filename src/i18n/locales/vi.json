@@ -216,5 +216,15 @@
   },
   "auth": {
     "loading": "Đang tải..."
+  },
+  "meta": {
+    "marketing": "QuickQR — Một QR. Mãi là của bạn.",
+    "login": "Đăng nhập · QuickQR",
+    "dashboard": "Bảng điều khiển · QuickQR",
+    "newQr": "QR mới · QuickQR",
+    "qrDetail": "{{name}} · QuickQR",
+    "account": "Tài khoản · QuickQR",
+    "staticQr": "QR tĩnh · QuickQR",
+    "notFound": "Không tìm thấy · QuickQR"
   }
 }

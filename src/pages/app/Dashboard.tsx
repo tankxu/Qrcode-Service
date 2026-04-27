@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Plus, QrCode, Image as ImageIcon, Link as LinkIcon, List, Loader2 } from "lucide-react";
 import { qrsApi, type Qr } from "@/src/lib/api";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 const typeIcon: Record<Qr["target"]["type"], React.FC<{ className?: string }>> = {
   image: ImageIcon,
@@ -14,6 +15,7 @@ export default function Dashboard() {
   const [qrs, setQrs] = useState<Qr[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation();
+  usePageTitle("meta.dashboard");
 
   useEffect(() => {
     qrsApi.list()

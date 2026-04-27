@@ -4,10 +4,12 @@ import { QrCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/src/hooks/useAuth";
 import { LanguageSwitcher } from "@/src/components/LanguageSwitcher";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 export default function Login() {
   const { user, loading, login } = useAuth();
   const { t } = useTranslation();
+  usePageTitle("meta.login");
   if (loading) return null;
   if (user) return <Navigate to="/app" replace />;
 

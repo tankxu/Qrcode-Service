@@ -216,5 +216,15 @@
   },
   "auth": {
     "loading": "Wird geladen..."
+  },
+  "meta": {
+    "marketing": "QuickQR — Ein QR. Für immer dein.",
+    "login": "Anmelden · QuickQR",
+    "dashboard": "Dashboard · QuickQR",
+    "newQr": "Neuer QR · QuickQR",
+    "qrDetail": "{{name}} · QuickQR",
+    "account": "Konto · QuickQR",
+    "staticQr": "Statischer QR · QuickQR",
+    "notFound": "Seite nicht gefunden · QuickQR"
   }
 }

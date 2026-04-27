@@ -1,12 +1,14 @@
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Image as ImageIcon, Link as LinkIcon, List, RefreshCcw, Globe, Zap } from "lucide-react";
+import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 const ctaClass =
   "inline-flex items-center justify-center h-12 px-6 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors";
 
 export default function Marketing() {
   const { t } = useTranslation();
+  usePageTitle("meta.marketing");
   const scenarios = [
     { key: "groups", emoji: "💬" },
     { key: "menu", emoji: "🍜" },
