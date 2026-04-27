@@ -7,12 +7,12 @@
 ## 进度跟踪
 
 - [x] Phase A — Cloudflare 资源 provisioning
-- [ ] Phase 0 — 架构重构(SPA → 多路由)
-- [ ] Phase B — 后端基础设施(D1 schema、auth 写库、工具)
-- [ ] Phase C — QR CRUD API + R2 上传
-- [ ] Phase D — 落地页 SSR
-- [ ] Phase E — 前端应用(Dashboard / 创建向导 / 详情)
-- [ ] Phase F — 分析(扫码计数 + 7d sparkline)
+- [x] Phase 0 — 架构重构(SPA → 多路由)
+- [x] Phase B — 后端基础设施(D1 schema、auth 写库、工具)
+- [x] Phase C — QR CRUD API + R2 上传
+- [x] Phase D — 落地页 SSR
+- [x] Phase E — 前端应用(Dashboard / 创建向导 / 详情)
+- [x] Phase F — 分析(扫码计数 + 7d sparkline)
 - [ ] Phase G — i18n + 营销页 + 法务静态页
 - [ ] Phase H — 收尾(rate limit、404/500、白名单、E2E 冒烟、部署)
 
