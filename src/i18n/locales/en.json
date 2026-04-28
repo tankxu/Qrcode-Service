@@ -1,5 +1,5 @@
 {
-  "brand": "QuickQR",
+  "brand": "PandaQR",
   "common": {
     "loading": "Loading...",
     "save": "Save",
@@ -223,14 +223,14 @@
     "help": "Stays visible on the public landing page. Useful as a fallback when your destination becomes stale."
   },
   "meta": {
-    "marketing": "QuickQR — One QR. Forever yours.",
-    "login": "Sign in · QuickQR",
-    "dashboard": "Dashboard · QuickQR",
-    "newQr": "New QR · QuickQR",
-    "qrDetail": "{{name}} · QuickQR",
-    "account": "Account · QuickQR",
-    "staticQr": "Static QR · QuickQR",
-    "notFound": "Not found · QuickQR"
+    "marketing": "PandaQR — One QR. Forever yours.",
+    "login": "Sign in · PandaQR",
+    "dashboard": "Dashboard · PandaQR",
+    "newQr": "New QR · PandaQR",
+    "qrDetail": "{{name}} · PandaQR",
+    "account": "Account · PandaQR",
+    "staticQr": "Static QR · PandaQR",
+    "notFound": "Not found · PandaQR"
   },
   "staticQr": {
     "subtitle": "One-shot QR generator. Content cannot be changed after printing.",

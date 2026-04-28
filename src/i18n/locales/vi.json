@@ -1,5 +1,5 @@
 {
-  "brand": "QuickQR",
+  "brand": "PandaQR",
   "common": {
     "loading": "Đang tải...",
     "save": "Lưu",
@@ -223,14 +223,14 @@
     "help": "Luôn hiển thị trên trang đích công khai. Hữu ích khi điểm đến chính không còn dùng được."
   },
   "meta": {
-    "marketing": "QuickQR — Một QR. Mãi là của bạn.",
-    "login": "Đăng nhập · QuickQR",
-    "dashboard": "Bảng điều khiển · QuickQR",
-    "newQr": "QR mới · QuickQR",
-    "qrDetail": "{{name}} · QuickQR",
-    "account": "Tài khoản · QuickQR",
-    "staticQr": "QR tĩnh · QuickQR",
-    "notFound": "Không tìm thấy · QuickQR"
+    "marketing": "PandaQR — Một QR. Mãi là của bạn.",
+    "login": "Đăng nhập · PandaQR",
+    "dashboard": "Bảng điều khiển · PandaQR",
+    "newQr": "QR mới · PandaQR",
+    "qrDetail": "{{name}} · PandaQR",
+    "account": "Tài khoản · PandaQR",
+    "staticQr": "QR tĩnh · PandaQR",
+    "notFound": "Không tìm thấy · PandaQR"
   },
   "staticQr": {
     "subtitle": "Trình tạo QR một lần. Không thể đổi nội dung sau khi in.",

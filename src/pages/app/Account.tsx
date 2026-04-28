@@ -1,12 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 export default function Account() {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const { t } = useTranslation();
   usePageTitle("meta.account");
   return (
@@ -30,7 +28,13 @@ export default function Account() {
         </div>
 
         <div className="border-t border-slate-100 mt-6 pt-6 flex">
-          <Button variant="outline" onClick={async () => { await logout(); navigate("/"); }}>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              await logout();
+              window.location.href = "https://pandaqr.xyz";
+            }}
+          >
             {t("nav.signOut")}
           </Button>
         </div>

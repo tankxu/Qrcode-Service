@@ -13,7 +13,7 @@ run_worker_first = ["/api/*", "/q/*", "/r/*"]
 port = 8787
 
 [[routes]]
-pattern = "qrcode-service.tankxu.com"
+pattern = "app.pandaqr.xyz"
 custom_domain = true
 
 [[d1_databases]]

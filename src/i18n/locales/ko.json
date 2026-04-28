@@ -1,5 +1,5 @@
 {
-  "brand": "QuickQR",
+  "brand": "PandaQR",
   "common": {
     "loading": "불러오는 중…",
     "save": "저장",
@@ -223,14 +223,14 @@
     "help": "공개 랜딩 페이지에 항상 표시됩니다. 목적지가 오래되어 사용 못 할 때의 대체 안내로 유용합니다."
   },
   "meta": {
-    "marketing": "QuickQR — 하나의 QR, 영원히 당신의 것",
-    "login": "로그인 · QuickQR",
-    "dashboard": "대시보드 · QuickQR",
-    "newQr": "새 QR · QuickQR",
-    "qrDetail": "{{name}} · QuickQR",
-    "account": "계정 · QuickQR",
-    "staticQr": "정적 QR · QuickQR",
-    "notFound": "페이지 없음 · QuickQR"
+    "marketing": "PandaQR — 하나의 QR, 영원히 당신의 것",
+    "login": "로그인 · PandaQR",
+    "dashboard": "대시보드 · PandaQR",
+    "newQr": "새 QR · PandaQR",
+    "qrDetail": "{{name}} · PandaQR",
+    "account": "계정 · PandaQR",
+    "staticQr": "정적 QR · PandaQR",
+    "notFound": "페이지 없음 · PandaQR"
   },
   "staticQr": {
     "subtitle": "일회성 QR 생성기. 인쇄 후 내용은 변경할 수 없습니다.",

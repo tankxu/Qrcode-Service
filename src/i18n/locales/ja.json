@@ -1,5 +1,5 @@
 {
-  "brand": "QuickQR",
+  "brand": "PandaQR",
   "common": {
     "loading": "読み込み中…",
     "save": "保存",
@@ -223,14 +223,14 @@
     "help": "公開ランディングページに常に表示されます。リンク先が古くなった場合のフォールバックとして使えます。"
   },
   "meta": {
-    "marketing": "QuickQR — ひとつの QR を、ずっと",
-    "login": "ログイン · QuickQR",
-    "dashboard": "ダッシュボード · QuickQR",
-    "newQr": "新しい QR · QuickQR",
-    "qrDetail": "{{name}} · QuickQR",
-    "account": "アカウント · QuickQR",
-    "staticQr": "静的 QR · QuickQR",
-    "notFound": "ページが見つかりません · QuickQR"
+    "marketing": "PandaQR — ひとつの QR を、ずっと",
+    "login": "ログイン · PandaQR",
+    "dashboard": "ダッシュボード · PandaQR",
+    "newQr": "新しい QR · PandaQR",
+    "qrDetail": "{{name}} · PandaQR",
+    "account": "アカウント · PandaQR",
+    "staticQr": "静的 QR · PandaQR",
+    "notFound": "ページが見つかりません · PandaQR"
   },
   "staticQr": {
     "subtitle": "ワンショットの QR ジェネレーター。印刷後の内容変更はできません。",

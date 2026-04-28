@@ -14,7 +14,7 @@ interface Props {
 
 export const MultilinkView: FC<Props> = ({ title, description, items, note, locale, s }) => {
   return (
-    <Layout lang={locale} title={title || "QuickQR"} description={description || undefined}>
+    <Layout lang={locale} title={title || "PandaQR"} description={description || undefined}>
       <div class="center">
         <div class="frame">
           <div class="card" style="padding:24px">

@@ -11,7 +11,7 @@ export default function NotFound() {
       <h1 className="mt-4 text-2xl font-bold">{t("notFound.title")}</h1>
       <p className="mt-2 text-slate-500">{t("notFound.body")}</p>
       <Link
-        to="/"
+        to="/app"
         className="mt-6 inline-flex items-center justify-center h-10 px-4 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-colors"
       >
         {t("notFound.backHome")}

@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet, useNavigate } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import { QrCode, LayoutDashboard, Wrench, User, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,6 @@ import { LanguageSwitcher } from "@/src/components/LanguageSwitcher";
 
 export default function AppLayout() {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -20,7 +19,7 @@ export default function AppLayout() {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/");
+    window.location.href = "https://pandaqr.xyz";
   };
 
   return (

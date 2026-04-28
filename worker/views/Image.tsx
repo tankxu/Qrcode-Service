@@ -14,7 +14,7 @@ interface Props {
 
 export const ImageView: FC<Props> = ({ imageUrl, title, description, note, locale, s }) => {
   return (
-    <Layout lang={locale} title={title || "QuickQR"} description={description || undefined} ogImage={imageUrl}>
+    <Layout lang={locale} title={title || "PandaQR"} description={description || undefined} ogImage={imageUrl}>
       <div class="center">
         <div class="frame">
           <div class="card" style="padding:20px">
