@@ -70,7 +70,7 @@ export default function NewQrWizard() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link to="/app" className="inline-flex items-center text-sm text-slate-500 hover:text-indigo-600 mb-6">
+      <Link to="/" className="inline-flex items-center text-sm text-slate-500 hover:text-indigo-600 mb-6">
         <ArrowLeft className="w-4 h-4 mr-1" /> {t("wizard.backToDashboard")}
       </Link>
 
@@ -129,7 +129,7 @@ export default function NewQrWizard() {
       )}
 
       {step === 3 && createdSlug && createdId && (
-        <SuccessStep slug={createdSlug} id={createdId} onDone={() => navigate(`/app/q/${createdId}`)} />
+        <SuccessStep slug={createdSlug} id={createdId} onDone={() => navigate(`/qr/${createdId}`)} />
       )}
     </div>
   );

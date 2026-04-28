@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 import AppLayout from "@/src/layouts/AppLayout";
 import Login from "@/src/pages/Login";
 import NotFound from "@/src/pages/NotFound";
@@ -10,10 +10,9 @@ import StaticQrTool from "@/src/pages/tools/StaticQrTool";
 import RequireAuth from "@/src/components/RequireAuth";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/app" replace /> },
   { path: "/login", element: <Login /> },
   {
-    path: "/app",
+    path: "/",
     element: (
       <RequireAuth>
         <AppLayout />
@@ -22,7 +21,9 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard /> },
       { path: "new", element: <NewQrWizard /> },
-      { path: "q/:id", element: <QrDetail /> },
+      // Owner-side QR detail. Singular `/qr/:id` because `/q/:slug` is
+      // reserved for the public Worker-SSR scan landing page.
+      { path: "qr/:id", element: <QrDetail /> },
       { path: "account", element: <Account /> },
       { path: "tools/static-qr", element: <StaticQrTool /> },
     ],

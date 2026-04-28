@@ -12,9 +12,9 @@ export default function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
-    { to: "/app", label: t("nav.dashboard"), icon: LayoutDashboard, end: true },
-    { to: "/app/tools/static-qr", label: t("nav.staticQr"), icon: Wrench },
-    { to: "/app/account", label: t("nav.account"), icon: User },
+    { to: "/", label: t("nav.dashboard"), icon: LayoutDashboard, end: true },
+    { to: "/tools/static-qr", label: t("nav.staticQr"), icon: Wrench },
+    { to: "/account", label: t("nav.account"), icon: User },
   ];
 
   const handleLogout = async () => {
@@ -25,7 +25,7 @@ export default function AppLayout() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex">
       <aside className="hidden lg:flex w-60 flex-col border-r border-slate-200 bg-white">
-        <Link to="/app" className="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
+        <Link to="/" className="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
           <div className="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
             <QrCode className="w-5 h-5" />
           </div>
@@ -111,7 +111,7 @@ export default function AppLayout() {
           <button onClick={() => setMobileOpen(true)} className="text-slate-700">
             <Menu className="w-6 h-6" />
           </button>
-          <Link to="/app" className="font-bold text-lg">{t("brand")}</Link>
+          <Link to="/" className="font-bold text-lg">{t("brand")}</Link>
           <div className="w-6" />
         </header>
         <main className="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl w-full mx-auto">

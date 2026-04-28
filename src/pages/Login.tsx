@@ -11,7 +11,7 @@ export default function Login() {
   const { t } = useTranslation();
   usePageTitle("meta.login");
   if (loading) return null;
-  if (user) return <Navigate to="/app" replace />;
+  if (user) return <Navigate to="/" replace />;
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">

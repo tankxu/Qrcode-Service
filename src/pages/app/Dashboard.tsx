@@ -43,7 +43,7 @@ export default function Dashboard() {
           <p className="text-sm text-slate-500 mt-1">{t("dashboard.subtitle")}</p>
         </div>
         <Link
-          to="/app/new"
+          to="/new"
           className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700"
         >
           <Plus className="w-4 h-4 mr-1.5" />
@@ -67,7 +67,7 @@ function QrCard({ qr }: { qr: Qr }) {
   const { t } = useTranslation();
   return (
     <Link
-      to={`/app/q/${qr.id}`}
+      to={`/qr/${qr.id}`}
       className="group bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all"
     >
       <div className="flex items-start justify-between mb-4">
@@ -102,7 +102,7 @@ function EmptyState() {
       <h2 className="text-lg font-semibold mb-2">{t("dashboard.empty.title")}</h2>
       <p className="text-sm text-slate-500 mb-6 max-w-md mx-auto">{t("dashboard.empty.body")}</p>
       <Link
-        to="/app/new"
+        to="/new"
         className="inline-flex items-center justify-center h-10 px-5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700"
       >
         <Plus className="w-4 h-4 mr-1.5" />
