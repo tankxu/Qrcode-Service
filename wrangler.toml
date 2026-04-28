@@ -7,13 +7,19 @@ compatibility_flags = ["nodejs_compat"]
 directory = "./dist"
 not_found_handling = "single-page-application"
 binding = "ASSETS"
-run_worker_first = ["/api/*", "/q/*", "/r/*"]
+run_worker_first = ["/*"]
 
 [dev]
 port = 8787
 
 [[routes]]
 pattern = "app.pandaqr.xyz"
+custom_domain = true
+
+# Legacy domain — Worker handles 301 redirect to pandaqr.xyz / app.pandaqr.xyz.
+# See worker/index.ts top middleware.
+[[routes]]
+pattern = "qrcode-service.tankxu.com"
 custom_domain = true
 
 [[d1_databases]]

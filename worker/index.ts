@@ -27,7 +27,24 @@ export type AppEnv = { Bindings: Bindings; Variables: { user: AuthedUser } };
 const STATE_COOKIE = "qr_oauth_state";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
+// Legacy domain → permanent redirect.
+// /q/* and /r/* preserve path so any printed QR / hosted image still works.
+// Everything else lands on the marketing site.
+const LEGACY_HOST = "qrcode-service.tankxu.com";
+const APP_HOST = "https://app.pandaqr.xyz";
+const MARKETING_HOST = "https://pandaqr.xyz";
+
 const app = new Hono<AppEnv>();
+
+app.use("*", async (c, next) => {
+  const url = new URL(c.req.url);
+  if (url.hostname !== LEGACY_HOST) return next();
+  const dest =
+    url.pathname.startsWith("/q/") || url.pathname.startsWith("/r/")
+      ? `${APP_HOST}${url.pathname}${url.search}`
+      : `${MARKETING_HOST}/`;
+  return c.redirect(dest, 301);
+});
 
 app.get("/api/auth/google", (c) => {
   const state = randomToken();
@@ -154,5 +171,11 @@ app.route("/api/qrs", qrsRoute);
 app.route("/api/uploads", uploadsRoute);
 app.route("/r", rRoute);
 app.route("/q", qRoute);
+
+// Anything not matched above (SPA routes like / and /login) is served by
+// the static-assets binding. We need an explicit fallthrough because
+// wrangler.toml uses run_worker_first = ["/*"] so the Worker sees every
+// request before assets get a chance.
+app.all("*", (c) => c.env.ASSETS.fetch(c.req.raw));
 
 export default app satisfies ExportedHandler<Bindings>;
