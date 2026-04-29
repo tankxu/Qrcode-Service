@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play } from "lucide-react";
+import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -52,6 +52,13 @@ export default function QrDetail() {
               <Download className="w-4 h-4 mr-1.5" />
               {t("detail.downloadPng")}
             </Button>
+            <Link
+              to={`/tools/static-qr?data=${encodeURIComponent(url)}`}
+              className="mt-2 flex items-center justify-center gap-1.5 text-xs text-slate-500 hover:text-indigo-600 py-1.5"
+            >
+              <Settings2 className="w-3.5 h-3.5" />
+              {t("detail.moreOptions")}
+            </Link>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">

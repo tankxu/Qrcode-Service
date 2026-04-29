@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { useSearchParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { QrCode, Download, Settings2, RefreshCcw } from "lucide-react";
@@ -33,8 +34,10 @@ interface QRSettings {
 export default function StaticQrTool() {
   const { t } = useTranslation();
   usePageTitle("meta.staticQr");
+  const [searchParams] = useSearchParams();
+  const initialData = searchParams.get("data") || "https://github.com/shadcn-ui/ui";
   const [settings, setSettings] = useState<QRSettings>({
-    data: "https://github.com/shadcn-ui/ui",
+    data: initialData,
     size: 300,
     format: "png",
     color: "#0f172a",
