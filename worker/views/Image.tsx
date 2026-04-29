@@ -17,11 +17,11 @@ export const ImageView: FC<Props> = ({ imageUrl, title, description, note, local
     <Layout lang={locale} title={title || "PandaQR"} description={description || undefined} ogImage={imageUrl}>
       <div class="center">
         <div class="frame">
-          <div class="card" style="padding:20px">
-            {title && <h1 class="title">{title}</h1>}
-            {description && <p class="desc">{description}</p>}
+          <div class="card" style="padding:28px 24px">
+            {title && <h1 class="title" style="text-align:center;margin:0 0 12px">{title}</h1>}
+            {description && <p class="desc" style="text-align:center;margin:0 0 20px">{description}</p>}
             <img src={imageUrl} alt={title || ""} style="width:100%;border-radius:12px;background:#f1f5f9" />
-            <p class="muted" style="text-align:center;font-size:13px;margin:16px 0 0">{s.longPress}</p>
+            <p class="muted" style="text-align:center;font-size:13px;margin:20px 0 0">{s.longPress}</p>
           </div>
           <NoteCard note={note} s={s} />
           <div class="brand">
