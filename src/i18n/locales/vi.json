@@ -218,6 +218,46 @@
   "auth": {
     "loading": "Đang tải..."
   },
+  "expiry": {
+    "toggle": {
+      "label": "Nhắc tôi trước khi nội dung hết hạn",
+      "help": "Nhận thông báo trong ứng dụng trước khi QR hết hiệu lực (ví dụ QR nhóm WeChat sau 7 ngày)."
+    },
+    "window": {
+      "label": "Khoảng thời gian đếm ngược",
+      "wechat7": { "title": "Nhóm WeChat · 7 ngày", "hint": "QR nhóm WeChat hết hạn 7 ngày sau khi tạo." },
+      "d30": { "title": "30 ngày", "hint": "Phù hợp cho chiến dịch hằng tháng hoặc lời mời luân phiên." },
+      "custom": { "title": "Tùy chỉnh", "daysUnit": "ngày" }
+    },
+    "leads": {
+      "label": "Nhắc trước khi hết hạn",
+      "24h": "24 giờ",
+      "3d": "3 ngày",
+      "7d": "7 ngày",
+      "empty": "Hãy chọn ít nhất một thời điểm nhắc, nếu không bạn sẽ không nhận được thông báo."
+    },
+    "action": {
+      "label": "Khi hết hạn",
+      "keep": { "title": "Vẫn hiển thị nội dung", "hint": "Khách vẫn xem nội dung kèm chú thích nhỏ \"có thể đã lỗi thời\"." },
+      "pause": { "title": "Tự động tạm dừng QR", "hint": "Khách thấy trang \"tạm thời không khả dụng\" cho đến khi bạn cập nhật nội dung." }
+    },
+    "badge": {
+      "daysLeft": "còn {{count}} ngày",
+      "hoursLeft": "còn {{count}} giờ",
+      "expired": "Đã hết hạn"
+    },
+    "banner": {
+      "dueTitle": "Hết hạn sau khoảng {{count}} giờ",
+      "dueBody": "Cập nhật nội dung trước {{when}} để người quét luôn thấy thông tin hữu ích.",
+      "expiredTitle": "Nội dung QR này đã hết hạn",
+      "expiredBody": "Đếm ngược kết thúc lúc {{when}}. Tải lên nội dung mới để tiếp tục."
+    }
+  },
+  "notifications": {
+    "title": "Thông báo",
+    "markAllRead": "Đánh dấu tất cả đã đọc",
+    "empty": "Chưa có thông báo nào. Chúng tôi sẽ báo khi có việc cần xử lý."
+  },
   "note": {
     "label": "Ghi chú (hiển thị trên trang đích)",
     "placeholder": "VD: Nếu nhóm đã đầy, liên hệ trực tiếp: yourID hoặc me@example.com",

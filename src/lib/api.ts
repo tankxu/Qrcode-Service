@@ -39,6 +39,25 @@ export async function api<T>(
 
 export type TargetType = "image" | "url" | "multilink";
 
+export type ExpiryAction = "keep" | "pause";
+
+export type ExpiryConfig =
+  | { enabled: false }
+  | {
+      enabled: true;
+      window_seconds: number;
+      anchor_at: number;     // unix ms; when the current content was last refreshed
+      lead_times: number[];  // seconds before expiry to remind (e.g. [86400, 259200])
+      action: ExpiryAction;
+    };
+
+export interface ExpiryInput {
+  enabled: boolean;
+  window_seconds?: number;
+  lead_times?: number[];
+  action?: ExpiryAction;
+}
+
 export interface Qr {
   id: string;
   slug: string;
@@ -49,6 +68,7 @@ export interface Qr {
   target: { type: TargetType; payload: unknown };
   scan_total: number;
   last_scan_at: number | null;
+  expiry: ExpiryConfig;
   created_at: number;
   updated_at: number;
 }
@@ -56,6 +76,17 @@ export interface Qr {
 export interface ImagePayload { r2_key: string; mime: string; width?: number; height?: number }
 export interface UrlPayload { url: string }
 export interface MultilinkPayload { title?: string; description?: string; items: { label: string; url: string }[] }
+
+export interface NotificationItem {
+  id: string;
+  qr_id: string | null;
+  type: string;
+  kind: string | null;
+  title: string;
+  body: string | null;
+  read_at: number | null;
+  created_at: number;
+}
 
 export interface Analytics {
   total: number;
@@ -69,10 +100,15 @@ export const qrsApi = {
   get: (id: string) => api<{ qr: Qr }>(`/api/qrs/${id}`),
   analytics: (id: string, range: "7d" | "30d" = "7d") =>
     api<Analytics>(`/api/qrs/${id}/analytics?range=${range}`),
-  create: (input: { title?: string; description?: string; note?: string; target: Qr["target"] }) =>
+  create: (input: { title?: string; description?: string; note?: string; target: Qr["target"]; expiry?: ExpiryInput }) =>
     api<{ qr: Qr }>("/api/qrs", { json: input }),
-  update: (id: string, patch: Partial<Pick<Qr, "title" | "description" | "note" | "status">> & { target?: Qr["target"] }) =>
-    api<{ qr: Qr }>(`/api/qrs/${id}`, { method: "PATCH", json: patch }),
+  update: (
+    id: string,
+    patch: Partial<Pick<Qr, "title" | "description" | "note" | "status">> & {
+      target?: Qr["target"];
+      expiry?: ExpiryInput;
+    },
+  ) => api<{ qr: Qr }>(`/api/qrs/${id}`, { method: "PATCH", json: patch }),
   remove: (id: string) => api<{ deleted: true }>(`/api/qrs/${id}`, { method: "DELETE" }),
   uploadImage: async (file: File) => {
     const fd = new FormData();
@@ -82,4 +118,10 @@ export const qrsApi = {
     if (!json.ok) throw new ApiError(json.error.code, json.error.message, res.status);
     return json.data as { r2_key: string; mime: string; size: number; public_url: string };
   },
+};
+
+export const notificationsApi = {
+  list: () => api<{ notifications: NotificationItem[]; unread: number }>("/api/notifications"),
+  read: (id: string) => api<{ read: true }>(`/api/notifications/${id}/read`, { method: "POST" }),
+  readAll: () => api<{ read: number }>("/api/notifications/read-all", { method: "POST" }),
 };

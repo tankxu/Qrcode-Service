@@ -15,6 +15,7 @@ interface CachedTarget {
   note: string | null;
   target_type: "image" | "url" | "multilink";
   target_payload: unknown;
+  expires_at: number | null;          // unix ms; null when expiry disabled
 }
 
 const r = new Hono<AppEnv>();
@@ -37,6 +38,10 @@ r.get("/:slug", async (c) => {
       c.status(404);
       return c.html(<ErrorView kind="not_found" locale={locale} s={s} />);
     }
+    const expiresAt =
+      row.expiry_enabled && row.expiry_anchor_at && row.expiry_window_seconds
+        ? row.expiry_anchor_at + row.expiry_window_seconds * 1000
+        : null;
     cached = {
       qr_id: row.id,
       status: row.status,
@@ -45,6 +50,7 @@ r.get("/:slug", async (c) => {
       note: row.note,
       target_type: row.target_type,
       target_payload: JSON.parse(row.target_payload),
+      expires_at: expiresAt,
     };
     c.executionCtx.waitUntil(
       c.env.CACHE.put(`target:${slug}`, JSON.stringify(cached), { expirationTtl: 60 }),
@@ -78,6 +84,8 @@ r.get("/:slug", async (c) => {
 
   c.header("cache-control", "public, max-age=60, stale-while-revalidate=600");
 
+  const expired = cached.expires_at !== null && Date.now() >= cached.expires_at;
+
   switch (cached.target_type) {
     case "image": {
       const p = cached.target_payload as { r2_key: string };
@@ -87,6 +95,7 @@ r.get("/:slug", async (c) => {
           title={cached.title}
           description={cached.description}
           note={cached.note}
+          expired={expired}
           locale={locale}
           s={s}
         />,
@@ -94,7 +103,7 @@ r.get("/:slug", async (c) => {
     }
     case "url": {
       const p = cached.target_payload as { url: string };
-      return c.html(<UrlView url={p.url} note={cached.note} locale={locale} s={s} />);
+      return c.html(<UrlView url={p.url} note={cached.note} expired={expired} locale={locale} s={s} />);
     }
     case "multilink": {
       const p = cached.target_payload as { title?: string; description?: string; items: { label: string; url: string }[] };
@@ -104,6 +113,7 @@ r.get("/:slug", async (c) => {
           description={p.description || cached.description}
           items={p.items}
           note={cached.note}
+          expired={expired}
           locale={locale}
           s={s}
         />,

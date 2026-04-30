@@ -218,6 +218,46 @@
   "auth": {
     "loading": "Chargement…"
   },
+  "expiry": {
+    "toggle": {
+      "label": "Me rappeler avant expiration du contenu",
+      "help": "Recevez un rappel dans l'app avant que le QR ne devienne obsolète (par ex. un QR de groupe WeChat après 7 jours)."
+    },
+    "window": {
+      "label": "Période de compte à rebours",
+      "wechat7": { "title": "Groupe WeChat · 7 jours", "hint": "Les QR de groupe WeChat expirent 7 jours après leur création." },
+      "d30": { "title": "30 jours", "hint": "Idéal pour les campagnes mensuelles ou invitations tournantes." },
+      "custom": { "title": "Personnalisé", "daysUnit": "jours" }
+    },
+    "leads": {
+      "label": "Me rappeler avant",
+      "24h": "24 heures",
+      "3d": "3 jours",
+      "7d": "7 jours",
+      "empty": "Choisissez au moins une heure de rappel, sinon vous ne serez pas notifié."
+    },
+    "action": {
+      "label": "À l'expiration",
+      "keep": { "title": "Continuer à afficher le contenu", "hint": "Les visiteurs le voient toujours, avec un petit avis « peut être obsolète »." },
+      "pause": { "title": "Mettre en pause automatiquement", "hint": "Les visiteurs voient une page « temporairement indisponible » jusqu'à mise à jour du contenu." }
+    },
+    "badge": {
+      "daysLeft": "{{count}} j restants",
+      "hoursLeft": "{{count}} h restantes",
+      "expired": "Expiré"
+    },
+    "banner": {
+      "dueTitle": "Expire dans environ {{count}} h",
+      "dueBody": "Mettez à jour le contenu avant {{when}} pour que vos utilisateurs voient toujours quelque chose d'utile.",
+      "expiredTitle": "Le contenu de ce QR a expiré",
+      "expiredBody": "Compte à rebours arrivé à zéro le {{when}}. Téléchargez du nouveau contenu pour reprendre."
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Tout marquer comme lu",
+    "empty": "Aucune notification pour l'instant. Nous vous préviendrons en cas de besoin."
+  },
   "note": {
     "label": "Notes (affichées sur la page d'atterrissage)",
     "placeholder": "Ex. : si le groupe est plein, contactez-moi directement : yourID ou me@example.com",

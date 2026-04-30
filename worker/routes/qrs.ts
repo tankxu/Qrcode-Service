@@ -8,19 +8,37 @@ import type { QrRow, QrWithCounter } from "../lib/db";
 
 const r = new Hono<AppEnv>();
 
-const presentQr = (q: QrWithCounter) => ({
-  id: q.id,
-  slug: q.slug,
-  title: q.title,
-  description: q.description,
-  note: q.note,
-  status: q.status,
-  target: { type: q.target_type, payload: JSON.parse(q.target_payload) },
-  scan_total: q.scan_total,
-  last_scan_at: q.last_scan_at,
-  created_at: q.created_at,
-  updated_at: q.updated_at,
-});
+const presentQr = (q: QrWithCounter) => {
+  let leadTimes: number[] = [];
+  if (q.expiry_lead_times) {
+    try {
+      const parsed = JSON.parse(q.expiry_lead_times);
+      if (Array.isArray(parsed)) leadTimes = parsed.filter((x) => typeof x === "number");
+    } catch {}
+  }
+  return {
+    id: q.id,
+    slug: q.slug,
+    title: q.title,
+    description: q.description,
+    note: q.note,
+    status: q.status,
+    target: { type: q.target_type, payload: JSON.parse(q.target_payload) },
+    scan_total: q.scan_total,
+    last_scan_at: q.last_scan_at,
+    expiry: q.expiry_enabled
+      ? {
+          enabled: true as const,
+          window_seconds: q.expiry_window_seconds,
+          anchor_at: q.expiry_anchor_at,
+          lead_times: leadTimes,
+          action: q.expiry_action,
+        }
+      : { enabled: false as const },
+    created_at: q.created_at,
+    updated_at: q.updated_at,
+  };
+};
 
 r.use("*", requireAuth);
 

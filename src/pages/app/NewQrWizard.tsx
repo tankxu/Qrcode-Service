@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight, Image as ImageIcon, Link as LinkIcon, List, Check, Loader2, Download } from "lucide-react";
@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { qrsApi, type TargetType } from "@/src/lib/api";
 import { TargetForm, emptyTarget, type TargetValue } from "@/src/components/app/TargetForms";
+import {
+  ExpiryAdvanced,
+  defaultExpiryForm,
+  expiryFormToInput,
+  suggestExpiryFor,
+  type ExpiryFormValue,
+} from "@/src/components/app/ExpiryAdvanced";
 import { QRPreview, downloadQrPng } from "@/src/components/app/QRPreview";
 import { usePageTitle } from "@/src/hooks/usePageTitle";
 import { toast } from "sonner";
@@ -24,10 +31,26 @@ export default function NewQrWizard() {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [target, setTarget] = useState<TargetValue | null>(null);
+  const [expiry, setExpiry] = useState<ExpiryFormValue>(defaultExpiryForm());
+  const [expiryUserTouched, setExpiryUserTouched] = useState(false);
   const [creating, setCreating] = useState(false);
   const [createdSlug, setCreatedSlug] = useState<string | null>(null);
   const [createdId, setCreatedId] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  // Auto-suggest 7-day reminder when WeChat-group keywords show up. Stops
+  // suggesting once the user touches the toggle so we don't fight them.
+  useEffect(() => {
+    if (expiryUserTouched || !target) return;
+    if (suggestExpiryFor(title, note, target.type)) {
+      setExpiry((v) => (v.enabled ? v : { ...v, enabled: true, preset: "7d", windowDays: 7 }));
+    }
+  }, [title, note, target, expiryUserTouched]);
+
+  const handleExpiryChange = (v: ExpiryFormValue) => {
+    setExpiryUserTouched(true);
+    setExpiry(v);
+  };
 
   const chooseType = (ty: TargetType) => {
     setType(ty);
@@ -57,6 +80,7 @@ export default function NewQrWizard() {
         title: title || undefined,
         note: note || undefined,
         target: target!,
+        expiry: expiryFormToInput(expiry),
       });
       setCreatedSlug(qr.slug);
       setCreatedId(qr.id);
@@ -114,6 +138,9 @@ export default function NewQrWizard() {
               className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 resize-y"
             />
             <p className="text-xs text-slate-500">{t("note.help")}</p>
+          </div>
+          <div className="border-t border-slate-100 pt-6">
+            <ExpiryAdvanced value={expiry} onChange={handleExpiryChange} />
           </div>
           <div className="flex items-center justify-between border-t border-slate-100 pt-6">
             <Button variant="outline" onClick={() => setStep(1)} disabled={creating}>
