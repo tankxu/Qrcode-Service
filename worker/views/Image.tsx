@@ -27,9 +27,11 @@ export const ImageView: FC<Props> = ({ imageUrl, title, description, note, expir
           </div>
           <ExpiredHint expired={expired} s={s} />
           <NoteCard note={note} s={s} />
-          <div class="brand">
-            <span class="brand-logo">Q</span>
-            <span>{s.poweredBy}</span>
+          <div class="brand-row">
+            <a class="brand" href="https://pandaqr.xyz">
+              <img class="brand-logo" src="https://pandaqr.xyz/images/logo.png" alt="" />
+              <span>{s.poweredBy}</span>
+            </a>
           </div>
         </div>
       </div>

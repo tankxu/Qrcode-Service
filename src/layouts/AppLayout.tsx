@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from "react-router";
-import { QrCode, LayoutDashboard, Wrench, User, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Wrench, User, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/src/hooks/useAuth";
@@ -27,9 +27,7 @@ export default function AppLayout() {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex">
       <aside className="hidden lg:flex w-60 flex-col border-r border-slate-200 bg-white">
         <Link to="/" className="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
-          <div className="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
-            <QrCode className="w-5 h-5" />
-          </div>
+          <img src="https://pandaqr.xyz/images/logo.png" alt="" className="w-9 h-9 rounded-lg" />
           <span className="font-bold text-lg tracking-tight">{t("brand")}</span>
         </Link>
         <nav className="flex-1 p-3 space-y-1">

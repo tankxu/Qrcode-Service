@@ -20,7 +20,7 @@ export const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description,
         <meta property="og:title" content={title} />
         {ogImage && <meta property="og:image" content={ogImage} />}
         <meta name="theme-color" content="#4f46e5" />
-        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%234f46e5'/%3E%3Ctext y='62' x='50' text-anchor='middle' font-size='52' fill='white' font-family='system-ui'%3EQ%3C/text%3E%3C/svg%3E" />
+        <link rel="icon" type="image/png" href="https://pandaqr.xyz/images/logo.png" />
         <style dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} />
       </head>
       <body>{children}</body>
@@ -37,8 +37,10 @@ a{color:inherit}
 .center{display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100dvh;padding:16px}
 .frame{width:100%;max-width:420px}
 .muted{color:#64748b}
-.brand{display:flex;align-items:center;gap:8px;font-size:13px;color:#64748b;justify-content:center;margin-top:24px}
-.brand-logo{width:18px;height:18px;background:#4f46e5;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px}
+.brand-row{display:flex;justify-content:center;margin-top:24px}
+.brand{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#64748b;text-decoration:none;padding:6px 10px;border-radius:8px;transition:color .15s,background-color .15s}
+.brand:hover{color:#0f172a;background:#f1f5f9}
+.brand-logo{width:20px;height:20px;border-radius:6px;display:block;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 20px;border-radius:12px;background:#4f46e5;color:#fff;font-weight:600;text-decoration:none;font-size:15px;border:none;cursor:pointer}
 .btn-secondary{background:#fff;color:#0f172a;border:1px solid #e2e8f0}
 .title{font-size:20px;font-weight:700;margin:0 0 4px}

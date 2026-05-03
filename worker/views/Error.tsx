@@ -23,9 +23,11 @@ export const ErrorView: FC<Props> = ({ kind, locale, s }) => {
             <p class="desc">{bodyKey}</p>
             <a href="/" class="btn btn-secondary" style="margin-top:8px">{s.visitHome}</a>
           </div>
-          <div class="brand">
-            <span class="brand-logo">Q</span>
-            <span>{s.poweredBy}</span>
+          <div class="brand-row">
+            <a class="brand" href="https://pandaqr.xyz">
+              <img class="brand-logo" src="https://pandaqr.xyz/images/logo.png" alt="" />
+              <span>{s.poweredBy}</span>
+            </a>
           </div>
         </div>
       </div>
