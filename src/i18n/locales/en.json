@@ -139,6 +139,7 @@
     "back": "Back",
     "loadFailed": "Failed to load",
     "downloadPng": "Download PNG",
+    "moreOptions": "More options",
     "publicUrl": "Public URL",
     "status": "Status",
     "totalScans": "Total scans",
@@ -221,6 +222,46 @@
     "label": "Notes (shown on the landing page)",
     "placeholder": "e.g. If the WeChat group is full, add me directly: yourID — or email me@example.com",
     "help": "Stays visible on the public landing page. Useful as a fallback when your destination becomes stale."
+  },
+  "expiry": {
+    "toggle": {
+      "label": "Remind me before content expires",
+      "help": "Get an in-app reminder so the QR doesn't go stale (e.g. a WeChat group QR after 7 days)."
+    },
+    "window": {
+      "label": "Countdown window",
+      "wechat7": { "title": "WeChat group · 7 days", "hint": "WeChat group QR codes expire 7 days after generation." },
+      "d30": { "title": "30 days", "hint": "Good for monthly campaigns or rotating invites." },
+      "custom": { "title": "Custom", "daysUnit": "days" }
+    },
+    "leads": {
+      "label": "Remind me before expiry",
+      "24h": "24 hours",
+      "3d": "3 days",
+      "7d": "7 days",
+      "empty": "Pick at least one reminder time, or you won't be notified."
+    },
+    "action": {
+      "label": "When it expires",
+      "keep": { "title": "Keep showing the content", "hint": "Visitors still see it, with a small 'may be out of date' notice." },
+      "pause": { "title": "Auto-pause this QR", "hint": "Visitors see a 'temporarily unavailable' page until you upload fresh content." }
+    },
+    "badge": {
+      "daysLeft": "{{count}}d left",
+      "hoursLeft": "{{count}}h left",
+      "expired": "Expired"
+    },
+    "banner": {
+      "dueTitle": "This QR expires in about {{count}}h",
+      "dueBody": "Refresh the content before {{when}} to keep your scanners landing on something useful.",
+      "expiredTitle": "This QR's content has expired",
+      "expiredBody": "Countdown reached zero on {{when}}. Upload fresh content to resume."
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "empty": "No notifications yet. We'll let you know when something needs attention."
   },
   "meta": {
     "marketing": "PandaQR — One QR. Forever yours.",

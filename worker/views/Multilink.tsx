@@ -1,6 +1,7 @@
 import type { FC } from "hono/jsx";
 import { Layout } from "./Layout";
 import { NoteCard } from "./NoteCard";
+import { ExpiredHint } from "./ExpiredHint";
 import type { Locale, Strings } from "../lib/i18n";
 
 interface Props {
@@ -8,11 +9,12 @@ interface Props {
   description?: string | null;
   items: { label: string; url: string }[];
   note?: string | null;
+  expired?: boolean;
   locale: Locale;
   s: Strings;
 }
 
-export const MultilinkView: FC<Props> = ({ title, description, items, note, locale, s }) => {
+export const MultilinkView: FC<Props> = ({ title, description, items, note, expired, locale, s }) => {
   return (
     <Layout lang={locale} title={title || "PandaQR"} description={description || undefined}>
       <div class="center">
@@ -34,6 +36,7 @@ export const MultilinkView: FC<Props> = ({ title, description, items, note, loca
               ))}
             </div>
           </div>
+          <ExpiredHint expired={expired} s={s} />
           <NoteCard note={note} s={s} />
           <div class="brand">
             <span class="brand-logo">Q</span>

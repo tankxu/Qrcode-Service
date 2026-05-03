@@ -139,6 +139,7 @@
     "back": "뒤로",
     "loadFailed": "불러오기에 실패했습니다",
     "downloadPng": "PNG 다운로드",
+    "moreOptions": "추가 옵션",
     "publicUrl": "공개 URL",
     "status": "상태",
     "totalScans": "총 스캔 수",
@@ -216,6 +217,46 @@
   },
   "auth": {
     "loading": "불러오는 중…"
+  },
+  "expiry": {
+    "toggle": {
+      "label": "콘텐츠 만료 전 알림",
+      "help": "QR이 오래되기 전에 앱 내 알림을 받으세요(예: 7일 후 만료되는 위챗 단체 QR)."
+    },
+    "window": {
+      "label": "카운트다운 기간",
+      "wechat7": { "title": "위챗 단체 · 7일", "hint": "위챗 단체 QR은 생성 후 7일이면 만료됩니다." },
+      "d30": { "title": "30일", "hint": "월간 캠페인이나 정기적으로 바뀌는 초대 링크에 적합합니다." },
+      "custom": { "title": "사용자 지정", "daysUnit": "일" }
+    },
+    "leads": {
+      "label": "사전 알림",
+      "24h": "24시간",
+      "3d": "3일",
+      "7d": "7일",
+      "empty": "알림 시간을 하나 이상 선택해야 알림을 받을 수 있습니다."
+    },
+    "action": {
+      "label": "만료 시",
+      "keep": { "title": "기존 콘텐츠 계속 표시", "hint": "방문자에게는 '최신이 아닐 수 있음' 안내와 함께 계속 표시됩니다." },
+      "pause": { "title": "QR 자동 일시중지", "hint": "새 콘텐츠를 업로드할 때까지 방문자는 '일시 중단됨' 페이지를 봅니다." }
+    },
+    "badge": {
+      "daysLeft": "{{count}}일 남음",
+      "hoursLeft": "{{count}}시간 남음",
+      "expired": "만료됨"
+    },
+    "banner": {
+      "dueTitle": "약 {{count}}시간 후 만료",
+      "dueBody": "{{when}} 전에 콘텐츠를 업데이트해 방문자가 유효한 정보를 보도록 하세요.",
+      "expiredTitle": "이 QR의 콘텐츠가 만료되었습니다",
+      "expiredBody": "{{when}}에 카운트다운이 끝났습니다. 새 콘텐츠를 업로드해 재개하세요."
+    }
+  },
+  "notifications": {
+    "title": "알림",
+    "markAllRead": "모두 읽음으로 표시",
+    "empty": "아직 알림이 없습니다. 주의가 필요한 일이 생기면 알려드립니다."
   },
   "note": {
     "label": "메모 (랜딩 페이지에 표시)",

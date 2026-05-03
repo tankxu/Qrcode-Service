@@ -8,6 +8,8 @@ import uploadsRoute from "./routes/uploads";
 import rRoute from "./routes/r";
 import qRoute from "./routes/q";
 import analyticsRoute from "./routes/analytics";
+import notificationsRoute from "./routes/notifications";
+import { runExpirySweep } from "./lib/expiry";
 
 export type Bindings = {
   GOOGLE_CLIENT_ID: string;
@@ -169,6 +171,7 @@ app.post("/api/auth/logout", (c) => {
 app.route("/api/qrs", analyticsRoute); // mount more specific :id/analytics first
 app.route("/api/qrs", qrsRoute);
 app.route("/api/uploads", uploadsRoute);
+app.route("/api/notifications", notificationsRoute);
 app.route("/r", rRoute);
 app.route("/q", qRoute);
 
@@ -178,4 +181,11 @@ app.route("/q", qRoute);
 // request before assets get a chance.
 app.all("*", (c) => c.env.ASSETS.fetch(c.req.raw));
 
-export default app satisfies ExportedHandler<Bindings>;
+export default {
+  fetch: app.fetch,
+  // Hourly cron: scans expiry-enabled QRs and fires lead-time / expired
+  // notifications. wrangler.toml sets the cron expression.
+  scheduled: async (_event: ScheduledController, env: Bindings, ctx: ExecutionContext) => {
+    ctx.waitUntil(runExpirySweep(env.DB));
+  },
+} satisfies ExportedHandler<Bindings>;

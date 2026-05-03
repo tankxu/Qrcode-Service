@@ -59,11 +59,19 @@ export const targetSchema = z.discriminatedUnion("type", [
 
 export type TargetInput = z.infer<typeof targetSchema>;
 
+export const expirySchema = z.object({
+  enabled: z.boolean(),
+  window_seconds: z.number().int().positive().max(366 * 86400).optional(),
+  lead_times: z.array(z.number().int().positive().max(366 * 86400)).max(5).optional(),
+  action: z.enum(["keep", "pause"]).optional(),
+});
+
 export const createQrInputSchema = z.object({
   title: z.string().max(120).optional(),
   description: z.string().max(500).optional(),
   note: z.string().max(1000).optional(),
   target: targetSchema,
+  expiry: expirySchema.optional(),
 });
 
 export const updateQrInputSchema = z.object({
@@ -72,6 +80,7 @@ export const updateQrInputSchema = z.object({
   note: z.string().max(1000).nullable().optional(),
   status: z.enum(["active", "paused"]).optional(),
   target: targetSchema.optional(),
+  expiry: expirySchema.optional(),
 });
 
 export const uploadInitInputSchema = z.object({

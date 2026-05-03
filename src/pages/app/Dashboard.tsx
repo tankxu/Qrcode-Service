@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Plus, QrCode, Image as ImageIcon, Link as LinkIcon, List, Loader2 } from "lucide-react";
 import { qrsApi, type Qr } from "@/src/lib/api";
+import { expiryStatus } from "@/src/lib/expiry";
 import { usePageTitle } from "@/src/hooks/usePageTitle";
 
 const typeIcon: Record<Qr["target"]["type"], React.FC<{ className?: string }>> = {
@@ -74,11 +75,14 @@ function QrCard({ qr }: { qr: Qr }) {
         <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
           <Icon className="w-5 h-5" />
         </div>
-        {qr.status === "paused" && (
-          <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
-            {t("dashboard.paused")}
-          </span>
-        )}
+        <div className="flex items-center gap-1.5">
+          <ExpiryBadge qr={qr} />
+          {qr.status === "paused" && (
+            <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
+              {t("dashboard.paused")}
+            </span>
+          )}
+        </div>
       </div>
       <h3 className="font-semibold text-slate-900 group-hover:text-indigo-600 truncate">
         {qr.title || qr.slug}
@@ -89,6 +93,38 @@ function QrCard({ qr }: { qr: Qr }) {
         <span className="text-slate-400">{t("dashboard.updated", { when: useRelativeTime(qr.updated_at) })}</span>
       </div>
     </Link>
+  );
+}
+
+function ExpiryBadge({ qr }: { qr: Qr }) {
+  const { t } = useTranslation();
+  const s = expiryStatus(qr.expiry);
+  if (s.kind === "off") return null;
+  if (s.kind === "ok") {
+    return (
+      <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-500">
+        {t("expiry.badge.daysLeft", { count: s.daysLeft })}
+      </span>
+    );
+  }
+  if (s.kind === "soon") {
+    return (
+      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
+        {t("expiry.badge.hoursLeft", { count: s.hoursLeft })}
+      </span>
+    );
+  }
+  if (s.kind === "imminent") {
+    return (
+      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-50 text-red-700 border border-red-200">
+        {t("expiry.badge.hoursLeft", { count: s.hoursLeft })}
+      </span>
+    );
+  }
+  return (
+    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 uppercase tracking-wider">
+      {t("expiry.badge.expired")}
+    </span>
   );
 }
 

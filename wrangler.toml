@@ -12,6 +12,10 @@ run_worker_first = ["/*"]
 [dev]
 port = 8787
 
+# Hourly sweep that fires expiry-countdown notifications. See worker/lib/expiry.ts.
+[triggers]
+crons = ["5 * * * *"]
+
 [[routes]]
 pattern = "app.pandaqr.xyz"
 custom_domain = true

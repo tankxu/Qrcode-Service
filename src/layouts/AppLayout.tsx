@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/src/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/src/components/LanguageSwitcher";
+import { NotificationBell } from "@/src/components/app/NotificationBell";
 
 export default function AppLayout() {
   const { user, logout } = useAuth();
@@ -112,8 +113,11 @@ export default function AppLayout() {
             <Menu className="w-6 h-6" />
           </button>
           <Link to="/" className="font-bold text-lg">{t("brand")}</Link>
-          <div className="w-6" />
+          <NotificationBell />
         </header>
+        <div className="hidden lg:flex justify-end px-10 pt-6 -mb-2">
+          <NotificationBell />
+        </div>
         <main className="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl w-full mx-auto">
           <Outlet />
         </main>

@@ -139,6 +139,7 @@
     "back": "返回",
     "loadFailed": "加载失败",
     "downloadPng": "下载 PNG",
+    "moreOptions": "更多选项",
     "publicUrl": "公开链接",
     "status": "状态",
     "totalScans": "扫码总数",
@@ -216,6 +217,46 @@
   },
   "auth": {
     "loading": "加载中……"
+  },
+  "expiry": {
+    "toggle": {
+      "label": "内容到期前提醒我",
+      "help": "在内容失效前收到站内提醒，避免二维码过期(例如微信群码 7 天失效)。"
+    },
+    "window": {
+      "label": "倒计时周期",
+      "wechat7": { "title": "微信群 · 7 天", "hint": "微信群二维码生成后 7 天失效。" },
+      "d30": { "title": "30 天", "hint": "适合月度活动或定期轮换的入口。" },
+      "custom": { "title": "自定义", "daysUnit": "天" }
+    },
+    "leads": {
+      "label": "提前提醒",
+      "24h": "24 小时",
+      "3d": "3 天",
+      "7d": "7 天",
+      "empty": "至少选一个提醒时间，否则不会通知你。"
+    },
+    "action": {
+      "label": "到期后",
+      "keep": { "title": "继续展示原内容", "hint": "扫码者仍能看到内容，但页面会显示\"可能已过期\"提示。" },
+      "pause": { "title": "自动暂停二维码", "hint": "扫码者看到\"暂时不可用\"页面，直到你上传新内容。" }
+    },
+    "badge": {
+      "daysLeft": "剩余 {{count}} 天",
+      "hoursLeft": "剩余 {{count}} 小时",
+      "expired": "已过期"
+    },
+    "banner": {
+      "dueTitle": "约 {{count}} 小时后过期",
+      "dueBody": "请在 {{when}} 之前更新内容，避免扫码用户看到过期入口。",
+      "expiredTitle": "此二维码的内容已过期",
+      "expiredBody": "已于 {{when}} 到期。上传新内容以恢复展示。"
+    }
+  },
+  "notifications": {
+    "title": "通知",
+    "markAllRead": "全部标为已读",
+    "empty": "暂无通知。有需要关注的事件会在这里提醒你。"
   },
   "note": {
     "label": "备注(展示在落地页)",

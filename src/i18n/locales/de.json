@@ -139,6 +139,7 @@
     "back": "Zurück",
     "loadFailed": "Laden fehlgeschlagen",
     "downloadPng": "PNG herunterladen",
+    "moreOptions": "Weitere Optionen",
     "publicUrl": "Öffentliche URL",
     "status": "Status",
     "totalScans": "Scans gesamt",
@@ -216,6 +217,46 @@
   },
   "auth": {
     "loading": "Wird geladen..."
+  },
+  "expiry": {
+    "toggle": {
+      "label": "Vor Ablauf des Inhalts erinnern",
+      "help": "Erhalte eine In-App-Erinnerung, bevor der QR-Inhalt veraltet (z. B. ein WeChat-Gruppen-QR nach 7 Tagen)."
+    },
+    "window": {
+      "label": "Countdown-Zeitraum",
+      "wechat7": { "title": "WeChat-Gruppe · 7 Tage", "hint": "WeChat-Gruppen-QR-Codes laufen 7 Tage nach Erstellung ab." },
+      "d30": { "title": "30 Tage", "hint": "Gut für monatliche Kampagnen oder rotierende Einladungen." },
+      "custom": { "title": "Benutzerdefiniert", "daysUnit": "Tage" }
+    },
+    "leads": {
+      "label": "Vor Ablauf erinnern",
+      "24h": "24 Stunden",
+      "3d": "3 Tage",
+      "7d": "7 Tage",
+      "empty": "Wähle mindestens eine Erinnerungszeit, sonst wirst du nicht benachrichtigt."
+    },
+    "action": {
+      "label": "Beim Ablauf",
+      "keep": { "title": "Inhalt weiterhin zeigen", "hint": "Besucher sehen ihn weiterhin, mit einem kleinen Hinweis „möglicherweise veraltet“." },
+      "pause": { "title": "Diesen QR automatisch pausieren", "hint": "Besucher sehen eine Seite „vorübergehend nicht verfügbar“, bis du neuen Inhalt hochlädst." }
+    },
+    "badge": {
+      "daysLeft": "noch {{count}} T",
+      "hoursLeft": "noch {{count}} h",
+      "expired": "Abgelaufen"
+    },
+    "banner": {
+      "dueTitle": "Läuft in ca. {{count}} h ab",
+      "dueBody": "Aktualisiere den Inhalt vor {{when}}, damit Scanner weiterhin etwas Nützliches sehen.",
+      "expiredTitle": "Der Inhalt dieses QR ist abgelaufen",
+      "expiredBody": "Countdown am {{when}} abgelaufen. Lade neuen Inhalt hoch, um fortzufahren."
+    }
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "markAllRead": "Alle als gelesen markieren",
+    "empty": "Noch keine Benachrichtigungen. Wir melden uns, sobald etwas Aufmerksamkeit braucht."
   },
   "note": {
     "label": "Notiz (auf der Landingpage sichtbar)",

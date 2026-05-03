@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play } from "lucide-react";
+import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { qrsApi, type Qr, type Analytics } from "@/src/lib/api";
 import { QRPreview, downloadQrPng } from "@/src/components/app/QRPreview";
 import { TargetForm, type TargetValue } from "@/src/components/app/TargetForms";
+import {
+  ExpiryAdvanced,
+  expiryFormFromConfig,
+  expiryFormToInput,
+  type ExpiryFormValue,
+} from "@/src/components/app/ExpiryAdvanced";
+import { ExpiryBanner } from "@/src/components/app/ExpiryBanner";
 import { Sparkline } from "@/src/components/app/Sparkline";
 import { usePageTitle } from "@/src/hooks/usePageTitle";
 import { toast } from "sonner";
@@ -52,6 +59,13 @@ export default function QrDetail() {
               <Download className="w-4 h-4 mr-1.5" />
               {t("detail.downloadPng")}
             </Button>
+            <Link
+              to={`/tools/static-qr?data=${encodeURIComponent(url)}`}
+              className="mt-2 flex items-center justify-center gap-1.5 text-xs text-slate-500 hover:text-indigo-600 py-1.5"
+            >
+              <Settings2 className="w-3.5 h-3.5" />
+              {t("detail.moreOptions")}
+            </Link>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
@@ -90,6 +104,8 @@ export default function QrDetail() {
             {qr.description && <p className="text-sm text-slate-500 mt-1">{qr.description}</p>}
           </div>
 
+          <ExpiryBanner expiry={qr.expiry} />
+
           <Tabs defaultValue="target">
             <TabsList>
               <TabsTrigger value="target">{t("detail.tabs.target")}</TabsTrigger>
@@ -118,13 +134,14 @@ export default function QrDetail() {
 function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
   const [target, setTarget] = useState<TargetValue>({ type: qr.target.type, payload: qr.target.payload as never });
   const [note, setNote] = useState(qr.note ?? "");
+  const [expiry, setExpiry] = useState<ExpiryFormValue>(expiryFormFromConfig(qr.expiry));
   const [saving, setSaving] = useState(false);
   const { t } = useTranslation();
 
   const handleSave = async () => {
     setSaving(true);
     try {
-      await qrsApi.update(qr.id, { target, note });
+      await qrsApi.update(qr.id, { target, note, expiry: expiryFormToInput(expiry) });
       toast.success(t("common.saved"));
       onSaved();
     } catch (e) {
@@ -148,6 +165,9 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
           className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 resize-y"
         />
         <p className="text-xs text-slate-500">{t("note.help")}</p>
+      </div>
+      <div className="mt-6 pt-6 border-t border-slate-100">
+        <ExpiryAdvanced value={expiry} onChange={setExpiry} />
       </div>
       <div className="mt-6 pt-6 border-t border-slate-100 flex justify-end">
         <Button onClick={handleSave} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
