@@ -20,7 +20,7 @@ export const Layout: FC<PropsWithChildren<LayoutProps>> = ({ title, description,
         <meta property="og:title" content={title} />
         {ogImage && <meta property="og:image" content={ogImage} />}
         <meta name="theme-color" content="#4f46e5" />
-        <link rel="icon" type="image/png" href="https://pandaqr.xyz/images/logo.png" />
+        <link rel="icon" type="image/png" href="/images/logo.png" />
         <style dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} />
       </head>
       <body>{children}</body>

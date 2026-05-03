@@ -20,7 +20,7 @@ export default function Login() {
       <div className="flex-1 flex items-center justify-center px-4 -mt-16">
         <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl shadow-sm p-8">
           <a href="https://pandaqr.xyz" className="flex items-center gap-3 justify-center mb-8">
-            <img src="https://pandaqr.xyz/images/logo.png" alt="" className="w-10 h-10 rounded-lg" />
+            <img src="/images/logo.png" alt="" className="w-10 h-10 rounded-lg" />
             <span className="font-bold text-xl tracking-tight">{t("brand")}</span>
           </a>
           <h1 className="text-2xl font-bold text-center mb-2">{t("login.title")}</h1>

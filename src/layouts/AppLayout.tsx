@@ -27,7 +27,7 @@ export default function AppLayout() {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex">
       <aside className="hidden lg:flex w-60 flex-col border-r border-slate-200 bg-white">
         <Link to="/" className="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
-          <img src="https://pandaqr.xyz/images/logo.png" alt="" className="w-9 h-9 rounded-lg" />
+          <img src="/images/logo.png" alt="" className="w-9 h-9 rounded-lg" />
           <span className="font-bold text-lg tracking-tight">{t("brand")}</span>
         </Link>
         <nav className="flex-1 p-3 space-y-1">

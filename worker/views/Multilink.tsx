@@ -40,7 +40,7 @@ export const MultilinkView: FC<Props> = ({ title, description, items, note, expi
           <NoteCard note={note} s={s} />
           <div class="brand-row">
             <a class="brand" href="https://pandaqr.xyz">
-              <img class="brand-logo" src="https://pandaqr.xyz/images/logo.png" alt="" />
+              <img class="brand-logo" src="/images/logo.png" alt="" />
               <span>{s.poweredBy}</span>
             </a>
           </div>
