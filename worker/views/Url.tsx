@@ -30,9 +30,11 @@ export const UrlView: FC<Props> = ({ url, note, expired, locale, s }) => {
           </div>
           <ExpiredHint expired={expired} s={s} />
           <NoteCard note={note} s={s} />
-          <div class="brand">
-            <span class="brand-logo">Q</span>
-            <span>{s.poweredBy}</span>
+          <div class="brand-row">
+            <a class="brand" href="https://pandaqr.xyz">
+              <img class="brand-logo" src="/images/logo.png" alt="" />
+              <span>{s.poweredBy}</span>
+            </a>
           </div>
         </div>
       </div>

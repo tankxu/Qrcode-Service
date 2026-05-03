@@ -1,6 +1,5 @@
 import { Navigate } from "react-router";
 import { Trans, useTranslation } from "react-i18next";
-import { QrCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/src/hooks/useAuth";
 import { LanguageSwitcher } from "@/src/components/LanguageSwitcher";
@@ -21,9 +20,7 @@ export default function Login() {
       <div className="flex-1 flex items-center justify-center px-4 -mt-16">
         <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl shadow-sm p-8">
           <a href="https://pandaqr.xyz" className="flex items-center gap-3 justify-center mb-8">
-            <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
-              <QrCode className="w-5 h-5" />
-            </div>
+            <img src="/images/logo.png" alt="" className="w-10 h-10 rounded-lg" />
             <span className="font-bold text-xl tracking-tight">{t("brand")}</span>
           </a>
           <h1 className="text-2xl font-bold text-center mb-2">{t("login.title")}</h1>
