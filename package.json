@@ -9,7 +9,9 @@
     "dev:worker": "wrangler dev",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && wrangler deploy",
+    "migrate:local": "wrangler d1 migrations apply qrcode-service-db --local",
+    "migrate:remote": "wrangler d1 migrations apply qrcode-service-db --remote",
+    "deploy": "npm run migrate:remote && vite build && wrangler deploy",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
   },
