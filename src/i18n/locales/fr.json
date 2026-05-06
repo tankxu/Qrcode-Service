@@ -139,6 +139,8 @@
     "back": "Retour",
     "loadFailed": "Échec du chargement",
     "downloadPng": "Télécharger PNG",
+    "downloadJpg": "Télécharger JPG",
+    "downloadSvg": "Télécharger SVG",
     "moreOptions": "Plus d'options",
     "publicUrl": "URL publique",
     "status": "Statut",

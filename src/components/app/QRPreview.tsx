@@ -33,6 +33,15 @@ export function QRPreview({ value, size = 256, margin = 2, className }: Props) {
   );
 }
 
+function triggerDownload(href: string, filename: string) {
+  const a = document.createElement("a");
+  a.href = href;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 export async function downloadQrPng(value: string, filename: string, size = 1024) {
   const dataUrl = await QRCode.toDataURL(value, {
     width: size,
@@ -40,10 +49,30 @@ export async function downloadQrPng(value: string, filename: string, size = 1024
     errorCorrectionLevel: "M",
     color: { dark: "#0f172a", light: "#ffffff" },
   });
-  const a = document.createElement("a");
-  a.href = dataUrl;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  triggerDownload(dataUrl, filename);
+}
+
+export async function downloadQrJpg(value: string, filename: string, size = 1024) {
+  const canvas = document.createElement("canvas");
+  await QRCode.toCanvas(canvas, value, {
+    width: size,
+    margin: 2,
+    errorCorrectionLevel: "M",
+    color: { dark: "#0f172a", light: "#ffffff" },
+  });
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+  triggerDownload(dataUrl, filename);
+}
+
+export async function downloadQrSvg(value: string, filename: string) {
+  const svg = await QRCode.toString(value, {
+    type: "svg",
+    margin: 2,
+    errorCorrectionLevel: "M",
+    color: { dark: "#0f172a", light: "#ffffff" },
+  });
+  const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  triggerDownload(url, filename);
+  URL.revokeObjectURL(url);
 }

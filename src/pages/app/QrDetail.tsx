@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play, Settings2 } from "lucide-react";
+import { ArrowLeft, ChevronDown, Copy, Download, ExternalLink, Loader2, Trash2, Pause, Play, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { qrsApi, type Qr, type Analytics } from "@/src/lib/api";
-import { QRPreview, downloadQrPng } from "@/src/components/app/QRPreview";
+import { buildQrUrl } from "@/src/lib/qrUrl";
+import { QRPreview, downloadQrPng, downloadQrJpg, downloadQrSvg } from "@/src/components/app/QRPreview";
 import { TargetForm, type TargetValue } from "@/src/components/app/TargetForms";
 import {
   ExpiryAdvanced,
@@ -41,7 +42,7 @@ export default function QrDetail() {
   if (error) return <div className="text-red-600 text-sm">{t("common.error")}: {error}</div>;
   if (!qr) return <div className="flex justify-center py-20"><Loader2 className="w-5 h-5 animate-spin text-slate-400" /></div>;
 
-  const url = `${window.location.origin}/q/${qr.slug}`;
+  const url = buildQrUrl(qr.slug);
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -55,10 +56,7 @@ export default function QrDetail() {
             <div className="bg-slate-50 rounded-xl p-4 mb-4 flex items-center justify-center">
               <QRPreview value={url} size={240} />
             </div>
-            <Button onClick={() => downloadQrPng(url, `qr-${qr.slug}.png`)} className="w-full bg-indigo-600 hover:bg-indigo-700">
-              <Download className="w-4 h-4 mr-1.5" />
-              {t("detail.downloadPng")}
-            </Button>
+            <DownloadSplitButton slug={qr.slug} url={url} />
             <Link
               to={`/tools/static-qr?data=${encodeURIComponent(url)}`}
               className="mt-2 flex items-center justify-center gap-1.5 text-xs text-slate-500 hover:text-indigo-600 py-1.5"
@@ -308,6 +306,76 @@ function SettingsTab({ qr, onChanged }: { qr: Qr; onChanged: () => void }) {
           {t("detail.settings.danger.delete")}
         </Button>
       </div>
+    </div>
+  );
+}
+
+function DownloadSplitButton({ slug, url }: { slug: string; url: string }) {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [open]);
+
+  const pick = async (fn: () => Promise<void>) => {
+    setOpen(false);
+    try {
+      await fn();
+    } catch {
+      toast.error(t("staticQr.failed"));
+    }
+  };
+
+  const items: Array<{ label: string; run: () => Promise<void> }> = [
+    { label: t("detail.downloadPng"), run: () => downloadQrPng(url, `qr-${slug}.png`) },
+    { label: t("detail.downloadJpg"), run: () => downloadQrJpg(url, `qr-${slug}.jpg`) },
+    { label: t("detail.downloadSvg"), run: () => downloadQrSvg(url, `qr-${slug}.svg`) },
+  ];
+
+  return (
+    <div ref={wrapRef} className="relative flex w-full gap-px">
+      <Button
+        onClick={() => pick(() => downloadQrPng(url, `qr-${slug}.png`))}
+        className="flex-1 bg-indigo-600 hover:bg-indigo-700 rounded-r-none border-r-0"
+      >
+        <Download className="w-4 h-4 mr-1.5" />
+        {t("detail.downloadPng")}
+      </Button>
+      <Button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label={t("detail.downloadPng")}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        className="bg-indigo-600 hover:bg-indigo-700 rounded-l-none border-l-0 px-2.5"
+      >
+        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+      </Button>
+      {open && (
+        <div
+          role="menu"
+          className="absolute right-0 top-full mt-1.5 w-40 bg-white border border-slate-200 rounded-lg shadow-lg z-20 overflow-hidden"
+        >
+          {items.map((it) => (
+            <button
+              key={it.label}
+              role="menuitem"
+              type="button"
+              onClick={() => pick(it.run)}
+              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+            >
+              {it.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

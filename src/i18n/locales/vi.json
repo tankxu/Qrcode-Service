@@ -139,6 +139,8 @@
     "back": "Quay lại",
     "loadFailed": "Tải thất bại",
     "downloadPng": "Tải PNG",
+    "downloadJpg": "Tải JPG",
+    "downloadSvg": "Tải SVG",
     "moreOptions": "Tùy chọn khác",
     "publicUrl": "URL công khai",
     "status": "Trạng thái",

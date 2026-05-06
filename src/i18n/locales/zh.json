@@ -139,6 +139,8 @@
     "back": "返回",
     "loadFailed": "加载失败",
     "downloadPng": "下载 PNG",
+    "downloadJpg": "下载 JPG",
+    "downloadSvg": "下载 SVG",
     "moreOptions": "更多选项",
     "publicUrl": "公开链接",
     "status": "状态",

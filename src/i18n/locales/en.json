@@ -139,6 +139,8 @@
     "back": "Back",
     "loadFailed": "Failed to load",
     "downloadPng": "Download PNG",
+    "downloadJpg": "Download JPG",
+    "downloadSvg": "Download SVG",
     "moreOptions": "More options",
     "publicUrl": "Public URL",
     "status": "Status",

@@ -139,6 +139,8 @@
     "back": "뒤로",
     "loadFailed": "불러오기에 실패했습니다",
     "downloadPng": "PNG 다운로드",
+    "downloadJpg": "JPG 다운로드",
+    "downloadSvg": "SVG 다운로드",
     "moreOptions": "추가 옵션",
     "publicUrl": "공개 URL",
     "status": "상태",
