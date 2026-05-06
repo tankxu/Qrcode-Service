@@ -94,11 +94,6 @@ export default function StaticQrTool() {
     }
   };
 
-  const handleCopyUrl = () => {
-    navigator.clipboard.writeText(generateUrl());
-    toast.success(t("staticQr.copied"));
-  };
-
   const fmtDesc: Record<QRFormat, string> = {
     png: t("staticQr.fmtPng"),
     svg: t("staticQr.fmtSvg"),
@@ -230,11 +225,6 @@ export default function StaticQrTool() {
             </AnimatePresence>
           </div>
 
-          <div className="mt-8 flex flex-col items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={handleCopyUrl} className="text-blue-600 text-xs hover:bg-slate-50">
-              {t("staticQr.copyApi")}
-            </Button>
-          </div>
         </Card>
 
         <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col gap-4">

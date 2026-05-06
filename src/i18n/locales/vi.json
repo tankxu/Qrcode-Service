@@ -227,9 +227,18 @@
     },
     "window": {
       "label": "Khoảng thời gian đếm ngược",
-      "wechat7": { "title": "Nhóm WeChat · 7 ngày", "hint": "QR nhóm WeChat hết hạn 7 ngày sau khi tạo." },
-      "d30": { "title": "30 ngày", "hint": "Phù hợp cho chiến dịch hằng tháng hoặc lời mời luân phiên." },
-      "custom": { "title": "Tùy chỉnh", "daysUnit": "ngày" }
+      "wechat7": {
+        "title": "Nhóm WeChat · 7 ngày",
+        "hint": "QR nhóm WeChat hết hạn 7 ngày sau khi tạo."
+      },
+      "d30": {
+        "title": "30 ngày",
+        "hint": "Phù hợp cho chiến dịch hằng tháng hoặc lời mời luân phiên."
+      },
+      "custom": {
+        "title": "Tùy chỉnh",
+        "daysUnit": "ngày"
+      }
     },
     "leads": {
       "label": "Nhắc trước khi hết hạn",
@@ -240,8 +249,14 @@
     },
     "action": {
       "label": "Khi hết hạn",
-      "keep": { "title": "Vẫn hiển thị nội dung", "hint": "Khách vẫn xem nội dung kèm chú thích nhỏ \"có thể đã lỗi thời\"." },
-      "pause": { "title": "Tự động tạm dừng QR", "hint": "Khách thấy trang \"tạm thời không khả dụng\" cho đến khi bạn cập nhật nội dung." }
+      "keep": {
+        "title": "Vẫn hiển thị nội dung",
+        "hint": "Khách vẫn xem nội dung kèm chú thích nhỏ \"có thể đã lỗi thời\"."
+      },
+      "pause": {
+        "title": "Tự động tạm dừng QR",
+        "hint": "Khách thấy trang \"tạm thời không khả dụng\" cho đến khi bạn cập nhật nội dung."
+      }
     },
     "badge": {
       "daysLeft": "còn {{count}} ngày",
@@ -290,13 +305,11 @@
     "background": "Màu nền",
     "quietZone": "Lề vùng yên tĩnh",
     "generateDownload": "Tạo và tải xuống",
-    "copyApi": "Sao chép link API",
     "exportOptions": "Tùy chọn xuất",
     "fmtPng": "Ảnh raster",
     "fmtSvg": "Đường vector",
     "fmtJpg": "Nén web",
     "downloaded": "Đã tải xuống dưới dạng {{format}}",
-    "failed": "Tải xuống thất bại.",
-    "copied": "URL API đã được sao chép"
+    "failed": "Tải xuống thất bại."
   }
 }

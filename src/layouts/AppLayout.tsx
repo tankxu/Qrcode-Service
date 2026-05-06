@@ -30,7 +30,7 @@ export default function AppLayout() {
           <img src="/images/logo.png" alt="" className="w-9 h-9 rounded-lg" />
           <span className="font-bold text-lg tracking-tight">{t("brand")}</span>
         </Link>
-        <nav className="flex-1 p-3 space-y-1">
+        <nav className="flex-1 flex flex-col p-3 gap-1">
           {navItems.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
@@ -46,6 +46,9 @@ export default function AppLayout() {
               {label}
             </NavLink>
           ))}
+          <div className="mt-auto">
+            <NotificationBell placement="bottom-left" />
+          </div>
         </nav>
         <div className="p-3 border-t border-slate-100 space-y-2">
           <LanguageSwitcher align="left" direction="up" />
@@ -113,9 +116,6 @@ export default function AppLayout() {
           <Link to="/" className="font-bold text-lg">{t("brand")}</Link>
           <NotificationBell />
         </header>
-        <div className="hidden lg:flex justify-end px-10 pt-6 -mb-2">
-          <NotificationBell />
-        </div>
         <main className="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl w-full mx-auto">
           <Outlet />
         </main>

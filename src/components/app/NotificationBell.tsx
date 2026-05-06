@@ -6,7 +6,9 @@ import { notificationsApi, type NotificationItem } from "@/src/lib/api";
 
 const POLL_INTERVAL_MS = 60_000;
 
-export function NotificationBell() {
+type Placement = "top-right" | "bottom-left";
+
+export function NotificationBell({ placement = "top-right" }: { placement?: Placement } = {}) {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState<NotificationItem[] | null>(null);
@@ -87,7 +89,9 @@ export function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-80 max-w-[calc(100vw-2rem)] bg-white border border-slate-200 rounded-xl shadow-lg z-50 overflow-hidden">
+        <div className={`absolute w-80 max-w-[calc(100vw-2rem)] bg-white border border-slate-200 rounded-xl shadow-lg z-50 overflow-hidden ${
+          placement === "bottom-left" ? "bottom-full mb-2 left-0" : "top-full mt-2 right-0"
+        }`}>
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-100">
             <span className="text-sm font-semibold">{t("notifications.title")}</span>
             <button

@@ -227,9 +227,18 @@
     },
     "window": {
       "label": "倒计时周期",
-      "wechat7": { "title": "微信群 · 7 天", "hint": "微信群二维码生成后 7 天失效。" },
-      "d30": { "title": "30 天", "hint": "适合月度活动或定期轮换的入口。" },
-      "custom": { "title": "自定义", "daysUnit": "天" }
+      "wechat7": {
+        "title": "微信群 · 7 天",
+        "hint": "微信群二维码生成后 7 天失效。"
+      },
+      "d30": {
+        "title": "30 天",
+        "hint": "适合月度活动或定期轮换的入口。"
+      },
+      "custom": {
+        "title": "自定义",
+        "daysUnit": "天"
+      }
     },
     "leads": {
       "label": "提前提醒",
@@ -240,8 +249,14 @@
     },
     "action": {
       "label": "到期后",
-      "keep": { "title": "继续展示原内容", "hint": "扫码者仍能看到内容，但页面会显示\"可能已过期\"提示。" },
-      "pause": { "title": "自动暂停二维码", "hint": "扫码者看到\"暂时不可用\"页面，直到你上传新内容。" }
+      "keep": {
+        "title": "继续展示原内容",
+        "hint": "扫码者仍能看到内容，但页面会显示\"可能已过期\"提示。"
+      },
+      "pause": {
+        "title": "自动暂停二维码",
+        "hint": "扫码者看到\"暂时不可用\"页面，直到你上传新内容。"
+      }
     },
     "badge": {
       "daysLeft": "剩余 {{count}} 天",
@@ -290,13 +305,11 @@
     "background": "背景色",
     "quietZone": "静默区边距",
     "generateDownload": "生成并下载",
-    "copyApi": "复制 API 直链",
     "exportOptions": "导出选项",
     "fmtPng": "光栅图像",
     "fmtSvg": "矢量路径",
     "fmtJpg": "网络压缩",
     "downloaded": "已下载为 {{format}}",
-    "failed": "下载失败。",
-    "copied": "API URL 已复制到剪贴板"
+    "failed": "下载失败。"
   }
 }
