@@ -25,7 +25,7 @@ export default function AppLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex">
-      <aside className="hidden lg:flex w-60 flex-col border-r border-slate-200 bg-white">
+      <aside className="hidden lg:flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white sticky top-0 h-screen">
         <Link to="/" className="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
           <img src="/images/logo.png" alt="" className="w-9 h-9 rounded-lg" />
           <span className="font-bold text-lg tracking-tight">{t("brand")}</span>
@@ -38,7 +38,7 @@ export default function AppLayout() {
               end={end}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isActive ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  isActive ? "bg-blue-50 text-blue-700" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                 }`
               }
             >
@@ -53,7 +53,7 @@ export default function AppLayout() {
             {user?.picture ? (
               <img src={user.picture} alt="" referrerPolicy="no-referrer" className="w-8 h-8 rounded-full border border-slate-200" />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center">
                 {(user?.name || user?.email || "?").slice(0, 1).toUpperCase()}
               </div>
             )}
@@ -85,7 +85,7 @@ export default function AppLayout() {
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium ${
-                      isActive ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50"
+                      isActive ? "bg-blue-50 text-blue-700" : "text-slate-600 hover:bg-slate-50"
                     }`
                   }
                 >

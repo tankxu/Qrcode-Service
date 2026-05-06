@@ -94,7 +94,7 @@ export function NotificationBell() {
               type="button"
               onClick={handleMarkAll}
               disabled={unread === 0}
-              className="text-xs text-indigo-600 hover:text-indigo-700 disabled:text-slate-300 disabled:cursor-not-allowed"
+              className="text-xs text-blue-600 hover:text-blue-700 disabled:text-slate-300 disabled:cursor-not-allowed"
             >
               {t("notifications.markAllRead")}
             </button>
@@ -119,9 +119,9 @@ export function NotificationBell() {
 function Row({ n, onClick, lang }: { n: NotificationItem; onClick: () => void; lang: string }) {
   const when = relativeTime(n.created_at, lang);
   const inner = (
-    <div className={`px-4 py-3 border-b border-slate-100 last:border-0 ${n.read_at ? "bg-white" : "bg-indigo-50/40"}`}>
+    <div className={`px-4 py-3 border-b border-slate-100 last:border-0 ${n.read_at ? "bg-white" : "bg-blue-50/40"}`}>
       <div className="flex items-start gap-2">
-        {!n.read_at && <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0" />}
+        {!n.read_at && <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />}
         <div className="flex-1 min-w-0">
           <div className="text-sm font-medium text-slate-900 truncate">{n.title}</div>
           {n.body && <div className="text-xs text-slate-500 mt-0.5 line-clamp-2">{n.body}</div>}

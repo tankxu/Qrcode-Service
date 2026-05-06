@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Image as ImageIcon, Link as LinkIcon, List, Chec
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { qrsApi, type TargetType } from "@/src/lib/api";
+import { buildQrUrl } from "@/src/lib/qrUrl";
 import { TargetForm, emptyTarget, type TargetValue } from "@/src/components/app/TargetForms";
 import {
   ExpiryAdvanced,
@@ -20,7 +21,7 @@ import { toast } from "sonner";
 const typeOptions: { type: TargetType; icon: React.FC<{ className?: string }>; color: string }[] = [
   { type: "image", icon: ImageIcon, color: "bg-pink-50 text-pink-600" },
   { type: "url", icon: LinkIcon, color: "bg-emerald-50 text-emerald-600" },
-  { type: "multilink", icon: List, color: "bg-indigo-50 text-indigo-600" },
+  { type: "multilink", icon: List, color: "bg-blue-50 text-blue-600" },
 ];
 
 export default function NewQrWizard() {
@@ -94,7 +95,7 @@ export default function NewQrWizard() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <Link to="/" className="inline-flex items-center text-sm text-slate-500 hover:text-indigo-600 mb-6">
+      <Link to="/" className="inline-flex items-center text-sm text-slate-500 hover:text-blue-600 mb-6">
         <ArrowLeft className="w-4 h-4 mr-1" /> {t("wizard.backToDashboard")}
       </Link>
 
@@ -106,7 +107,7 @@ export default function NewQrWizard() {
             <button
               key={ty}
               onClick={() => chooseType(ty)}
-              className="text-left p-6 bg-white border border-slate-200 rounded-2xl hover:border-indigo-300 hover:shadow-md transition-all"
+              className="text-left p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-300 hover:shadow-md transition-all"
             >
               <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center mb-4`}>
                 <Icon className="w-6 h-6" />
@@ -135,7 +136,7 @@ export default function NewQrWizard() {
               placeholder={t("note.placeholder")}
               rows={3}
               maxLength={1000}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 resize-y"
+              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 resize-y"
             />
             <p className="text-xs text-slate-500">{t("note.help")}</p>
           </div>
@@ -146,7 +147,7 @@ export default function NewQrWizard() {
             <Button variant="outline" onClick={() => setStep(1)} disabled={creating}>
               {t("common.back")}
             </Button>
-            <Button onClick={handleCreate} disabled={creating} className="bg-indigo-600 hover:bg-indigo-700">
+            <Button onClick={handleCreate} disabled={creating} className="bg-blue-600 hover:bg-blue-700">
               {creating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
               {creating ? t("wizard.creating") : t("wizard.createQr")}
               {!creating && <ArrowRight className="w-4 h-4 ml-2" />}
@@ -173,9 +174,9 @@ function Stepper({ current }: { current: 1 | 2 | 3 }) {
         const done = n < current;
         return (
           <div key={label} className="flex items-center">
-            <div className={`flex items-center gap-2 ${active ? "text-indigo-600" : done ? "text-slate-700" : "text-slate-400"}`}>
+            <div className={`flex items-center gap-2 ${active ? "text-blue-600" : done ? "text-slate-700" : "text-slate-400"}`}>
               <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
-                active ? "bg-indigo-600 text-white" : done ? "bg-slate-700 text-white" : "bg-slate-100 text-slate-500"
+                active ? "bg-blue-600 text-white" : done ? "bg-slate-700 text-white" : "bg-slate-100 text-slate-500"
               }`}>
                 {done ? <Check className="w-3.5 h-3.5" /> : n}
               </div>
@@ -191,7 +192,7 @@ function Stepper({ current }: { current: 1 | 2 | 3 }) {
 
 function SuccessStep({ slug, id, onDone }: { slug: string; id: string; onDone: () => void }) {
   const { t } = useTranslation();
-  const url = `${window.location.origin}/q/${slug}`;
+  const url = buildQrUrl(slug);
   return (
     <div className="mt-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm text-center">
       <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 inline-flex items-center justify-center mb-4">
@@ -206,7 +207,7 @@ function SuccessStep({ slug, id, onDone }: { slug: string; id: string; onDone: (
       <p className="text-xs text-slate-500 font-mono break-all mb-6">{url}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Button onClick={() => downloadQrPng(url, `qr-${slug}.png`)} className="bg-indigo-600 hover:bg-indigo-700">
+        <Button onClick={() => downloadQrPng(url, `qr-${slug}.png`)} className="bg-blue-600 hover:bg-blue-700">
           <Download className="w-4 h-4 mr-1.5" />
           {t("wizard.success.downloadPng")}
         </Button>

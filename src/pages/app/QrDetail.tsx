@@ -46,7 +46,7 @@ export default function QrDetail() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <Link to="/" className="inline-flex items-center text-sm text-slate-500 hover:text-indigo-600 mb-6">
+      <Link to="/" className="inline-flex items-center text-sm text-slate-500 hover:text-blue-600 mb-6">
         <ArrowLeft className="w-4 h-4 mr-1" /> {t("detail.back")}
       </Link>
 
@@ -59,7 +59,7 @@ export default function QrDetail() {
             <DownloadSplitButton slug={qr.slug} url={url} />
             <Link
               to={`/tools/static-qr?data=${encodeURIComponent(url)}`}
-              className="mt-2 flex items-center justify-center gap-1.5 text-xs text-slate-500 hover:text-indigo-600 py-1.5"
+              className="mt-2 flex items-center justify-center gap-1.5 text-xs text-slate-500 hover:text-blue-600 py-1.5"
             >
               <Settings2 className="w-3.5 h-3.5" />
               {t("detail.moreOptions")}
@@ -160,7 +160,7 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
           placeholder={t("note.placeholder")}
           rows={3}
           maxLength={1000}
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 resize-y"
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 resize-y"
         />
         <p className="text-xs text-slate-500">{t("note.help")}</p>
       </div>
@@ -168,7 +168,7 @@ function TargetTab({ qr, onSaved }: { qr: Qr; onSaved: () => void }) {
         <ExpiryAdvanced value={expiry} onChange={setExpiry} />
       </div>
       <div className="mt-6 pt-6 border-t border-slate-100 flex justify-end">
-        <Button onClick={handleSave} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
+        <Button onClick={handleSave} disabled={saving} className="bg-blue-600 hover:bg-blue-700">
           {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
           {saving ? t("detail.target.saving") : t("detail.target.saveTarget")}
         </Button>
@@ -291,7 +291,7 @@ function SettingsTab({ qr, onChanged }: { qr: Qr; onChanged: () => void }) {
               <><Play className="w-4 h-4 mr-1.5" />{t("detail.settings.resume")}</>
             )}
           </Button>
-          <Button onClick={save} disabled={saving} className="bg-indigo-600 hover:bg-indigo-700">
+          <Button onClick={save} disabled={saving} className="bg-blue-600 hover:bg-blue-700">
             {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
             {t("common.save")}
           </Button>
@@ -343,7 +343,7 @@ function DownloadSplitButton({ slug, url }: { slug: string; url: string }) {
     <div ref={wrapRef} className="relative flex w-full gap-px">
       <Button
         onClick={() => pick(() => downloadQrPng(url, `qr-${slug}.png`))}
-        className="flex-1 bg-indigo-600 hover:bg-indigo-700 rounded-r-none border-r-0"
+        className="flex-1 bg-blue-600 hover:bg-blue-700 rounded-r-none border-r-0"
       >
         <Download className="w-4 h-4 mr-1.5" />
         {t("detail.downloadPng")}
@@ -354,7 +354,7 @@ function DownloadSplitButton({ slug, url }: { slug: string; url: string }) {
         aria-label={t("detail.downloadPng")}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="bg-indigo-600 hover:bg-indigo-700 rounded-l-none border-l-0 px-2.5"
+        className="bg-blue-600 hover:bg-blue-700 rounded-l-none border-l-0 px-2.5"
       >
         <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
       </Button>

@@ -5,7 +5,7 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", sans-serif;
   
-  --color-primary: var(--indigo-600);
+  --color-primary: var(--blue-600);
   --color-primary-foreground: white;
   
   --radius-xl: 0.75rem;
@@ -20,7 +20,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: var(--indigo-600);
+    --primary: var(--blue-600);
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -32,7 +32,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: var(--slate-200);
     --input: var(--slate-200);
-    --ring: var(--indigo-600);
+    --ring: var(--blue-600);
     --radius: 0.75rem;
   }
 }

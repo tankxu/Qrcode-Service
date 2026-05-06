@@ -64,7 +64,7 @@ export function LanguageSwitcher({ align = "right", direction = "down", variant 
               className="w-full text-left px-3 py-2 text-sm flex items-center justify-between hover:bg-slate-50"
             >
               <span>{l.label}</span>
-              {l.code === current.code && <Check className="w-4 h-4 text-indigo-600" />}
+              {l.code === current.code && <Check className="w-4 h-4 text-blue-600" />}
             </button>
           ))}
         </div>

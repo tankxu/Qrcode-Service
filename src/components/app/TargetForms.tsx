@@ -87,10 +87,10 @@ function ImageForm({ value, onChange }: { value: ImagePayload; onChange: (v: Ima
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="w-full border-2 border-dashed border-slate-200 rounded-xl py-12 px-6 flex flex-col items-center justify-center gap-2 hover:border-indigo-300 hover:bg-indigo-50/30 transition-colors"
+          className="w-full border-2 border-dashed border-slate-200 rounded-xl py-12 px-6 flex flex-col items-center justify-center gap-2 hover:border-blue-300 hover:bg-blue-50/30 transition-colors"
           disabled={uploading}
         >
-          {uploading ? <Loader2 className="w-6 h-6 animate-spin text-indigo-600" /> : <Upload className="w-6 h-6 text-slate-400" />}
+          {uploading ? <Loader2 className="w-6 h-6 animate-spin text-blue-600" /> : <Upload className="w-6 h-6 text-slate-400" />}
           <span className="text-sm font-medium text-slate-600">{uploading ? t("common.uploading") : t("targetForm.image.uploadCta")}</span>
           <span className="text-xs text-slate-400">{t("targetForm.image.uploadHint")}</span>
         </button>

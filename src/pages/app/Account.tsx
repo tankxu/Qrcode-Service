@@ -17,7 +17,7 @@ export default function Account() {
           {user?.picture ? (
             <img src={user.picture} alt="" referrerPolicy="no-referrer" className="w-16 h-16 rounded-full border border-slate-200" />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-indigo-100 text-indigo-700 text-xl font-bold flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-blue-100 text-blue-700 text-xl font-bold flex items-center justify-center">
               {(user?.name || user?.email || "?").slice(0, 1).toUpperCase()}
             </div>
           )}

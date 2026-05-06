@@ -85,11 +85,11 @@ export function ExpiryAdvanced({ value, onChange }: Props) {
           type="checkbox"
           checked={value.enabled}
           onChange={(e) => onChange({ ...value, enabled: e.target.checked })}
-          className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+          className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
         />
         <span className="flex-1">
           <span className="flex items-center gap-1.5 text-sm font-semibold text-slate-900">
-            <Bell className="w-3.5 h-3.5 text-indigo-600" />
+            <Bell className="w-3.5 h-3.5 text-blue-600" />
             {t("expiry.toggle.label")}
           </span>
           <span className="block text-xs text-slate-500 mt-0.5">{t("expiry.toggle.help")}</span>
@@ -151,7 +151,7 @@ export function ExpiryAdvanced({ value, onChange }: Props) {
                     onClick={() => toggleLead(o.seconds)}
                     className={
                       active
-                        ? "h-8 px-3 rounded-full text-xs font-medium border border-indigo-200 bg-indigo-50 text-indigo-700"
+                        ? "h-8 px-3 rounded-full text-xs font-medium border border-blue-200 bg-blue-50 text-blue-700"
                         : "h-8 px-3 rounded-full text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:border-slate-300"
                     }
                   >
@@ -205,7 +205,7 @@ function PresetRow({
     <label
       className={
         checked
-          ? "flex items-start gap-3 px-3 py-2.5 rounded-lg border border-indigo-200 bg-indigo-50/40 cursor-pointer"
+          ? "flex items-start gap-3 px-3 py-2.5 rounded-lg border border-blue-200 bg-blue-50/40 cursor-pointer"
           : "flex items-start gap-3 px-3 py-2.5 rounded-lg border border-slate-200 bg-white cursor-pointer hover:border-slate-300"
       }
     >
@@ -213,7 +213,7 @@ function PresetRow({
         type="radio"
         checked={checked}
         onChange={onSelect}
-        className="mt-0.5 h-4 w-4 border-slate-300 text-indigo-600 focus:ring-indigo-500"
+        className="mt-0.5 h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
       />
       <span className="flex-1 min-w-0">
         <span className="block text-sm font-medium text-slate-900">{title}</span>

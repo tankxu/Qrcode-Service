@@ -35,7 +35,7 @@ export default function StaticQrTool() {
   const { t } = useTranslation();
   usePageTitle("meta.staticQr");
   const [searchParams] = useSearchParams();
-  const initialData = searchParams.get("data") || "https://github.com/shadcn-ui/ui";
+  const initialData = searchParams.get("data") || "https://pandaqr.xyz";
   const [settings, setSettings] = useState<QRSettings>({
     data: initialData,
     size: 300,
@@ -110,7 +110,7 @@ export default function StaticQrTool() {
       <div className="w-full lg:w-135 bg-white border border-slate-200 rounded-xl shadow-sm flex flex-col h-fit">
         <div className="p-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold flex items-center gap-2">
-            <Settings2 className="w-5 h-5 text-indigo-600" />
+            <Settings2 className="w-5 h-5 text-blue-600" />
             {t("staticQr.configure")}
           </h2>
           <p className="text-sm text-slate-500">{t("staticQr.subtitle")}</p>
@@ -123,7 +123,7 @@ export default function StaticQrTool() {
               placeholder={t("staticQr.targetPlaceholder")}
               value={settings.data}
               onChange={(e) => setSettings({ ...settings, data: e.target.value })}
-              className="h-12 border-slate-200 focus:border-indigo-500 focus:ring-indigo-500/10"
+              className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/10"
             />
           </div>
 
@@ -200,7 +200,7 @@ export default function StaticQrTool() {
         </div>
 
         <div className="p-6 bg-slate-50 border-t border-slate-200 rounded-b-xl">
-          <Button className="w-full bg-indigo-600 text-white py-6 rounded-lg font-semibold shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 text-base h-11" onClick={() => handleDownload()} disabled={isLoading}>
+          <Button className="w-full bg-blue-600 text-white py-6 rounded-lg font-semibold shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all flex items-center justify-center gap-2 text-base h-11" onClick={() => handleDownload()} disabled={isLoading}>
             {isLoading ? <RefreshCcw className="w-4 h-4 animate-spin" /> : <Download className="w-5 h-5" />}
             {t("staticQr.generateDownload")}
           </Button>
@@ -231,7 +231,7 @@ export default function StaticQrTool() {
           </div>
 
           <div className="mt-8 flex flex-col items-center gap-2">
-            <Button variant="ghost" size="sm" onClick={handleCopyUrl} className="text-indigo-600 text-xs hover:bg-slate-50">
+            <Button variant="ghost" size="sm" onClick={handleCopyUrl} className="text-blue-600 text-xs hover:bg-slate-50">
               {t("staticQr.copyApi")}
             </Button>
           </div>
@@ -239,13 +239,13 @@ export default function StaticQrTool() {
 
         <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col gap-4">
           <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 uppercase tracking-tight">
-            <Download className="w-4 h-4 text-indigo-600" />
+            <Download className="w-4 h-4 text-blue-600" />
             {t("staticQr.exportOptions")}
           </h3>
           <div className="flex gap-3">
             {(["png", "svg", "jpg"] as const).map((fmt) => (
-              <button key={fmt} onClick={() => handleDownload(fmt)} className="flex-1 flex flex-col items-center justify-center py-4 border border-slate-200 rounded-xl hover:border-indigo-200 hover:bg-indigo-50/50 group transition-all">
-                <span className="text-lg font-bold group-hover:text-indigo-600 uppercase tracking-tight">{fmt}</span>
+              <button key={fmt} onClick={() => handleDownload(fmt)} className="flex-1 flex flex-col items-center justify-center py-4 border border-slate-200 rounded-xl hover:border-blue-200 hover:bg-blue-50/50 group transition-all">
+                <span className="text-lg font-bold group-hover:text-blue-600 uppercase tracking-tight">{fmt}</span>
                 <span className="text-[9px] text-slate-400 font-bold tracking-widest uppercase mt-0.5 text-center px-1">
                   {fmtDesc[fmt]}
                 </span>
