@@ -20,6 +20,14 @@ crons = ["5 * * * *"]
 pattern = "app.pandaqr.xyz"
 custom_domain = true
 
+# Short scan-target domain. q.pandaqr.xyz/<slug> is internally rewritten to
+# /q/<slug> by the top middleware in worker/index.ts so the same SSR path is
+# reused without a redirect hop. /r/* (R2 image proxy) also passes through
+# so embedded <img> tags resolve on the same hostname.
+[[routes]]
+pattern = "q.pandaqr.xyz"
+custom_domain = true
+
 # Legacy domain — Worker handles 301 redirect to pandaqr.xyz / app.pandaqr.xyz.
 # See worker/index.ts top middleware.
 [[routes]]

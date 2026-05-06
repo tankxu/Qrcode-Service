@@ -36,6 +36,10 @@ const LEGACY_HOST = "qrcode-service.tankxu.com";
 const APP_HOST = "https://app.pandaqr.xyz";
 const MARKETING_HOST = "https://pandaqr.xyz";
 
+// Short scan-target host. q.pandaqr.xyz/<slug> is rewritten to /q/<slug> in
+// the same Worker so SSR, KV cache, and scan tracking are reused unchanged.
+const SHORT_HOST = "q.pandaqr.xyz";
+
 const app = new Hono<AppEnv>();
 
 app.use("*", async (c, next) => {
@@ -46,6 +50,31 @@ app.use("*", async (c, next) => {
       ? `${APP_HOST}${url.pathname}${url.search}`
       : `${MARKETING_HOST}/`;
   return c.redirect(dest, 301);
+});
+
+// Short-domain handling. Three legal request shapes on q.pandaqr.xyz:
+//   1. /<slug>           — rewritten to /q/<slug> (same-Worker dispatch, no redirect)
+//   2. /r/* and /q/*     — pass through (R2 image proxy, idempotent direct hits)
+//   3. /images/*, /favicon.ico — pass through to ASSETS so SSR-referenced
+//      brand logo loads under the same origin
+// Everything else 404s, including /api/* and any SPA route — we deliberately
+// do NOT want the app shell or API surface reachable from the short host.
+const SHORT_PASSTHROUGH = /^\/(r|q|images)\//;
+const SLUG_RE = /^\/([a-z2-9]{8})\/?$/;
+app.use("*", async (c, next) => {
+  const url = new URL(c.req.url);
+  if (url.hostname !== SHORT_HOST) return next();
+
+  const path = url.pathname;
+  if (path === "" || path === "/") return c.redirect(`${MARKETING_HOST}/`, 302);
+  if (SHORT_PASSTHROUGH.test(path) || path === "/favicon.ico") return next();
+
+  const slugMatch = path.match(SLUG_RE);
+  if (!slugMatch) return c.notFound();
+
+  const rewritten = new URL(c.req.url);
+  rewritten.pathname = `/q/${slugMatch[1]}`;
+  return app.fetch(new Request(rewritten.toString(), c.req.raw), c.env, c.executionCtx);
 });
 
 app.get("/api/auth/google", (c) => {
