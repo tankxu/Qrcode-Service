@@ -17,7 +17,8 @@
     "open": "Ouvrir",
     "edit": "Modifier",
     "remove": "Retirer",
-    "language": "Langue"
+    "language": "Langue",
+    "openedForSave": "Appuyez longuement sur l’image et choisissez « Ajouter aux photos »."
   },
   "nav": {
     "dashboard": "Tableau de bord",

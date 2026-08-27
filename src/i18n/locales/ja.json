@@ -17,7 +17,8 @@
     "open": "開く",
     "edit": "編集",
     "remove": "削除",
-    "language": "言語"
+    "language": "言語",
+    "openedForSave": "画像を長押しして「写真に追加」を選んでください。"
   },
   "nav": {
     "dashboard": "ダッシュボード",

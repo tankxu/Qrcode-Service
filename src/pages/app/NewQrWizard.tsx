@@ -193,6 +193,18 @@ function Stepper({ current }: { current: 1 | 2 | 3 }) {
 function SuccessStep({ slug, id, onDone }: { slug: string; id: string; onDone: () => void }) {
   const { t } = useTranslation();
   const url = buildQrUrl(slug);
+
+  const savePng = async () => {
+    try {
+      const outcome = await downloadQrPng(url, `qr-${slug}.png`);
+      if (outcome === "opened") toast.success(t("common.openedForSave"));
+      else if (outcome === "shared") toast.success(t("common.saved"));
+    } catch (err) {
+      console.error(err);
+      toast.error(t("staticQr.failed"));
+    }
+  };
+
   return (
     <div className="mt-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm text-center">
       <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 inline-flex items-center justify-center mb-4">
@@ -207,7 +219,7 @@ function SuccessStep({ slug, id, onDone }: { slug: string; id: string; onDone: (
       <p className="text-xs text-slate-500 font-mono break-all mb-6">{url}</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Button onClick={() => downloadQrPng(url, `qr-${slug}.png`)} className="bg-blue-600 hover:bg-blue-700">
+        <Button onClick={() => savePng()} className="bg-blue-600 hover:bg-blue-700">
           <Download className="w-4 h-4 mr-1.5" />
           {t("wizard.success.downloadPng")}
         </Button>

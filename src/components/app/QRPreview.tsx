@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
+import { canvasToBlob, saveBlob } from "@/src/lib/saveFile";
 
 interface Props {
   value: string;
@@ -33,46 +34,30 @@ export function QRPreview({ value, size = 256, margin = 2, className }: Props) {
   );
 }
 
-function triggerDownload(href: string, filename: string) {
-  const a = document.createElement("a");
-  a.href = href;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+const QR_OPTIONS = {
+  margin: 2,
+  errorCorrectionLevel: "M" as const,
+  color: { dark: "#0f172a", light: "#ffffff" },
+};
+
+async function renderQrCanvas(value: string, size: number) {
+  const canvas = document.createElement("canvas");
+  await QRCode.toCanvas(canvas, value, { ...QR_OPTIONS, width: size });
+  return canvas;
 }
 
 export async function downloadQrPng(value: string, filename: string, size = 1024) {
-  const dataUrl = await QRCode.toDataURL(value, {
-    width: size,
-    margin: 2,
-    errorCorrectionLevel: "M",
-    color: { dark: "#0f172a", light: "#ffffff" },
-  });
-  triggerDownload(dataUrl, filename);
+  const canvas = await renderQrCanvas(value, size);
+  return saveBlob(await canvasToBlob(canvas, "image/png"), filename);
 }
 
 export async function downloadQrJpg(value: string, filename: string, size = 1024) {
-  const canvas = document.createElement("canvas");
-  await QRCode.toCanvas(canvas, value, {
-    width: size,
-    margin: 2,
-    errorCorrectionLevel: "M",
-    color: { dark: "#0f172a", light: "#ffffff" },
-  });
-  const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
-  triggerDownload(dataUrl, filename);
+  const canvas = await renderQrCanvas(value, size);
+  return saveBlob(await canvasToBlob(canvas, "image/jpeg", 0.92), filename);
 }
 
 export async function downloadQrSvg(value: string, filename: string) {
-  const svg = await QRCode.toString(value, {
-    type: "svg",
-    margin: 2,
-    errorCorrectionLevel: "M",
-    color: { dark: "#0f172a", light: "#ffffff" },
-  });
+  const svg = await QRCode.toString(value, { ...QR_OPTIONS, type: "svg" });
   const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  triggerDownload(url, filename);
-  URL.revokeObjectURL(url);
+  return saveBlob(blob, filename);
 }

@@ -17,7 +17,8 @@
     "open": "Öffnen",
     "edit": "Bearbeiten",
     "remove": "Entfernen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "openedForSave": "Halte das Bild gedrückt und wähle „Zu Fotos hinzufügen“."
   },
   "nav": {
     "dashboard": "Dashboard",
