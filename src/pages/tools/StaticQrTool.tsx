@@ -11,6 +11,7 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { usePageTitle } from "@/src/hooks/usePageTitle";
 import { toast } from "sonner";
+import { saveBlob } from "@/src/lib/saveFile";
 
 const hexToRgbApi = (hex: string) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -20,6 +21,12 @@ const hexToRgbApi = (hex: string) => {
 
 type QRFormat = "png" | "jpg" | "svg";
 type QREcc = "L" | "M" | "Q" | "H";
+
+const MIME: Record<QRFormat, string> = {
+  png: "image/png",
+  jpg: "image/jpeg",
+  svg: "image/svg+xml",
+};
 
 interface QRSettings {
   data: string;
@@ -76,16 +83,15 @@ export default function StaticQrTool() {
       setIsLoading(true);
       const url = generateUrl().replace(`format=${settings.format}`, `format=${fmt}`);
       const response = await fetch(url);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = `qrcode-${Date.now()}.${fmt}`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
-      toast.success(t("staticQr.downloaded", { format: fmt.toUpperCase() }));
+      if (!response.ok) throw new Error(`QR service responded ${response.status}`);
+      const raw = await response.blob();
+      // The API does not always label the payload, and saveBlob picks the
+      // share-sheet vs download path from the MIME type.
+      const blob = raw.type.startsWith("image/") ? raw : new Blob([raw], { type: MIME[fmt] });
+      const outcome = await saveBlob(blob, `qrcode-${Date.now()}.${fmt}`);
+      if (outcome === "opened") toast.success(t("common.openedForSave"));
+      else if (outcome === "shared") toast.success(t("common.saved"));
+      else toast.success(t("staticQr.downloaded", { format: fmt.toUpperCase() }));
     } catch (error) {
       console.error(error);
       toast.error(t("staticQr.failed"));

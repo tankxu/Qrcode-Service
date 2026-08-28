@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { qrsApi, type Qr, type Analytics } from "@/src/lib/api";
 import { buildQrUrl } from "@/src/lib/qrUrl";
 import { QRPreview, downloadQrPng, downloadQrJpg, downloadQrSvg } from "@/src/components/app/QRPreview";
+import type { SaveOutcome } from "@/src/lib/saveFile";
 import { TargetForm, type TargetValue } from "@/src/components/app/TargetForms";
 import {
   ExpiryAdvanced,
@@ -324,16 +325,19 @@ function DownloadSplitButton({ slug, url }: { slug: string; url: string }) {
     return () => document.removeEventListener("mousedown", onClick);
   }, [open]);
 
-  const pick = async (fn: () => Promise<void>) => {
+  const pick = async (fn: () => Promise<SaveOutcome>) => {
     setOpen(false);
     try {
-      await fn();
-    } catch {
+      const outcome = await fn();
+      if (outcome === "opened") toast.success(t("common.openedForSave"));
+      else if (outcome === "shared") toast.success(t("common.saved"));
+    } catch (err) {
+      console.error(err);
       toast.error(t("staticQr.failed"));
     }
   };
 
-  const items: Array<{ label: string; run: () => Promise<void> }> = [
+  const items: Array<{ label: string; run: () => Promise<SaveOutcome> }> = [
     { label: t("detail.downloadPng"), run: () => downloadQrPng(url, `qr-${slug}.png`) },
     { label: t("detail.downloadJpg"), run: () => downloadQrJpg(url, `qr-${slug}.jpg`) },
     { label: t("detail.downloadSvg"), run: () => downloadQrSvg(url, `qr-${slug}.svg`) },

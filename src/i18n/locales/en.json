@@ -17,7 +17,8 @@
     "open": "Open",
     "edit": "Edit",
     "remove": "Remove",
-    "language": "Language"
+    "language": "Language",
+    "openedForSave": "Long-press the image and choose “Add to Photos”."
   },
   "nav": {
     "dashboard": "Dashboard",

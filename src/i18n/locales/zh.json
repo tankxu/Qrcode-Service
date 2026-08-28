@@ -17,7 +17,8 @@
     "open": "打开",
     "edit": "编辑",
     "remove": "移除",
-    "language": "语言"
+    "language": "语言",
+    "openedForSave": "长按图片，选择“存储到相册”。"
   },
   "nav": {
     "dashboard": "工作台",
