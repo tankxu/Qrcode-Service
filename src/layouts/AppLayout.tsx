@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from "react-router";
-import { LayoutDashboard, Wrench, User, LogOut, Menu, X } from "lucide-react";
+import { KeyRound, LayoutDashboard, Wrench, User, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "@/src/hooks/useAuth";
@@ -15,6 +15,7 @@ export default function AppLayout() {
   const navItems = [
     { to: "/", label: t("nav.dashboard"), icon: LayoutDashboard, end: true },
     { to: "/tools/static-qr", label: t("nav.staticQr"), icon: Wrench },
+    { to: "/developer", label: t("nav.developer", "Developer"), icon: KeyRound },
     { to: "/account", label: t("nav.account"), icon: User },
   ];
 

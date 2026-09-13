@@ -3,6 +3,9 @@ import { getCookie, setCookie, deleteCookie } from "hono/cookie";
 import { signJWT, verifyJWT, randomToken, type SessionPayload } from "./jwt";
 import { upsertUser } from "./lib/db";
 import { SESSION_COOKIE, type AuthedUser } from "./lib/auth";
+import tokensRoute from "./routes/tokens";
+import v1Route from "./routes/v1";
+import type { AccessToken } from "./lib/tokens";
 import qrsRoute from "./routes/qrs";
 import uploadsRoute from "./routes/uploads";
 import rRoute from "./routes/r";
@@ -24,7 +27,7 @@ export type Bindings = {
   SCAN_EVENTS?: AnalyticsEngineDataset;
 };
 
-export type AppEnv = { Bindings: Bindings; Variables: { user: AuthedUser } };
+export type AppEnv = { Bindings: Bindings; Variables: { user: AuthedUser; accessToken: AccessToken; requestId: string } };
 
 const STATE_COOKIE = "qr_oauth_state";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
@@ -197,12 +200,16 @@ app.post("/api/auth/logout", (c) => {
   return c.json({ ok: true });
 });
 
+app.route("/api/tokens", tokensRoute);
+app.route("/api/v1", v1Route);
 app.route("/api/qrs", analyticsRoute); // mount more specific :id/analytics first
 app.route("/api/qrs", qrsRoute);
 app.route("/api/uploads", uploadsRoute);
 app.route("/api/notifications", notificationsRoute);
 app.route("/r", rRoute);
 app.route("/q", qRoute);
+
+app.all("/api/*", c => c.json({ ok: false, error: { code: "not_found", message: "API endpoint not found" } }, 404));
 
 // Anything not matched above (SPA routes like / and /login) is served by
 // the static-assets binding. We need an explicit fallthrough because
@@ -216,5 +223,9 @@ export default {
   // notifications. wrangler.toml sets the cron expression.
   scheduled: async (_event: ScheduledController, env: Bindings, ctx: ExecutionContext) => {
     ctx.waitUntil(runExpirySweep(env.DB));
+    ctx.waitUntil(env.DB.batch([
+      env.DB.prepare('DELETE FROM api_audit_events WHERE created_at < ?').bind(Date.now() - 90 * 86400000),
+      env.DB.prepare('DELETE FROM api_idempotency WHERE created_at < ?').bind(Date.now() - 86400000),
+    ]));
   },
 } satisfies ExportedHandler<Bindings>;

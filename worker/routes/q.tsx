@@ -21,18 +21,14 @@ interface CachedTarget {
 const r = new Hono<AppEnv>();
 
 r.get("/:slug", async (c) => {
+  c.header("cache-control", "no-store");
   const slug = c.req.param("slug");
   const locale = pickLocale(c.req.raw);
   const s = strings(locale);
 
-  // KV cache (TTL 60s)
-  let cached: CachedTarget | null = null;
-  try {
-    const hit = await c.env.CACHE.get(`target:${slug}`, "json");
-    if (hit) cached = hit as CachedTarget;
-  } catch {}
-
-  if (!cached) {
+  // Read D1 directly so updates are visible on the next scan across regions.
+  let cached: CachedTarget;
+  {
     const row = await getQrBySlug(c.env.DB, slug);
     if (!row) {
       c.status(404);
@@ -52,9 +48,6 @@ r.get("/:slug", async (c) => {
       target_payload: JSON.parse(row.target_payload),
       expires_at: expiresAt,
     };
-    c.executionCtx.waitUntil(
-      c.env.CACHE.put(`target:${slug}`, JSON.stringify(cached), { expirationTtl: 60 }),
-    );
   }
 
   if (cached.status === "paused") {
@@ -82,7 +75,6 @@ r.get("/:slug", async (c) => {
     ]),
   );
 
-  c.header("cache-control", "public, max-age=60, stale-while-revalidate=600");
 
   const expired = cached.expires_at !== null && Date.now() >= cached.expires_at;
 
