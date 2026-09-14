@@ -27,7 +27,8 @@
     "account": "账号",
     "signIn": "登录",
     "signOut": "退出登录",
-    "goToDashboard": "进入工作台"
+    "goToDashboard": "进入工作台",
+    "developer": "开发者"
   },
   "footer": {
     "tagline": "一码永久,随时更新。"

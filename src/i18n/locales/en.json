@@ -27,7 +27,8 @@
     "account": "Account",
     "signIn": "Sign in",
     "signOut": "Sign out",
-    "goToDashboard": "Go to dashboard"
+    "goToDashboard": "Go to dashboard",
+    "developer": "Developer"
   },
   "footer": {
     "tagline": "One QR. Forever yours."

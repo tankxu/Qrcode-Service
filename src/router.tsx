@@ -3,6 +3,7 @@ import AppLayout from "@/src/layouts/AppLayout";
 import Login from "@/src/pages/Login";
 import NotFound from "@/src/pages/NotFound";
 import Dashboard from "@/src/pages/app/Dashboard";
+import Developer from "@/src/pages/app/Developer";
 import Account from "@/src/pages/app/Account";
 import NewQrWizard from "@/src/pages/app/NewQrWizard";
 import QrDetail from "@/src/pages/app/QrDetail";
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       // reserved for the public Worker-SSR scan landing page.
       { path: "qr/:id", element: <QrDetail /> },
       { path: "account", element: <Account /> },
+      { path: "developer", element: <Developer /> },
       { path: "tools/static-qr", element: <StaticQrTool /> },
     ],
   },

@@ -1,3 +1,4 @@
+import { validateImageTarget } from "../lib/images";
 import { Hono } from "hono";
 import { requireAuth } from "../lib/auth";
 import { ok, fail } from "../lib/response";
@@ -8,7 +9,7 @@ import type { QrRow, QrWithCounter } from "../lib/db";
 
 const r = new Hono<AppEnv>();
 
-const presentQr = (q: QrWithCounter) => {
+export const presentQr = (q: QrWithCounter) => {
   let leadTimes: number[] = [];
   if (q.expiry_lead_times) {
     try {
@@ -54,6 +55,8 @@ r.post("/", async (c) => {
   const parsed = createQrInputSchema.safeParse(body);
   if (!parsed.success) return fail(c, "invalid_input", parsed.error.message, 400);
 
+  if (!await validateImageTarget(c.env, user.uid, parsed.data.target)) return fail(c, "invalid_image", "Image must exist and belong to this account", 400);
+
   let row: QrRow;
   try {
     row = await createQr(c.env.DB, user.uid, parsed.data);
@@ -84,16 +87,7 @@ r.patch("/:id", async (c) => {
   const before = await getQrById(c.env.DB, c.req.param("id"), user.uid);
   if (!before) return fail(c, "not_found", "QR not found", 404);
 
-  // If image target is being replaced, clean the old R2 object.
-  let oldImageKey: string | null = null;
-  if (parsed.data.target && before.target_type === "image") {
-    try {
-      const old = JSON.parse(before.target_payload) as { r2_key?: string };
-      if (old.r2_key && (parsed.data.target.type !== "image" || old.r2_key !== parsed.data.target.payload.r2_key)) {
-        oldImageKey = old.r2_key;
-      }
-    } catch {}
-  }
+  if (!await validateImageTarget(c.env, user.uid, parsed.data.target)) return fail(c, "invalid_image", "Image must exist and belong to this account", 400);
 
   const updated = await updateQr(c.env.DB, c.req.param("id"), user.uid, parsed.data);
   if (!updated) return fail(c, "not_found", "QR not found", 404);
@@ -101,9 +95,7 @@ r.patch("/:id", async (c) => {
   // Invalidate KV cache
   await c.env.CACHE.delete(`target:${before.slug}`);
 
-  if (oldImageKey) {
-    c.executionCtx.waitUntil(c.env.IMAGES.delete(oldImageKey));
-  }
+  // Images may be shared by other QRs; retain objects until reference-aware cleanup.
 
   return ok(c, { qr: presentQr(updated) });
 });
@@ -114,13 +106,6 @@ r.delete("/:id", async (c) => {
   if (!removed) return fail(c, "not_found", "QR not found", 404);
 
   await c.env.CACHE.delete(`target:${removed.slug}`);
-
-  if (removed.target_type === "image") {
-    try {
-      const p = JSON.parse(removed.target_payload) as { r2_key?: string };
-      if (p.r2_key) c.executionCtx.waitUntil(c.env.IMAGES.delete(p.r2_key));
-    } catch {}
-  }
 
   return ok(c, { deleted: true });
 });
