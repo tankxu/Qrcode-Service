@@ -30,7 +30,7 @@ def main():
     token = os.environ.get('PANDAQR_ACCESS_TOKEN')
     if not token:
         parser.error('Set PANDAQR_ACCESS_TOKEN in the environment')
-    headers = {'Authorization': 'Bearer '+token}
+    headers = {'Authorization': 'Bearer '+token, 'User-Agent': 'PandaQR-Agent/1.0'}
     command = opts.command
     body = None
     method = 'GET'
